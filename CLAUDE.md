@@ -12,8 +12,9 @@ Biotium event landing pages. Manny Criado (mcriado@biotium.com) owns and maintai
 Each event has its own folder:
 
 - `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 14-18, Booth 1106. Not live yet.
-  - `Main.dc.html` is the main page. `*Variant.dc.html` files are alternate hero directions.
-  - `canvas.json` lays out the artboards on the design canvas. When you add, remove or rename a variant, update its artboard and note there too.
+  - `QuietFieldVariant.dc.html` is the definitive page. Make all SfN changes there.
+  - `Main.dc.html` and the other `*Variant.dc.html` files are earlier directions, kept for reference only. Don't update them.
+  - `canvas.json` belongs to the retired SfN design canvas. Leave it as is.
   - `hubspot/` holds the single copy-paste file for HubSpot Design Manager, built from `QuietFieldVariant.dc.html` by `tools/build-hubspot.py`. Rebuild it after changing that page.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15. `design/` holds the source, `hubspot/` holds the HubSpot file.
 
@@ -21,12 +22,9 @@ Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biot
 
 ## Design canvases and artifacts
 
-Manny still edits two design canvases visually on claude.ai:
+Manny still edits the ASCB design canvas visually on claude.ai: https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g (shared with the Biotium org). It can fall behind this repo, or get ahead of it. Before syncing in either direction, check which side is newer and ask.
 
-- SfN: https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp
-- ASCB: https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g (shared with the Biotium org)
-
-They can fall behind this repo, or get ahead of it. Before syncing in either direction, check which side is newer and ask.
+The SfN design canvas (https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp) is retired now that Quiet Field is the pick. Don't sync it.
 
 The Quiet Field page is also published as a standalone artifact: https://claude.ai/artifact/9jy6gG9UWHWavorH6RLzDK. When `QuietFieldVariant.dc.html` changes, ask whether to republish it.
 

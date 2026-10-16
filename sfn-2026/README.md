@@ -4,11 +4,9 @@ Design source for Biotium's booth landing page at Neuroscience 2026 (SfN), Nov 1
 
 ## Pages
 
-- `Main.dc.html` - the landing page (hero, MiniMab flagship story, portfolio grid, resources, show promo, closing CTA, footer), styled to match the ASCB Cell Bio 2026 landing page's design system.
-- `QuietFieldVariant.dc.html` - hero with an ambient neuron field (quiet on the left, dense on the right) and an interactive particle brain overlay (assembles on load, pushes away from the cursor or a dragging finger, ripples on click or tap).
-- `BrainVariant.dc.html`, `GlassVariant.dc.html` - earlier hero directions, kept for reference.
-- `ScrollVariant.dc.html` - the scroll-reveal comparison that was promoted into `Main`.
-- `canvas.json` - layout of the artboards on the design canvas.
+- `QuietFieldVariant.dc.html` - the definitive landing page and the HubSpot source. Hero with an ambient neuron field (quiet on the left, dense on the right) and an interactive particle brain overlay (assembles on load, pushes away from the cursor or a dragging finger, ripples on click or tap).
+- `Main.dc.html`, `BrainVariant.dc.html`, `GlassVariant.dc.html`, `ScrollVariant.dc.html` - earlier directions, kept for reference only and no longer updated.
+- `canvas.json` - artboard layout for the retired SfN design canvas.
 
 ## Assets
 
@@ -16,6 +14,7 @@ Design source for Biotium's booth landing page at Neuroscience 2026 (SfN), Nov 1
 - `hero-brain.webp` - source image for the Quiet Field particle brain. The page doesn't load it; `tools/brain-particles.py` turns it into the particle data inlined in the page. Rerun it if the image changes.
 - `biotium-choice-icon.svg` - Biotium Choice badge.
 - `tshirts.webp` - show merch photo.
+- `portfolio-*.webp` - portfolio card images.
 
 ## HubSpot
 
