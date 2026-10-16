@@ -627,26 +627,6 @@
   try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   if (reduced) root.classList.add('reduced-motion');
 
-  // Subtle wheel-scroll easing: softens large wheel/trackpad jumps into smaller steps
-  if (!reduced) {
-    var wheelPending = 0;
-    var wheelRunning = false;
-    var wheelDamp = 0.2;
-    function wheelStep() {
-      if (Math.abs(wheelPending) < 0.5) { wheelPending = 0; wheelRunning = false; return; }
-      var move = wheelPending * wheelDamp;
-      wheelPending -= move;
-      window.scrollBy(0, move);
-      window.requestAnimationFrame(wheelStep);
-    }
-    window.addEventListener('wheel', function (e) {
-      if (e.ctrlKey) return; // let pinch-zoom through untouched
-      e.preventDefault();
-      wheelPending += e.deltaY;
-      if (!wheelRunning) { wheelRunning = true; window.requestAnimationFrame(wheelStep); }
-    }, { passive: false });
-  }
-
   var progress = document.getElementById('scroll-progress');
   var header = document.getElementById('site-header');
   var ticking = false;
@@ -825,8 +805,15 @@
         ctx.fill();
       });
 
-      requestAnimationFrame(frame);
+      if (onScreen && !document.hidden) requestAnimationFrame(frame); else looping = false;
     }
+    // Only draw while the hero is on screen and the tab is visible, so the page stays light everywhere else
+    var onScreen = true, looping = true;
+    function resume() { if (!looping && onScreen && !document.hidden) { looping = true; requestAnimationFrame(frame); } }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; resume(); }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', resume);
     requestAnimationFrame(frame);
   })();
 })();
