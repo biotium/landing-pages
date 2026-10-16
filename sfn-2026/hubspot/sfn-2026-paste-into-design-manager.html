@@ -35,6 +35,10 @@ label: Biotium – SfN 2026 Landing Page
     .bt-tshirts { transition: transform 0.45s cubic-bezier(.16,.8,.24,1); }
     @media (hover: hover) { .bt-tshirts:hover { transform: scale(1.04); } }
     @media (prefers-reduced-motion: reduce) { .bt-tshirts { transition: none; } .bt-tshirts:hover { transform: none; } }
+    /* Text-link underline: draws in from the left on hover, slides out to the right on leave */
+    .bt-ul { background: linear-gradient(currentColor, currentColor) right bottom / 0% 1.5px no-repeat; padding-bottom: 2px; transition: background-size 0.35s cubic-bezier(.16,.8,.24,1); }
+    a:hover .bt-ul, a:focus-visible .bt-ul { background-position: left bottom; background-size: 100% 1.5px; }
+    @media (prefers-reduced-motion: reduce) { .bt-ul { transition: none; } }
     /* Come say hi: floating team faces. They pop in one by one
        when the section scrolls into view, then drift gently. On tablets the copy narrows and the faces pull in; at 720px and below they gather in a row just above the copy. */
     .bt-say-hi { position: relative; overflow: hidden; }
@@ -342,7 +346,7 @@ label: Biotium – SfN 2026 Landing Page
         </li>
       </ul>
       <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="bt-link-arrow" style="color:#66b5ff; font-size:15px;">
-        Learn More About MiniMab&trade;
+        <span class="bt-ul">Learn More About MiniMab&trade;</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
