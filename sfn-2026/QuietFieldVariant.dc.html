@@ -82,7 +82,7 @@
     .bt-choice-tip {
       position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%);
       background: #232323; color: #ffffff; font-size: 11.5px; font-weight: 700; letter-spacing: 0.01em;
-      text-transform: none; white-space: normal; text-align: center; max-width: 200px; padding: 7px 11px; border-radius: 7px;
+      text-transform: none; white-space: normal; text-align: center; width: max-content; max-width: 260px; padding: 7px 11px; border-radius: 7px;
       opacity: 0; visibility: hidden; transition: opacity 0.15s ease;
       pointer-events: none; box-shadow: 0 6px 16px rgba(0,0,0,0.22); z-index: 5;
     }
@@ -201,6 +201,14 @@
     /* Scroll-reveal */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.16,.8,.24,1), transform 0.7s cubic-bezier(.16,.8,.24,1); }
     .reveal.is-visible { opacity: 1; transform: none; }
+    /* Revealed cards drop the slow, staggered reveal transition so hover feedback is instant and the lift works */
+    .bt-card.is-settled { transition: box-shadow 0.15s ease, transform 0.15s ease !important; transition-delay: 0s !important; }
+    .bt-card.is-settled:hover { transform: translateY(-2px); }
+    .bt-card:hover { z-index: 3; }
+    /* Card content sits above the border beam, so links and buttons always get the hand cursor */
+    .bt-card > * { position: relative; z-index: 2; }
+    a.bt-card, .bt-card a, .bt-btn-outline, .bt-btn-primary { cursor: pointer; }
+    .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
 
     html.reduced-motion .hero-in,
     html.reduced-motion .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
@@ -375,7 +383,7 @@
         <div style="flex:1 1 auto; min-width:0;">
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neuronal Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0">
             <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
-            <span class="bt-choice-tip">Biotium Choice&trade; &mdash; validated &amp; optimized</span>
+            <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">GFAP, NeuN: validated conjugates for glia and neuron identification.</p>
         </div>
@@ -389,7 +397,7 @@
         <div style="flex:1 1 auto; min-width:0;">
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0">
             <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
-            <span class="bt-choice-tip">Biotium Choice&trade; &mdash; validated &amp; optimized</span>
+            <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Neurofilament-H, &beta;3-Tubulin: core cytoskeletal targets.</p>
         </div>
@@ -682,14 +690,20 @@
 
   // Scroll-reveal for sections below the fold
   var revealEls = document.querySelectorAll('.reveal');
+  function settle(el) {
+    var done = function () { el.classList.add('is-settled'); };
+    el.addEventListener('transitionend', function (e) { if (e.target === el && e.propertyName === 'opacity') done(); });
+    setTimeout(done, 1400);
+  }
   if (reduced || !('IntersectionObserver' in window)) {
-    for (var j = 0; j < revealEls.length; j++) revealEls[j].classList.add('is-visible');
+    for (var j = 0; j < revealEls.length; j++) { revealEls[j].classList.add('is-visible'); revealEls[j].classList.add('is-settled'); }
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
           io.unobserve(entry.target);
+          settle(entry.target);
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
