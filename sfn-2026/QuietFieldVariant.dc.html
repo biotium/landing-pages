@@ -25,8 +25,7 @@
     .bt-kicker-row { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     .bt-kicker-row--center { align-items: center; text-align: center; }
     .bt-kicker { display: inline-flex; align-items: center; flex: none; background: #E9F3FF; color: #0062be; font-size: 12.5px; font-weight: 800; padding: 6px 14px; border-radius: 999px; }
-    .bt-card { position: relative; transition: box-shadow 0.15s ease, transform 0.15s ease; text-decoration: none; display: block; }
-    .bt-card:hover { box-shadow: 0 12px 28px rgba(17,17,17,0.08); transform: translateY(-2px); }
+    .bt-card { position: relative; transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
     /* Show merch photo: smooth, slight scale on hover (pointer devices only) */
     .bt-tshirts { transition: transform 0.45s cubic-bezier(.16,.8,.24,1); }
     @media (hover: hover) { .bt-tshirts:hover { transform: scale(1.04); } }
@@ -103,11 +102,10 @@
       pointer-events: none;
     }
 
-    /* Icon glass chips: background brightens on card hover */
+    /* Icon chips: background brightens on card hover */
     .bt-icon-box {
       background: rgba(0,132,255,0.08);
       border: 1px solid rgba(0,132,255,0.16);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       transition: background-color 0.2s ease;
     }
     .bt-card:hover .bt-icon-box {
@@ -116,7 +114,6 @@
     .bt-icon-box-res {
       background: rgba(0,132,255,0.10);
       border: 1px solid rgba(0,132,255,0.18);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       transition: background-color 0.2s ease;
     }
     .bt-res-card:hover .bt-icon-box-res {
@@ -191,19 +188,19 @@
     /* Scroll-reveal */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.16,.8,.24,1), transform 0.7s cubic-bezier(.16,.8,.24,1); }
     .reveal.is-visible { opacity: 1; transform: none; }
-    /* Card hover. Each card is one link: it rises 2px with a soft shadow (this is clickable)
-       and its arrow nudges forward (where it goes). Revealed cards drop the slow, staggered
+    /* Card hover. Each card is one link: the border turns blue with a soft shadow (this is clickable)
+       and the arrow nudges forward (where it goes). The card itself never moves, so the area under
+       the pointer stays put and hover can't stick or flicker. Revealed cards drop the slow, staggered
        reveal transition so the hover answers instantly. */
-    .bt-card.is-settled { transition: box-shadow 0.18s ease, transform 0.18s ease !important; transition-delay: 0s !important; }
-    .bt-card.is-settled:hover { transform: translateY(-2px); }
-    .bt-card.is-settled:hover::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; } /* keeps hover steady at the bottom edge while the card is raised */
+    .bt-card.is-settled { transition: box-shadow 0.18s ease, border-color 0.18s ease !important; transition-delay: 0s !important; }
+    .bt-card:hover { transform: none; border-color: rgba(8,126,236,0.45) !important; box-shadow: 0 10px 26px rgba(17,17,17,0.07); }
     a.bt-card { cursor: pointer; }
     .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
     .bt-card:hover .bt-btn-outline { background: rgba(229,242,255,0.78); color: #0062be; box-shadow: 0 6px 18px rgba(8,126,236,0.22); }
     .bt-card-go { transition: transform 0.18s ease; }
     .bt-card:hover .bt-card-go { transform: translateX(3px); }
     .bt-card:hover .bt-card-go--down { transform: translateY(2px); }
-    @media (prefers-reduced-motion: reduce) { .bt-card.is-settled:hover, .bt-card:hover .bt-card-go { transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .bt-card:hover .bt-card-go { transform: none; } }
 
     html.reduced-motion .hero-in,
     html.reduced-motion .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
