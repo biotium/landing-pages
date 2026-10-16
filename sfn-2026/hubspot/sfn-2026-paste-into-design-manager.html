@@ -69,16 +69,6 @@ label: Biotium – SfN 2026 Landing Page
       .bt-face { animation: none; }
       .bt-face-in { opacity: 1; transform: none; transition: none; }
     }
-    @property --bt-beam-a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-    .bt-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 2px;
-      background: conic-gradient(from var(--bt-beam-a), transparent 0deg, rgba(0,132,255,0.05) 40deg, #0084FF 110deg, rgba(0,132,255,0.05) 180deg, transparent 220deg, transparent 360deg);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      filter: blur(0.4px); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1;
-    }
-    .bt-card:hover::before { opacity: 1; animation: bt-card-beam-spin 4.2s linear infinite; }
-    @keyframes bt-card-beam-spin { to { --bt-beam-a: 360deg; } }
     .bt-cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
     .bt-res-row { display: flex; gap: 24px; align-items: stretch; flex-wrap: wrap; }
     .bt-res-card { flex: 1 1 260px; }
@@ -117,7 +107,7 @@ label: Biotium – SfN 2026 Landing Page
       pointer-events: none;
     }
 
-    /* Icon glass chips — background brightens on hover; the interactive glow lives on the card border (see .bt-card:hover) */
+    /* Icon glass chips: background brightens on card hover */
     .bt-icon-box {
       background: rgba(0,132,255,0.08);
       border: 1px solid rgba(0,132,255,0.16);
@@ -205,14 +195,19 @@ label: Biotium – SfN 2026 Landing Page
     /* Scroll-reveal */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.16,.8,.24,1), transform 0.7s cubic-bezier(.16,.8,.24,1); }
     .reveal.is-visible { opacity: 1; transform: none; }
-    /* Revealed cards drop the slow, staggered reveal transition so hover feedback is instant and the lift works */
-    .bt-card.is-settled { transition: box-shadow 0.15s ease, transform 0.15s ease !important; transition-delay: 0s !important; }
+    /* Card hover. Each card is one link: it rises 2px with a soft shadow (this is clickable)
+       and its arrow nudges forward (where it goes). Revealed cards drop the slow, staggered
+       reveal transition so the hover answers instantly. */
+    .bt-card.is-settled { transition: box-shadow 0.18s ease, transform 0.18s ease !important; transition-delay: 0s !important; }
     .bt-card.is-settled:hover { transform: translateY(-2px); }
-    .bt-card:hover { z-index: 3; }
-    /* Card content sits above the border beam, so links and buttons always get the hand cursor */
-    .bt-card > * { position: relative; z-index: 2; }
-    a.bt-card, .bt-card a, .bt-btn-outline, .bt-btn-primary { cursor: pointer; }
+    .bt-card.is-settled:hover::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; } /* keeps hover steady at the bottom edge while the card is raised */
+    a.bt-card { cursor: pointer; }
     .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .bt-card:hover .bt-btn-outline { background: rgba(229,242,255,0.78); color: #0062be; box-shadow: 0 6px 18px rgba(8,126,236,0.22); }
+    .bt-card-go { transition: transform 0.18s ease; }
+    .bt-card:hover .bt-card-go { transform: translateX(3px); }
+    .bt-card:hover .bt-card-go--down { transform: translateY(2px); }
+    @media (prefers-reduced-motion: reduce) { .bt-card.is-settled:hover, .bt-card:hover .bt-card-go { transform: none; } }
 
     html.reduced-motion .hero-in,
     html.reduced-motion .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
@@ -391,7 +386,7 @@ label: Biotium – SfN 2026 Landing Page
           </span></div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">GFAP, NeuN: validated conjugates for glia and neuron identification.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:60ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -405,7 +400,7 @@ label: Biotium – SfN 2026 Landing Page
           </span></div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Neurofilament-H, &beta;3-Tubulin: core cytoskeletal targets.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:120ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -416,7 +411,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Axonal Tracers</div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Neuro-DiI: lipophilic tracing for neuronal connectivity.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:180ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -427,7 +422,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Small Format Antibodies</div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">MiniMab&trade; SdAbs: single-domain antibodies for deep tissue.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:240ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -438,7 +433,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Functional Imaging</div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Calcium &amp; ion indicators for live-cell activity readouts.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:300ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -449,7 +444,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neurodegeneration Probes</div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Amyloid &amp; aggregate stains for disease-model research.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:360ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
@@ -460,7 +455,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Signal Amplification</div>
           <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp.</p>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
     </div>
@@ -478,19 +473,19 @@ label: Biotium – SfN 2026 Landing Page
     </div>
     <div class="bt-res-row">
 
-      <div class="reveal bt-card bt-res-card" style="transition-delay:0ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:0ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
         </div>
         <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Neuronal Probes Flyer</div>
         <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">A quick-reference guide to Biotium's synaptic biology probes and stains.</p>
-        <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="bt-btn-outline">
+        <span class="bt-btn-outline">
           Download PDF
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 21h14"></path></svg>
-        </a>
-      </div>
+          <svg class="bt-card-go bt-card-go--down" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 21h14"></path></svg>
+        </span>
+      </a>
 
-      <div class="reveal bt-card bt-res-card" style="transition-delay:80ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/literature-digest/literature-digest-trueblack-lipofuscin-autofluorescence-quencher-in-diverse-neuroscience-applications/" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:80ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -503,13 +498,13 @@ label: Biotium – SfN 2026 Landing Page
         </div>
         <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">TrueBlack&reg; in Neuroscience</div>
         <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">Lipofuscin autofluorescence quenching across diverse neuroscience applications.</p>
-        <a href="https://biotium.com/literature-digest/literature-digest-trueblack-lipofuscin-autofluorescence-quencher-in-diverse-neuroscience-applications/" target="_blank" rel="noopener" class="bt-btn-outline">
+        <span class="bt-btn-outline">
           Read the Digest
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-        </a>
-      </div>
+          <svg class="bt-card-go" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </span>
+      </a>
 
-      <div class="reveal bt-card bt-res-card" style="transition-delay:160ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/resource/literature-digest-cf-dyes-for-storm-super-resolution-microscopy/" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:160ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -522,11 +517,11 @@ label: Biotium – SfN 2026 Landing Page
         </div>
         <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">CF&reg; Dyes for STORM</div>
         <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">CF&reg; Dyes for STORM super-resolution microscopy in advanced imaging workflows.</p>
-        <a href="https://biotium.com/resource/literature-digest-cf-dyes-for-storm-super-resolution-microscopy/" target="_blank" rel="noopener" class="bt-btn-outline">
+        <span class="bt-btn-outline">
           Read the Digest
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-        </a>
-      </div>
+          <svg class="bt-card-go" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </span>
+      </a>
 
     </div>
   </div>
