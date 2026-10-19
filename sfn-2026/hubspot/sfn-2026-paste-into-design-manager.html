@@ -134,6 +134,12 @@ label: Biotium – SfN 2026 Landing Page
     }
 
     /* Sticky header elevation on scroll — subtle glass */
+    html { scroll-behavior: smooth; }
+    html.reduced-motion { scroll-behavior: auto; }
+    #minimab { scroll-margin-top: 58px; }
+    .bt-btn-go { transition: transform 0.2s ease; }
+    .bt-btn-primary:hover .bt-btn-go { transform: translateY(2px); }
+    html.reduced-motion .bt-btn-primary:hover .bt-btn-go { transform: none; }
     #site-header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.88);
@@ -319,9 +325,9 @@ label: Biotium – SfN 2026 Landing Page
       <h1 class="hero-in bt-h1" style="transition-delay:80ms; margin:0 0 22px 0; font-size:56px; line-height:1.06; font-weight:800; letter-spacing:-0.01em; color:#2d2d2d;">Biotium at SfN 2026</h1>
       <p class="hero-in" style="transition-delay:160ms; margin:0 0 32px 0; font-size:19px; line-height:1.5; font-weight:600; color:#444444; max-width:480px;">Unlock deeper insights.</p>
       <div class="hero-in" style="transition-delay:240ms; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
-        <a href="https://s19.a2zinc.net/clients/SfN/sfn26/public/EventMap.aspx?shmode=E" target="_blank" rel="noopener" class="bt-btn-primary">
-          Find us at Booth 1106
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <a href="#minimab" class="bt-btn-primary">
+          Meet MiniMab&trade;
+          <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
         </a>
       </div>
     </div>
@@ -332,7 +338,7 @@ label: Biotium – SfN 2026 Landing Page
 </div>
 
 <!-- Flagship story: MiniMab -->
-<div style="background:#232323; border-top:1px solid #3f3f3f;">
+<div id="minimab" style="background:#232323; border-top:1px solid #3f3f3f;">
   <div class="bt-wrap bt-featured-row" style="display:flex; align-items:center; gap:64px; padding-top:80px; padding-bottom:80px;">
     <div class="reveal" style="transition-delay:0ms; flex:1 1 0; max-width:560px;">
       <div class="bt-kicker-row" style="margin-bottom:18px;">
@@ -570,6 +576,10 @@ label: Biotium – SfN 2026 Landing Page
       <h2 style="margin:0 0 16px 0; font-size:30px; line-height:1.25; font-weight:800; color:#2d2d2d;">Come say hi. Bring your questions.</h2>
       <p style="margin:0 0 20px 0; font-size:16px; line-height:1.6; color:#555555;">Walk up any time. Talk to our team, PhD scientists included, about MiniMab&trade;, CF&reg; Dyes for in vivo imaging, neuronal probes, and optimizing your experimental workflow.</p>
       <div style="font-size:13px; color:#888888;">Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.</div>
+      <a href="https://s19.a2zinc.net/clients/SfN/sfn26/public/EventMap.aspx?shmode=E" target="_blank" rel="noopener" class="bt-link-arrow" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; color:#087eec; font-size:14px; font-weight:700; text-decoration:none;">
+        <span class="bt-ul">Find Booth 1106 on the floor plan</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+      </a>
     </div>
   </div>
 </div>
