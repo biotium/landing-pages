@@ -198,6 +198,9 @@
     .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
     .bt-card:hover .bt-btn-outline { background: rgba(229,242,255,0.78); color: #0062be; }
     .bt-card .bt-btn-outline, .bt-card .bt-btn-outline:hover { box-shadow: none; }
+    /* Resource buttons: pointer on the button inverts it to Biotium blue, the clearest "click here" */
+    .bt-res-card .bt-btn-outline { transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .bt-res-card .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
     /* Resource preview: on mouse and trackpad, hovering a resource button swaps the pointer for a
        thumbnail of the resource, so visitors see what they'll get before they click */
     .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
