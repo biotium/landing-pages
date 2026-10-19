@@ -200,7 +200,7 @@
     .bt-card .bt-btn-outline, .bt-card .bt-btn-outline:hover { box-shadow: none; }
     /* Resource preview: on mouse and trackpad, a thumbnail of the resource follows the pointer
        (and stands in for it), so visitors see what they'll get before they click */
-    .bt-res-peek { position: absolute; left: 0; top: 0; width: 120px; height: auto; border-radius: 6px; box-shadow: 0 10px 28px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
+    .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
     @media (hover: hover) and (pointer: fine) {
       .bt-res-card.is-peeking { cursor: none; }
       .bt-res-card.is-peeking .bt-res-peek { opacity: 1; transform: translate(var(--px, 0px), var(--py, 0px)) scale(1); transition: opacity 0.16s ease; }
@@ -476,7 +476,7 @@
     <div class="bt-res-row">
 
       <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:0ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
-        <img class="bt-res-peek" src="resource-neuronal-probes.webp" alt="" loading="lazy" decoding="async" width="120" height="155">
+        <img class="bt-res-peek" src="resource-neuronal-probes.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
         </div>
@@ -489,7 +489,7 @@
       </a>
 
       <a href="https://biotium.com/literature-digest/literature-digest-trueblack-lipofuscin-autofluorescence-quencher-in-diverse-neuroscience-applications/" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:80ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
-        <img class="bt-res-peek" src="resource-trueblack-neuro.webp" alt="" loading="lazy" decoding="async" width="120" height="155">
+        <img class="bt-res-peek" src="resource-trueblack-neuro.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -509,7 +509,7 @@
       </a>
 
       <a href="https://biotium.com/resource/literature-digest-cf-dyes-for-storm-super-resolution-microscopy/" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:160ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
-        <img class="bt-res-peek" src="resource-cf-dyes-storm.webp" alt="" loading="lazy" decoding="async" width="120" height="155">
+        <img class="bt-res-peek" src="resource-cf-dyes-storm.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
         <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
