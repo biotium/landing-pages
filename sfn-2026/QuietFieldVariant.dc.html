@@ -385,7 +385,7 @@
           <img src="portfolio-neuronal-markers.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neuronal Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0">
+          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neuronal Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
             <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
             <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
@@ -399,7 +399,7 @@
           <img src="portfolio-structural-markers.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0">
+          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
             <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
             <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
@@ -694,6 +694,14 @@
       card.addEventListener('pointerleave', function () { card.classList.remove('is-peeking'); });
     });
   }
+
+  // Biotium Choice badges link to the program page. They sit inside card links (links can't nest),
+  // so the badge opens its own page and keeps the card's link from firing.
+  Array.prototype.forEach.call(document.querySelectorAll('.bt-choice-badge[data-href]'), function (badge) {
+    function go(e) { e.preventDefault(); e.stopPropagation(); window.open(badge.getAttribute('data-href'), '_blank', 'noopener'); }
+    badge.addEventListener('click', go);
+    badge.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') go(e); });
+  });
 
   // Scroll-reveal for sections below the fold
   var revealEls = document.querySelectorAll('.reveal');
