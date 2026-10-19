@@ -18,7 +18,24 @@ Each event has its own folder:
 
 Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#087eec`), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub. Live pages are pasted into HubSpot Design Manager by hand.
 
-## Design canvases and artifacts
+## Button standard
+
+Every Biotium landing page uses these two buttons. Copy them as is; don't add gradients, glass blur, glows or hover movement.
+
+- **Primary** (one main CTA per section): solid Biotium blue pill, white text.
+  ```css
+  .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 8px 20px rgba(0,132,255,0.22); }
+  .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; box-shadow: 0 10px 24px rgba(0,98,190,0.28); }
+  ```
+- **Outline** (secondary actions, card buttons): white pill with a blue outline that inverts to solid Biotium blue on hover.
+  ```css
+  .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+  .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
+  ```
+- Icons inside buttons use `stroke="currentColor"` so they flip to white with the text.
+- When a whole card is the link, its button is a `<span class="bt-btn-outline">` inside the card's `<a>`, never a second link.
+
+
 
 Manny still edits the ASCB design canvas visually on claude.ai: https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g (shared with the Biotium org). It can fall behind this repo, or get ahead of it. Before syncing in either direction, check which side is newer and ask.
 
