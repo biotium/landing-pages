@@ -202,8 +202,8 @@ label: Biotium – SfN 2026 Landing Page
     .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
     .bt-card:hover .bt-btn-outline { background: rgba(229,242,255,0.78); color: #0062be; }
     .bt-card .bt-btn-outline, .bt-card .bt-btn-outline:hover { box-shadow: none; }
-    /* Resource preview: on mouse and trackpad, a thumbnail of the resource follows the pointer
-       (and stands in for it), so visitors see what they'll get before they click */
+    /* Resource preview: on mouse and trackpad, hovering a resource button swaps the pointer for a
+       thumbnail of the resource, so visitors see what they'll get before they click */
     .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
     @media (hover: hover) and (pointer: fine) {
       .bt-res-card.is-peeking { cursor: none; }
@@ -676,7 +676,7 @@ label: Biotium – SfN 2026 Landing Page
     });
   });
 
-  // Resource preview: the thumbnail follows the pointer inside each resource card (mouse and trackpad only)
+  // Resource preview: the thumbnail follows the pointer while it's over the card's button (mouse and trackpad only)
   if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     Array.prototype.forEach.call(document.querySelectorAll('.bt-res-card'), function (card) {
       var peek = card.querySelector('.bt-res-peek');
@@ -690,7 +690,7 @@ label: Biotium – SfN 2026 Landing Page
         var r = card.getBoundingClientRect();
         px = e.clientX - r.left - peek.offsetWidth / 2; py = e.clientY - r.top - peek.offsetHeight / 2;
         if (!raf) raf = requestAnimationFrame(place);
-        card.classList.add('is-peeking');
+        card.classList.toggle('is-peeking', !!(e.target.closest && e.target.closest('.bt-btn-outline')));
       });
       card.addEventListener('pointerleave', function () { card.classList.remove('is-peeking'); });
     });
