@@ -11,7 +11,7 @@ Biotium event landing pages. Manny Criado (mcriado@biotium.com) owns and maintai
 
 Each event has its own folder:
 
-- `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 14-18, Booth 1106. Not live yet.
+- `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 15-18, Booth 1106. Not live yet.
   - `QuietFieldVariant.dc.html` is the page. Earlier hero directions were removed and live in git history.
   - `hubspot/` holds the single copy-paste file for HubSpot Design Manager, built from `QuietFieldVariant.dc.html` by `tools/build-hubspot.py`. Rebuild it after changing that page.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15. `design/` holds the source, `hubspot/` holds the HubSpot file.

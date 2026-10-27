@@ -1,6 +1,6 @@
 # SfN 2026 (Neuroscience 2026) Landing Page
 
-Design source for Biotium's booth landing page at Neuroscience 2026 (SfN), Nov 14-18, 2026, Washington, DC, Booth #1106. Not live yet.
+Design source for Biotium's booth landing page at Neuroscience 2026 (SfN), Nov 15-18, 2026, Washington, DC, Booth #1106. Not live yet.
 
 ## Pages
 
