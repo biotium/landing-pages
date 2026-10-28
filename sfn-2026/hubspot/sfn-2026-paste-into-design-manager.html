@@ -156,7 +156,7 @@ label: Biotium – SfN 2026 Landing Page
     .bt-rec-note a { color: #087eec; }
     .bt-rec-done { display: none; text-align: center; padding: 12px 0 4px; }
     .bt-rec-card.is-sent form { display: none; }
-    .bt-rec-card.is-sent .bt-rec-done { display: block; }
+    .bt-rec-card.is-sent .bt-rec-done:not(.bt-rec-mailed) { display: block; }
     .bt-rec-card.is-mailed form { display: none; }
     .bt-rec-card.is-mailed .bt-rec-mailed { display: block; }
     @media (max-width: 720px) {
