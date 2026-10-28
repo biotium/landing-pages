@@ -140,6 +140,30 @@ label: Biotium – SfN 2026 Landing Page
     .bt-btn-go { transition: transform 0.2s ease; }
     .bt-btn-primary:hover .bt-btn-go { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go { transform: none; }
+    /* Recommendations form */
+    .bt-rec-card { max-width: 720px; margin: 0 auto; background: #ffffff; border: 1px solid #EEEEEE; border-radius: 18px; padding: 36px; box-shadow: 0 10px 30px rgba(17,17,17,0.05); }
+    .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .bt-rec-field { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+    .bt-rec-field label { font-size: 13px; font-weight: 800; color: #2d2d2d; }
+    .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: 15px; color: #2d2d2d; background: #ffffff; border: 1.5px solid #E2E2E2; border-radius: 12px; padding: 12px 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
+    .bt-rec-field textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+    .bt-rec-field input::placeholder, .bt-rec-field textarea::placeholder { color: #A0A0A0; }
+    .bt-rec-field input:focus, .bt-rec-field textarea:focus { border-color: #0084FF; box-shadow: 0 0 0 4px rgba(0,132,255,0.12); }
+    .bt-rec-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+    .bt-rec-actions .bt-btn-primary { cursor: pointer; font-family: inherit; }
+    .bt-rec-actions .bt-btn-primary[disabled] { opacity: 0.6; cursor: wait; }
+    .bt-rec-note { font-size: 12.5px; color: #888888; line-height: 1.5; }
+    .bt-rec-note a { color: #087eec; }
+    .bt-rec-done { display: none; text-align: center; padding: 12px 0 4px; }
+    .bt-rec-card.is-sent form { display: none; }
+    .bt-rec-card.is-sent .bt-rec-done { display: block; }
+    .bt-rec-card.is-mailed form { display: none; }
+    .bt-rec-card.is-mailed .bt-rec-mailed { display: block; }
+    @media (max-width: 720px) {
+      .bt-rec-card { padding: 24px 20px; }
+      .bt-rec-grid { grid-template-columns: 1fr; }
+      .bt-rec-actions .bt-btn-primary { width: 100%; justify-content: center; }
+    }
     #site-header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.88);
@@ -583,6 +607,94 @@ label: Biotium – SfN 2026 Landing Page
     </div>
   </div>
 </div>
+
+<!-- Personal recommendations form: sends to tech support through HubSpot -->
+<div id="recommendations" style="background:#ffffff; border-top:1px solid #EEEEEE;">
+  <div class="reveal bt-wrap" style="transition-delay:0ms; padding-top:72px; padding-bottom:80px;">
+    <div style="max-width:620px; margin:0 auto 28px auto; text-align:center;">
+      <span class="bt-kicker">Ask a scientist</span>
+      <h2 style="margin:14px 0 12px 0; font-size:28px; line-height:1.3; font-weight:800; color:#2d2d2d;">Get personal recommendations for your experiment or lab</h2>
+      <p style="margin:0; font-size:16px; line-height:1.6; color:#555555;">Tell us what you're working on. Our technical support scientists will match you with the probes, antibodies and protocols that fit, and reply by email.</p>
+    </div>
+    <div class="bt-rec-card" id="bt-rec-card">
+      <form id="bt-rec-form" novalidate>
+        <div class="bt-rec-grid">
+          <div class="bt-rec-field">
+            <label for="bt-rec-name">First name</label>
+            <input id="bt-rec-name" name="firstname" type="text" autocomplete="given-name" placeholder="Jordan" required>
+          </div>
+          <div class="bt-rec-field">
+            <label for="bt-rec-email">Work email</label>
+            <input id="bt-rec-email" name="email" type="email" autocomplete="email" placeholder="you@university.edu" required>
+          </div>
+        </div>
+        <div class="bt-rec-field">
+          <label for="bt-rec-msg">Your experiment</label>
+          <textarea id="bt-rec-msg" name="message" placeholder="Sample or model, target, imaging method, and where you're stuck. Example: staining microglia in 300 &micro;m mouse brain sections, need better antibody penetration." required></textarea>
+        </div>
+        <div class="bt-rec-actions">
+          <div class="bt-rec-note">Goes straight to our technical support team. We only use your email to reply. <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+          <button type="submit" class="bt-btn-primary">
+            Get recommendations
+            <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </form>
+      <div class="bt-rec-done" role="status" aria-live="polite">
+        <div style="font-size:20px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Thanks, we're on it.</div>
+        <p style="margin:0; font-size:15px; line-height:1.6; color:#555555;">A Biotium scientist will reply to your email, usually within one business day. See you at Booth 1106.</p>
+      </div>
+      <div class="bt-rec-done bt-rec-mailed" role="status" aria-live="polite">
+        <div style="font-size:20px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Almost there: hit send in your email app.</div>
+        <p style="margin:0; font-size:15px; line-height:1.6; color:#555555;">We opened an email to <a href="mailto:techsupport@biotium.com" style="color:#087eec;">techsupport@biotium.com</a> with your details filled in. If nothing opened, write to that address and we'll take it from there.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  /* Recommendations form. Submissions go to the HubSpot form below, whose notification emails
+     techsupport@biotium.com. Until HS_FORM is filled in (or if HubSpot can't be reached), the form
+     opens a pre-filled email to tech support instead, so no request is ever lost. */
+  (function () {
+    var HS_PORTAL = '39765345';
+    var HS_FORM = ''; /* paste the HubSpot form ID here */
+    var SUPPORT = 'techsupport@biotium.com';
+    var card = document.getElementById('bt-rec-card');
+    var form = document.getElementById('bt-rec-form');
+    if (!form) return;
+    function val(n) { return (form.elements[n].value || '').trim(); }
+    function mailFallback(d) {
+      var body = 'Name: ' + d.firstname + '\nEmail: ' + d.email + '\n\nMy experiment:\n' + d.message + '\n\n(Sent from the Biotium SfN 2026 page)';
+      window.location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('SfN 2026: product recommendations for my experiment') + '&body=' + encodeURIComponent(body);
+      card.classList.add('is-mailed');
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var d = { firstname: val('firstname'), email: val('email'), message: val('message') };
+      if (!HS_FORM) { mailFallback(d); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      var hutk = (document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/) || [])[1];
+      var ctx = { pageUri: window.location.href, pageName: document.title };
+      if (hutk) ctx.hutk = hutk;
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + HS_PORTAL + '/' + HS_FORM, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: [
+            { objectTypeId: '0-1', name: 'firstname', value: d.firstname },
+            { objectTypeId: '0-1', name: 'email', value: d.email },
+            { objectTypeId: '0-1', name: 'message', value: d.message }
+          ],
+          context: ctx
+        })
+      }).then(function (r) {
+        if (r.ok) card.classList.add('is-sent'); else mailFallback(d);
+      }).catch(function () { mailFallback(d); }).then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
 
 <!-- Footer -->
 <div style="background:#232323;">
