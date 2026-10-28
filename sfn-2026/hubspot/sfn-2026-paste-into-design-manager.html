@@ -657,7 +657,9 @@ label: Biotium – SfN 2026 Landing Page
      opens a pre-filled email to tech support instead, so no request is ever lost. */
   (function () {
     var HS_PORTAL = '39765345';
-    var HS_FORM = ''; /* paste the HubSpot form ID here */
+    var HS_FORM = 'ff94b661-627a-4b92-b0c7-0387c81b1115'; /* "SFN Landing Page Form" */
+    /* The account lives in HubSpot's na2 region; try its regional endpoint first, then the global one */
+    var HS_HOSTS = ['https://api-na2.hsforms.com', 'https://api.hsforms.com'];
     var SUPPORT = 'techsupport@biotium.com';
     var card = document.getElementById('bt-rec-card');
     var form = document.getElementById('bt-rec-form');
@@ -678,20 +680,23 @@ label: Biotium – SfN 2026 Landing Page
       var hutk = (document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/) || [])[1];
       var ctx = { pageUri: window.location.href, pageName: document.title };
       if (hutk) ctx.hutk = hutk;
-      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + HS_PORTAL + '/' + HS_FORM, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields: [
-            { objectTypeId: '0-1', name: 'firstname', value: d.firstname },
-            { objectTypeId: '0-1', name: 'email', value: d.email },
-            { objectTypeId: '0-1', name: 'message', value: d.message }
-          ],
-          context: ctx
-        })
-      }).then(function (r) {
-        if (r.ok) card.classList.add('is-sent'); else mailFallback(d);
-      }).catch(function () { mailFallback(d); }).then(function () { btn.disabled = false; });
+      var payload = JSON.stringify({
+        fields: [
+          { objectTypeId: '0-1', name: 'firstname', value: d.firstname },
+          { objectTypeId: '0-1', name: 'email', value: d.email },
+          { objectTypeId: '0-1', name: 'message', value: d.message }
+        ],
+        context: ctx
+      });
+      function attempt(i) {
+        if (i >= HS_HOSTS.length) { mailFallback(d); btn.disabled = false; return; }
+        fetch(HS_HOSTS[i] + '/submissions/v3/integration/submit/' + HS_PORTAL + '/' + HS_FORM, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload
+        }).then(function (r) {
+          if (r.ok) { card.classList.add('is-sent'); btn.disabled = false; } else attempt(i + 1);
+        }).catch(function () { attempt(i + 1); });
+      }
+      attempt(0);
     });
   })();
 </script>
