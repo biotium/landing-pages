@@ -136,6 +136,30 @@
     .bt-btn-go { transition: transform 0.2s ease; }
     .bt-btn-primary:hover .bt-btn-go { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go { transform: none; }
+    /* Neuroscience sale: top announcement bar */
+    .bt-promo-bar { background: #0084FF; color: #ffffff; text-align: center; font-size: 13.5px; line-height: 1.4; padding: 9px 16px; position: relative; z-index: 101; }
+    .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .bt-promo-bar strong { font-weight: 800; }
+    .bt-promo-bar .bt-ul { font-weight: 800; }
+    /* Neuroscience sale: a card at the foot of the portfolio, same card language as the rest of the page */
+    .bt-sale { background: #ffffff; padding-bottom: 72px; }
+    .bt-sale-card-wrap { position: relative; overflow: hidden; display: flex; align-items: center; gap: 40px; background: #ffffff; border: 1px solid #EEEEEE; border-radius: 16px; padding: 44px 48px; box-shadow: 0 10px 30px rgba(17,17,17,0.05); }
+    .bt-sale-neurons { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1100px; max-width: none; height: auto; pointer-events: none; opacity: 0.85; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); }
+    .bt-sale-copy { position: relative; flex: 1 1 0; max-width: 560px; }
+    .bt-sale-h { margin: 14px 0 10px 0; font-size: 34px; line-height: 1.18; font-weight: 800; color: #2d2d2d; }
+    .bt-sale-sub { margin: 0 0 12px 0; font-size: 17px; line-height: 1.4; font-weight: 700; color: #444444; }
+    .bt-sale-body { margin: 0 0 24px 0; font-size: 15.5px; line-height: 1.6; color: #555555; }
+    .bt-sale-card { position: relative; flex: 0 1 360px; background: #F7F7F7; border: 1px solid #EEEEEE; border-radius: 12px; padding: 24px; }
+    .bt-sale-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .bt-sale-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: #2d2d2d; }
+    .bt-sale-card li svg { flex: none; margin-top: 2px; }
+    .bt-sale-fine { margin: 16px 0 0 0; padding-top: 14px; border-top: 1px solid #E3E3E3; font-size: 12px; line-height: 1.5; color: #888888; }
+    @media (max-width: 900px) {
+      .bt-sale-card-wrap { flex-direction: column; align-items: stretch; gap: 24px; padding: 28px 24px; }
+      .bt-sale-card { flex: none; }
+      .bt-sale-h { font-size: 28px; }
+      .bt-sale-neurons { opacity: 0.4; }
+    }
     /* Recommendations form */
     .bt-rec-card { max-width: 720px; margin: 0 auto; background: #ffffff; border: 1px solid #EEEEEE; border-radius: 18px; padding: 36px; box-shadow: 0 10px 30px rgba(17,17,17,0.05); }
     .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
@@ -249,6 +273,7 @@
     html.reduced-motion #site-header { transition: none !important; }
 
     @media (max-width: 900px) {
+      .bt-feature-card { padding: 24px !important; gap: 28px !important; }
       .bt-wrap { padding-left: 24px !important; padding-right: 24px !important; }
       .bt-hero-row, .bt-featured-row { flex-direction: column !important; }
       .bt-hero-copy { max-width: 100% !important; }
@@ -291,6 +316,9 @@
 <div id="scroll-progress"></div>
 
 <!-- Header -->
+<!-- Neuroscience sale announcement -->
+<div class="bt-promo-bar"><a href="https://biotium.com/neuroscience/" target="_blank" rel="noopener"><span><strong>30% off</strong> neuroscience tools through Dec 31.</span> <span class="bt-ul">Shop the sale</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a></div>
+
 <div id="site-header">
   <div id="header-inner" class="bt-wrap" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding-top:13px; padding-bottom:13px;">
     <a id="header-logo" href="https://biotium.com" style="display:block; line-height:0;">
@@ -326,9 +354,11 @@
   </div>
 </div>
 
-<!-- Hero -->
-<div style="position:relative; overflow:hidden; background-color:#F7F7F7; margin-top:-59px;">
+<!-- Hero zone: the neuron field runs behind the hero and the MiniMab card, down to the portfolio -->
+<div class="bt-hero-zone" style="position:relative; overflow:hidden; background-color:#F7F7F7; margin-top:-59px;">
   <canvas id="hero-network"></canvas>
+<!-- Hero -->
+<div style="position:relative;">
   <div class="bt-hero-glass-overlay"></div>
   <div class="bt-wrap" style="padding-top:104px; padding-bottom:96px; position:relative; z-index:1; pointer-events:none;">
     <div class="bt-hero-copy" style="max-width:620px; position:relative; pointer-events:auto;">
@@ -357,39 +387,40 @@
   </div>
 </div>
 
-<!-- Flagship story: MiniMab -->
-<div id="minimab" style="background:#232323; border-top:1px solid #3f3f3f;">
-  <div class="bt-wrap bt-featured-row" style="display:flex; align-items:center; gap:64px; padding-top:80px; padding-bottom:80px;">
+<!-- Flagship story: MiniMab, a card on the neuron field (it overlaps the brain's stem, so the brain rises from behind it) -->
+<div id="minimab" style="position:relative; z-index:2; padding-bottom:80px;">
+  <div class="bt-wrap">
+  <div class="bt-featured-row bt-feature-card" style="display:flex; align-items:center; gap:56px; background:#ffffff; border:1px solid #EEEEEE; border-radius:16px; padding:48px; box-shadow:0 10px 30px rgba(17,17,17,0.05);">
     <div class="reveal" style="transition-delay:0ms; flex:1 1 0; max-width:560px;">
       <div class="bt-kicker-row" style="margin-bottom:18px;">
         <span class="bt-kicker">Featured at Neuroscience 2026</span>
-        <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:34px; line-height:1.18; font-weight:800; color:#ffffff;">MiniMab&trade;: Small Format, Big Difference</h2>
+        <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:34px; line-height:1.18; font-weight:800; color:#2d2d2d;">MiniMab&trade;: Small Format, Big Difference</h2>
       </div>
       <ul style="margin:0 0 26px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;">
         <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66b5ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#CFCFCF;">~15 kDa single-domain antibodies, a fraction of a full-size IgG (~150 kDa)</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span style="font-size:15.5px; line-height:1.5; color:#555555;">~15 kDa single-domain antibodies, a fraction of a full-size IgG (~150 kDa)</span>
         </li>
         <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66b5ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#CFCFCF;">Deeper penetration into thick tissues</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Deeper penetration into thick tissues</span>
         </li>
         <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66b5ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#CFCFCF;">Faster binding kinetics</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Faster binding kinetics</span>
         </li>
         <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66b5ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#CFCFCF;">Minimal epitope-dye displacement for super-resolution work</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Minimal epitope-dye displacement for super-resolution work</span>
         </li>
       </ul>
-      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="bt-link-arrow" style="color:#66b5ff; font-size:15px;">
+      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="bt-link-arrow" style="color:#087eec; font-size:15px;">
         <span class="bt-ul">Learn More About MiniMab&trade;</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
     <div class="reveal bt-flagship-img-col" style="transition-delay:140ms; flex:1 1 0; max-width:560px; width:100%;">
-      <div style="position:relative; border-radius:16px; overflow:hidden; border:1px solid #454545;">
+      <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid #EEEEEE;">
         <script src="https://fast.wistia.com/player.js" async></script>
         <script src="https://fast.wistia.com/embed/lztnsxqbfz.js" async type="module"></script>
         <style>wistia-player[media-id='lztnsxqbfz']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/lztnsxqbfz/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
@@ -397,6 +428,8 @@
       </div>
     </div>
   </div>
+  </div>
+</div>
 </div>
 
 <!-- Portfolio grid -->
@@ -480,6 +513,33 @@
       </a>
 
     </div>
+  </div>
+</div>
+
+<!-- Neuroscience sale -->
+<div id="neuro-sale" class="bt-sale">
+  <div class="bt-wrap">
+  <div class="reveal bt-sale-card-wrap" style="transition-delay:0ms;">
+    <img class="bt-sale-neurons" src="promo-neurons.webp" alt="" aria-hidden="true">
+    <div class="bt-sale-copy">
+      <span class="bt-kicker">Neuroscience sale</span>
+      <h2 class="bt-sale-h"><span style="color:#0084FF;">30% off</span> tools for your neuroscience research</h2>
+      <p class="bt-sale-sub">Trace. Label. Visualize. Save.</p>
+      <p class="bt-sale-body">Neuronal tracers, synaptic vesicle dyes, membrane potential indicators and more, including MiniMab&trade; single-domain antibodies.</p>
+      <a href="https://biotium.com/neuroscience/" target="_blank" rel="noopener" class="bt-btn-primary">
+        Shop the sale
+        <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+    <div class="bt-sale-card">
+      <ul>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Discounts apply automatically at checkout.</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Offer runs through <strong>December 31, 2026</strong>.</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Ordering through customer service? Mention code <strong>NEURO2026</strong>.</span></li>
+      </ul>
+      <p class="bt-sale-fine">Terms and conditions apply. Valid for US customers only, while supplies last. Cannot be combined with other offers.</p>
+    </div>
+  </div>
   </div>
 </div>
 
