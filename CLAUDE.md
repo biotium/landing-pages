@@ -20,12 +20,12 @@ Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biot
 
 ## Button standard
 
-Every Biotium landing page uses these two buttons. Copy them as is; don't add gradients, glass blur, glows or hover movement.
+Every Biotium landing page uses these two buttons. Copy them as is; don't add gradients, glass blur, glows or shadows, or hover movement.
 
 - **Primary** (one main CTA per section): solid Biotium blue pill, white text.
   ```css
-  .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 8px 20px rgba(0,132,255,0.22); }
-  .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; box-shadow: 0 10px 24px rgba(0,98,190,0.28); }
+  .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
+  .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
   ```
 - **Outline** (secondary actions, card buttons): white pill with a blue outline that inverts to solid Biotium blue on hover.
   ```css
