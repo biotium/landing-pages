@@ -39,7 +39,12 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
 
 `sfn-2026/QuietFieldVariant.dc.html` is built from tokens and components defined at the top of its `<style>` ("Design system" block). Build new content from these classes instead of inline styles.
 
-- **Tokens** (CSS variables on `.bt-body-scope`): colors (`--bt-blue`, `--bt-link`, `--bt-ink`, `--bt-text`, `--bt-muted`, `--bt-line`, `--bt-alt`, `--bt-tint`), radii (`--bt-r-card` 16, `--bt-r-inner` 12, `--bt-r-pill`), shadows, `--bt-gap-block` 40.
+- **Tokens** (CSS variables on `.bt-body-scope`). Use a token, never a raw value; the button standard is the only exception.
+  - Color: brand (`--bt-blue`, `--bt-blue-dark`, `--bt-link`, `--bt-tint`, blue alphas), neutrals darkest to lightest (`--bt-ink` #2d2d2d, `--bt-text-strong` #444, `--bt-text` #555, `--bt-muted` #767676, `--bt-subtle` placeholders only, `--bt-line-strong`, `--bt-line`, `--bt-alt`), dark surfaces (`--bt-dark`, `--bt-dark-line`, `--bt-on-dark`, `--bt-on-dark-muted`).
+  - Type: `--bt-fs-2xs` 12, `xs` 13, `sm` 14, `base` 15, `md` 16, `lg` 17, `xl` 20, `h2` 30, `h2-lg` 34, `h1` 56 (phones: 26, 28, 40). Line heights `display` 1.06, `tight` 1.2, `snug` 1.3, `body` 1.5, `relaxed` 1.6. Weights 600, 700, 800.
+  - Spacing: 4px grid, `--bt-s-1` 4 through `--bt-s-20` 80, plus `--bt-gap-block` 40, `--bt-gutter` 24, `--bt-pad-card` 24, `--bt-pad-card-lg` 48 (24 on phones).
+  - Radius: `--bt-r-sm` 6, `--bt-r-inner` 12, `--bt-r-card` 16, `--bt-r-pill`, `--bt-r-round`.
+  - Elevation: `--bt-shadow`, `--bt-shadow-hover`, `--bt-shadow-float`, `--bt-shadow-on-blue`, `--bt-focus-ring`.
 - **Section**: `.bt-section` (72/80 padding) with `--alt` (grey), `--blue`, `--compact`, `--join-next`, `--flush-top`.
 - **Head**: `.bt-head` (kicker, `.bt-h2`, optional `.bt-lead`, 12px apart); `.bt-head--center` for centered section heads. `.bt-h2--lg` only inside feature cards.
 - **Surface**: `.bt-surface` (white, hairline, 16px corners), `--raised` adds the shadow, `--lg` 48px padding. `.bt-panel` is the grey inset; `.bt-media` frames video or images.

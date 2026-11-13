@@ -17,81 +17,115 @@ label: Biotium – SfN 2026 Landing Page
     h1, h2, h3, h4 { text-wrap: balance; }
     p { text-wrap: pretty; }
     body.bt-body { margin: 0; font-family: 'Mulish', Arial, sans-serif; background: #ffffff; color: #454545; -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }
-    .bt-a { color: #087eec; text-decoration: none; }
-    .bt-a:hover { color: #0062be; }
+    .bt-a { color: var(--bt-link); text-decoration: none; }
+    .bt-a:hover { color: var(--bt-blue-dark); }
     .bt-wrap { max-width: 1160px; margin: 0 auto; padding-left: 48px; padding-right: 48px; }
     /* ================= Design system =================
-       Tokens first, then the component set every section is built from:
-       section, head (kicker + h2 + lead), surface (card), panel, feature card, link card,
-       icon box, check list, link arrow, notes. Buttons follow the Biotium LP button standard. */
+       Tokens first, then the component set every section is built from.
+       Type scale (px): 12 13 14 15 16 17 20 | 30 34 56 (26 28 40 on phones).
+       Spacing: 4px grid (--bt-s-*). Radii: 6 small, 12 inner, 16 card, pill, round.
+       Buttons follow the Biotium LP button standard and keep its literal values. */
     .bt-body-scope {
-      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec;
-      --bt-ink: #2d2d2d; --bt-text: #555555; --bt-muted: #888888;
-      --bt-line: #EEEEEE; --bt-line-strong: #E3E3E3; --bt-alt: #F7F7F7; --bt-tint: #E9F3FF; --bt-dark: #232323;
-      --bt-r-card: 16px; --bt-r-inner: 12px; --bt-r-pill: 999px;
+      /* Brand */
+      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec; --bt-tint: #E9F3FF;
+      --bt-blue-a08: rgba(0,132,255,0.08); --bt-blue-a12: rgba(0,132,255,0.12); --bt-blue-a14: rgba(0,132,255,0.14); --bt-blue-a16: rgba(0,132,255,0.16);
+      /* Neutrals, darkest to lightest */
+      --bt-ink: #2d2d2d;          /* headings, labels, emphasis */
+      --bt-text-strong: #444444;  /* hero sub, taglines */
+      --bt-text: #555555;         /* body copy */
+      --bt-muted: #767676;        /* notes, fine print, meta (passes AA on white and on grey) */
+      --bt-subtle: #A0A0A0;       /* form placeholders only */
+      --bt-line-strong: #E3E3E3;  /* inputs, pills, dividers */
+      --bt-line: #EEEEEE;         /* card borders */
+      --bt-alt: #F7F7F7;          /* grey sections and panels */
+      /* Dark surfaces: footer, tooltip */
+      --bt-dark: #232323; --bt-dark-line: #565656; --bt-on-dark: #CFCFCF; --bt-on-dark-muted: #A0A0A0;
+      /* Type */
+      --bt-fs-2xs: 12px; --bt-fs-xs: 13px; --bt-fs-sm: 14px; --bt-fs-base: 15px; --bt-fs-md: 16px; --bt-fs-lg: 17px; --bt-fs-xl: 20px;
+      --bt-fs-h2: 30px; --bt-fs-h2-lg: 34px; --bt-fs-h1: 56px;
+      --bt-lh-display: 1.06; --bt-lh-tight: 1.2; --bt-lh-snug: 1.3; --bt-lh-body: 1.5; --bt-lh-relaxed: 1.6;
+      /* Spacing, 4px grid */
+      --bt-s-1: 4px; --bt-s-2: 8px; --bt-s-3: 12px; --bt-s-4: 16px; --bt-s-5: 20px; --bt-s-6: 24px; --bt-s-8: 32px;
+      --bt-s-10: 40px; --bt-s-12: 48px; --bt-s-14: 56px; --bt-s-16: 64px; --bt-s-18: 72px; --bt-s-20: 80px;
+      --bt-gap-block: var(--bt-s-10);   /* section head to content, grid to the next block */
+      --bt-gutter: var(--bt-s-6);       /* between cards */
+      --bt-pad-card: var(--bt-s-6);     /* link cards and panels */
+      --bt-pad-card-lg: var(--bt-s-12); /* feature and form cards */
+      /* Radius */
+      --bt-r-sm: 6px; --bt-r-inner: 12px; --bt-r-card: 16px; --bt-r-pill: 999px; --bt-r-round: 50%;
+      /* Elevation */
       --bt-shadow: 0 10px 30px rgba(17,17,17,0.05);
       --bt-shadow-hover: 0 10px 30px rgba(17,17,17,0.08);
-      --bt-gap-block: 40px;
+      --bt-shadow-float: 0 6px 16px rgba(17,17,17,0.2);
+      --bt-shadow-on-blue: 0 12px 32px rgba(0,54,110,0.18);
+      --bt-focus-ring: 0 0 0 4px var(--bt-blue-a12);
     }
-    /* Section: one vertical rhythm, four backgrounds */
-    .bt-section { padding-top: 72px; padding-bottom: 80px; background: #ffffff; }
+    @media (max-width: 900px) {
+      .bt-body-scope { --bt-fs-h2: 26px; --bt-fs-h2-lg: 28px; --bt-fs-h1: 40px; --bt-pad-card-lg: var(--bt-s-6); }
+    }
+    /* Section: one vertical rhythm, three backgrounds */
+    .bt-section { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-20); background: #ffffff; }
     .bt-section--alt { background: var(--bt-alt); }
     .bt-section--blue { background: var(--bt-blue); }
-    .bt-section--compact { padding-top: 56px; padding-bottom: 56px; }
+    .bt-section--compact { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-14); }
     .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
     .bt-section.bt-section--flush-top { padding-top: 0; }
     /* Head: kicker, headline, optional lead (and note or link), always 12px apart */
-    .bt-head { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .bt-head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--bt-s-3); }
     .bt-head--center { align-items: center; text-align: center; max-width: 680px; margin: 0 auto var(--bt-gap-block) auto; }
     .bt-head--center:last-child { margin-bottom: 0; }
-    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: var(--bt-tint); color: var(--bt-blue-dark); font-size: 12.5px; font-weight: 800; padding: 6px 14px; border-radius: var(--bt-r-pill); }
-    .bt-h2 { margin: 0; font-size: 30px; line-height: 1.25; font-weight: 800; color: var(--bt-ink); }
-    .bt-h2--lg { font-size: 34px; line-height: 1.18; }
-    .bt-h3 { margin: 0 0 8px 0; font-size: 20px; line-height: 1.3; font-weight: 800; color: var(--bt-ink); }
-    .bt-lead { margin: 0; font-size: 16px; line-height: 1.6; color: var(--bt-text); }
-    .bt-tagline { margin: 0; font-size: 17px; line-height: 1.4; font-weight: 700; color: #444444; }
-    .bt-note { margin: 0; font-size: 13px; line-height: 1.5; color: var(--bt-muted); }
+    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: var(--bt-tint); color: var(--bt-blue-dark); font-size: var(--bt-fs-xs); font-weight: 800; padding: 6px 14px; border-radius: var(--bt-r-pill); }
+    /* Type roles */
+    .bt-h1 { margin: 0 0 var(--bt-s-6) 0; font-size: var(--bt-fs-h1); line-height: var(--bt-lh-display); font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
+    .bt-h2 { margin: 0; font-size: var(--bt-fs-h2); line-height: var(--bt-lh-tight); font-weight: 800; color: var(--bt-ink); }
+    .bt-h2--lg { font-size: var(--bt-fs-h2-lg); }
+    .bt-h3 { margin: 0 0 var(--bt-s-2) 0; font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 800; color: var(--bt-ink); }
+    .bt-hero-sub { margin: 0 0 var(--bt-s-8) 0; font-size: var(--bt-fs-xl); line-height: var(--bt-lh-body); font-weight: 600; color: var(--bt-text-strong); max-width: 480px; }
+    .bt-tagline { margin: 0; font-size: var(--bt-fs-lg); line-height: var(--bt-lh-snug); font-weight: 700; color: var(--bt-text-strong); }
+    .bt-lead { margin: 0; font-size: var(--bt-fs-md); line-height: var(--bt-lh-relaxed); color: var(--bt-text); }
+    .bt-note { margin: 0; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); color: var(--bt-muted); }
     .bt-note a { color: var(--bt-link); }
-    .bt-fine { margin: 0; font-size: 12px; line-height: 1.5; color: var(--bt-muted); }
+    .bt-fine { margin: 0; font-size: var(--bt-fs-2xs); line-height: var(--bt-lh-body); color: var(--bt-muted); }
     .bt-accent { color: var(--bt-blue); }
     /* On Biotium blue: white type, white kicker, a deeper cool shadow under white cards */
     .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
     .bt-section--blue .bt-kicker { background: #ffffff; }
-    .bt-section--blue .bt-surface--raised { box-shadow: 0 12px 32px rgba(0,54,110,0.18); }
+    .bt-section--blue .bt-surface--raised { box-shadow: var(--bt-shadow-on-blue); }
     /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
     .bt-surface { background: #ffffff; border: 1px solid var(--bt-line); border-radius: var(--bt-r-card); }
     .bt-surface--raised { box-shadow: var(--bt-shadow); }
-    .bt-surface--lg { padding: 48px; }
+    .bt-surface--lg { padding: var(--bt-pad-card-lg); }
     /* Panel: grey inset inside a surface. Media: framed video or image inside a surface */
-    .bt-panel { background: var(--bt-alt); border: 1px solid var(--bt-line); border-radius: var(--bt-r-inner); padding: 24px; }
-    .bt-panel-foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--bt-line-strong); }
+    .bt-panel { background: var(--bt-alt); border: 1px solid var(--bt-line); border-radius: var(--bt-r-inner); padding: var(--bt-pad-card); }
+    .bt-panel-foot { margin-top: var(--bt-s-4); padding-top: var(--bt-s-4); border-top: 1px solid var(--bt-line-strong); }
     .bt-media { position: relative; border-radius: var(--bt-r-inner); overflow: hidden; border: 1px solid var(--bt-line); }
-    /* Feature card: copy beside media or a panel (MiniMab, sale) */
-    .bt-feature { display: flex; align-items: center; gap: 56px; }
-    .bt-feature-copy { position: relative; flex: 0 0 calc(50% - 28px); max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
-    .bt-feature-media { flex: 0 0 calc(50% - 28px); max-width: 560px; width: 100%; }
+    /* Feature card: copy beside media or a panel (MiniMab, sale), split exactly 50/50 */
+    .bt-feature { display: flex; align-items: center; gap: var(--bt-s-14); }
+    .bt-feature-copy { position: relative; flex: 0 0 calc(50% - var(--bt-s-14) / 2); max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; gap: var(--bt-s-6); }
+    .bt-feature-media { flex: 0 0 calc(50% - var(--bt-s-14) / 2); max-width: 560px; width: 100%; }
     /* Link cards: portfolio (row) and resource (stacked) share title, description, icon box and hover */
-    .bt-card-title { margin: 0 0 6px 0; font-size: 17px; line-height: 1.3; font-weight: 800; color: var(--bt-ink); }
-    .bt-card-desc { margin: 0; font-size: 14px; line-height: 1.55; color: var(--bt-text); }
+    .bt-card-title { margin: 0 0 var(--bt-s-2) 0; font-size: var(--bt-fs-lg); line-height: var(--bt-lh-snug); font-weight: 800; color: var(--bt-ink); }
+    .bt-card-desc { margin: 0; font-size: var(--bt-fs-sm); line-height: var(--bt-lh-body); color: var(--bt-text); }
     /* Check list */
-    .bt-check-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .bt-check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--bt-text); }
+    .bt-check-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--bt-s-3); }
+    .bt-check-list li { display: flex; align-items: flex-start; gap: var(--bt-s-3); font-size: var(--bt-fs-base); line-height: var(--bt-lh-body); color: var(--bt-text); }
     /* Check mark: white tick on a Biotium blue orb */
-    .bt-check-list li svg { flex: none; width: 20px; height: 20px; padding: 4px; margin-top: 1px; border-radius: 50%; background: var(--bt-blue); stroke: #ffffff; stroke-width: 3.4; }
+    .bt-check-list li svg { flex: none; width: 20px; height: 20px; padding: var(--bt-s-1); margin-top: 1px; border-radius: var(--bt-r-round); background: var(--bt-blue); stroke: #ffffff; stroke-width: 3.4; }
     .bt-check-list strong { color: var(--bt-ink); }
-    /* Pill badge (hero location) */
-    .bt-badge { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--bt-line-strong); border-radius: var(--bt-r-pill); padding: 7px 14px; }
+    /* Pill badge: hero location, sticky header pill (--sm) */
+    .bt-badge { display: inline-flex; align-items: center; gap: var(--bt-s-2); background: #ffffff; border: 1px solid var(--bt-line-strong); border-radius: var(--bt-r-pill); padding: 7px 14px; }
+    .bt-badge--sm { gap: 6px; padding: 5px 12px; }
     /* ============== end design system core ============== */
     .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
     .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
     .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
     /* Link arrow: the one text-link CTA */
-    .bt-link-arrow { display: inline-flex; align-items: center; gap: 6px; color: var(--bt-link); font-weight: 800; font-size: 15px; text-decoration: none; }
+    .bt-link-arrow { display: inline-flex; align-items: center; gap: var(--bt-s-2); color: var(--bt-link); font-weight: 800; font-size: var(--bt-fs-base); text-decoration: none; }
     .bt-link-arrow:hover { color: var(--bt-link); }
     .bt-card { position: relative; transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
     /* Show merch photo: smooth, slight scale on hover (pointer devices only) */
-    .bt-promo-row { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .bt-promo-row { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-8); flex-wrap: wrap; }
     .bt-promo-copy { flex: 1 1 260px; min-width: 220px; }
     .bt-tshirts { width: 320px; max-width: 100%; height: auto; flex: none; display: block; transition: transform 0.45s cubic-bezier(.16,.8,.24,1); }
     @media (hover: hover) { .bt-tshirts:hover { transform: scale(1.04); } }
@@ -102,13 +136,14 @@ label: Biotium – SfN 2026 Landing Page
     @media (prefers-reduced-motion: reduce) { .bt-ul { transition: none; } }
     /* Come say hi: floating team faces. They pop in one by one
        when the section scrolls into view, then drift gently. On tablets the copy narrows and the faces pull in; at 720px and below they gather in a row just above the copy. */
-    .bt-section.bt-say-hi { position: relative; overflow: hidden; padding-top: 104px; padding-bottom: 112px; }
+    /* Come say hi runs taller than a standard section to give the floating faces room */
+    .bt-section.bt-say-hi { position: relative; overflow: hidden; padding-top: calc(var(--bt-s-20) + var(--bt-s-6)); padding-bottom: calc(var(--bt-s-20) + var(--bt-s-8)); }
     .bt-say-hi .bt-head { max-width: 620px; }
     .bt-team-float { position: absolute; inset: 0; pointer-events: none; }
     .bt-face { --sz: calc(var(--s) * var(--z, 1)); position: absolute; left: calc(50% + var(--x) * var(--k, 1)); top: var(--y); width: var(--sz); height: var(--sz); margin: calc(var(--sz) / -2) 0 0 calc(var(--sz) / -2); animation: btFaceFloat var(--f) ease-in-out infinite alternate; }
     .bt-face-in {
-      width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: var(--bg); color: var(--fg);
-      border: 3px solid #ffffff; box-shadow: 0 8px 22px rgba(20,20,20,0.12);
+      width: 100%; height: 100%; border-radius: var(--bt-r-round); overflow: hidden; background: var(--bg); color: var(--fg);
+      border: 3px solid #ffffff; box-shadow: 0 8px 22px rgba(17,17,17,0.12);
       opacity: 0; transform: scale(0.6) translateY(14px);
       transition: opacity 0.6s ease var(--d), transform 0.75s cubic-bezier(.2,1.4,.4,1) var(--d);
     }
@@ -120,34 +155,34 @@ label: Biotium – SfN 2026 Landing Page
       .bt-say-hi .bt-head { max-width: 400px; }
     }
     @media (max-width: 720px) {
-      .bt-team-float { position: relative; inset: auto; display: flex; justify-content: center; padding-top: 64px; }
+      .bt-team-float { position: relative; inset: auto; display: flex; justify-content: center; padding-top: var(--bt-s-16); }
       .bt-face { position: relative; left: auto; top: auto; width: 56px; height: 56px; margin: 0 -5px; }
       .bt-face:nth-child(n+8) { display: none; }
-      .bt-section.bt-say-hi { padding-top: 0; padding-bottom: 88px; }
-      .bt-say-hi > .bt-wrap { padding-top: 18px; }
+      .bt-section.bt-say-hi { padding-top: 0; padding-bottom: var(--bt-s-20); }
+      .bt-say-hi > .bt-wrap { padding-top: var(--bt-s-4); }
     }
     @media (max-width: 400px) { .bt-face { width: 48px; height: 48px; } }
     @media (prefers-reduced-motion: reduce) {
       .bt-face { animation: none; }
       .bt-face-in { opacity: 1; transform: none; transition: none; }
     }
-    .bt-cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
-    .bt-res-row { display: flex; gap: 24px; align-items: stretch; flex-wrap: wrap; }
-    .bt-cat-card { display: flex; align-items: center; gap: 18px; padding: 20px; }
+    .bt-cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--bt-gutter); }
+    .bt-res-row { display: flex; gap: var(--bt-gutter); align-items: stretch; flex-wrap: wrap; }
+    .bt-cat-card { display: flex; align-items: center; gap: var(--bt-s-5); padding: var(--bt-pad-card); }
     .bt-cat-body { flex: 1 1 auto; min-width: 0; }
-    .bt-res-card { flex: 1 1 260px; padding: 28px; }
-    .bt-res-card .bt-card-desc { margin-bottom: 20px; }
+    .bt-res-card { flex: 1 1 260px; padding: var(--bt-pad-card); }
+    .bt-res-card .bt-card-desc { margin-bottom: var(--bt-s-6); }
     .bt-choice-badge { position: relative; display: inline-flex; vertical-align: middle; cursor: pointer; }
     .bt-choice-tip {
       position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%);
-      background: #232323; color: #ffffff; font-size: 11.5px; font-weight: 700; letter-spacing: 0.01em;
-      text-transform: none; white-space: normal; text-align: center; width: max-content; max-width: 260px; padding: 7px 11px; border-radius: 7px;
+      background: var(--bt-dark); color: #ffffff; font-size: var(--bt-fs-2xs); font-weight: 700; letter-spacing: 0.01em;
+      text-transform: none; white-space: normal; text-align: center; width: max-content; max-width: 260px; padding: var(--bt-s-2) var(--bt-s-3); border-radius: var(--bt-r-sm);
       opacity: 0; visibility: hidden; transition: opacity 0.15s ease;
-      pointer-events: none; box-shadow: 0 6px 16px rgba(0,0,0,0.22); z-index: 5;
+      pointer-events: none; box-shadow: var(--bt-shadow-float); z-index: 5;
     }
     .bt-choice-tip::after {
       content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-      border: 5px solid transparent; border-top-color: #232323;
+      border: 5px solid transparent; border-top-color: var(--bt-dark);
     }
     .bt-choice-badge:hover .bt-choice-tip,
     .bt-choice-badge:focus .bt-choice-tip,
@@ -173,28 +208,27 @@ label: Biotium – SfN 2026 Landing Page
     }
 
     /* Icon box: tinted chip, two sizes (image thumb, document icon); brightens on card hover */
-    .bt-icon-box { display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden; border-radius: var(--bt-r-inner); background: rgba(0,132,255,0.08); border: 1px solid rgba(0,132,255,0.16); transition: background-color 0.2s ease; }
-    .bt-card:hover .bt-icon-box { background: rgba(0,132,255,0.14); }
+    .bt-icon-box { display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden; border-radius: var(--bt-r-inner); background: var(--bt-blue-a08); border: 1px solid var(--bt-blue-a16); transition: background-color 0.2s ease; }
+    .bt-card:hover .bt-icon-box { background: var(--bt-blue-a14); }
     .bt-icon-box--lg { width: 96px; height: 96px; }
-    .bt-icon-box--sm { width: 44px; height: 44px; margin-bottom: 18px; }
+    .bt-icon-box--sm { width: 44px; height: 44px; margin-bottom: var(--bt-s-4); }
     .bt-icon-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 
     /* Hero type */
-    .bt-h1 { margin: 0 0 22px 0; font-size: 56px; line-height: 1.06; font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
-    .bt-hero-sub { margin: 0 0 32px 0; font-size: 19px; line-height: 1.5; font-weight: 600; color: #444444; max-width: 480px; }
-    .bt-hero-badge { margin-bottom: 22px; }
-    .bt-hero-badge-text { font-size: 13px; font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); }
+    .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); margin-top: -59px; }
+    .bt-hero-badge { margin-bottom: var(--bt-s-6); }
+    .bt-hero-badge-text { font-size: var(--bt-fs-xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); }
     /* Footer */
     .bt-footer { background: var(--bt-dark); }
-    .bt-footer > .bt-wrap { padding-top: 52px; padding-bottom: 32px; }
-    .bt-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid #565656; }
-    .bt-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-    .bt-footer-tag { color: #CFCFCF; font-size: 12px; }
-    .bt-footer-links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-    .bt-footer-link { color: #CFCFCF; font-size: 14px; font-weight: 600; }
-    .bt-footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; }
-    .bt-footer-legal { color: #A0A0A0; font-size: 12px; }
+    .bt-footer > .bt-wrap { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-8); }
+    .bt-footer-top { display: flex; align-items: center; justify-content: space-between; gap: var(--bt-s-6); flex-wrap: wrap; padding-bottom: var(--bt-s-6); border-bottom: 1px solid var(--bt-dark-line); }
+    .bt-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--bt-s-2); }
+    .bt-footer-tag { color: var(--bt-on-dark); font-size: var(--bt-fs-2xs); }
+    .bt-footer-links { display: flex; align-items: center; gap: var(--bt-s-8); flex-wrap: wrap; }
+    .bt-footer-link { color: var(--bt-on-dark); font-size: var(--bt-fs-sm); font-weight: 600; }
+    .bt-footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: var(--bt-s-4); flex-wrap: wrap; padding-top: var(--bt-s-6); }
+    .bt-footer-legal { color: var(--bt-on-dark-muted); font-size: var(--bt-fs-2xs); }
     .bt-footer-legal-link { font-weight: 600; }
 
     /* Scroll progress bar */
@@ -215,8 +249,8 @@ label: Biotium – SfN 2026 Landing Page
     .bt-btn-primary:hover .bt-btn-go--down { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go, html.reduced-motion .bt-btn-primary:hover .bt-btn-go--down { transform: none; }
     /* Neuroscience sale: top announcement bar */
-    .bt-promo-bar { background: #0084FF; color: #ffffff; text-align: center; font-size: 13.5px; line-height: 1.4; padding: 9px 16px; position: relative; z-index: 101; }
-    .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .bt-promo-bar { background: var(--bt-blue); color: #ffffff; text-align: center; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); padding: var(--bt-s-2) var(--bt-s-4); position: relative; z-index: 101; }
+    .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: var(--bt-s-2); flex-wrap: wrap; justify-content: center; }
     .bt-promo-bar strong { font-weight: 800; }
     .bt-promo-bar .bt-ul { font-weight: 800; }
     /* Neuroscience sale: a feature card at the foot of the portfolio, with a neuron layer behind the terms panel */
@@ -230,17 +264,17 @@ label: Biotium – SfN 2026 Landing Page
     }
     /* Recommendations form */
     .bt-rec-card { max-width: 720px; margin: 0 auto; }
-    .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .bt-rec-field { display: flex; flex-direction: column; gap: 6px; text-align: left; }
-    .bt-rec-field label { font-size: 13px; font-weight: 800; color: var(--bt-ink); }
-    .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: 15px; color: var(--bt-ink); background: #ffffff; border: 1.5px solid var(--bt-line-strong); border-radius: var(--bt-r-inner); padding: 12px 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
-    .bt-rec-field textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
-    .bt-rec-field input::placeholder, .bt-rec-field textarea::placeholder { color: #A0A0A0; }
-    .bt-rec-field input:focus, .bt-rec-field textarea:focus { border-color: var(--bt-blue); box-shadow: 0 0 0 4px rgba(0,132,255,0.12); }
-    .bt-rec-actions { display: flex; flex-direction: column-reverse; align-items: center; gap: 14px; margin-top: 24px; text-align: center; }
+    .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bt-s-4); margin-bottom: var(--bt-s-4); }
+    .bt-rec-field { display: flex; flex-direction: column; gap: var(--bt-s-2); text-align: left; }
+    .bt-rec-field label { font-size: var(--bt-fs-xs); font-weight: 800; color: var(--bt-ink); }
+    .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: var(--bt-fs-base); color: var(--bt-ink); background: #ffffff; border: 1.5px solid var(--bt-line-strong); border-radius: var(--bt-r-inner); padding: var(--bt-s-3) 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
+    .bt-rec-field textarea { min-height: 120px; resize: vertical; line-height: var(--bt-lh-body); }
+    .bt-rec-field input::placeholder, .bt-rec-field textarea::placeholder { color: var(--bt-subtle); }
+    .bt-rec-field input:focus, .bt-rec-field textarea:focus { border-color: var(--bt-blue); box-shadow: var(--bt-focus-ring); }
+    .bt-rec-actions { display: flex; flex-direction: column-reverse; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-6); text-align: center; }
     .bt-rec-actions .bt-btn-primary { cursor: pointer; font-family: inherit; }
     .bt-rec-actions .bt-btn-primary[disabled] { opacity: 0.6; cursor: wait; }
-    .bt-rec-done { display: none; text-align: center; padding: 12px 0 4px; }
+    .bt-rec-done { display: none; text-align: center; padding: var(--bt-s-3) 0 var(--bt-s-1); }
     .bt-rec-card.is-sent form { display: none; }
     .bt-rec-card.is-sent .bt-rec-done:not(.bt-rec-mailed) { display: block; }
     .bt-rec-card.is-mailed form { display: none; }
@@ -265,18 +299,11 @@ label: Biotium – SfN 2026 Landing Page
 
     /* Sticky event pill: crossfades in over the tagline once scrolled (both occupy the same grid cell) */
     .bt-header-right { position: relative; display: grid; align-items: center; justify-items: end; }
-    .bt-header-tagline { grid-area: 1 / 1; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
-    .bt-header-pill {
-      grid-area: 1 / 1;
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #ffffff; border: 1px solid #E3E3E3; border-radius: 999px;
-      padding: 5px 12px; white-space: nowrap;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
+    .bt-header-tagline { grid-area: 1 / 1; font-size: var(--bt-fs-2xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
+    .bt-header-pill { grid-area: 1 / 1; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     .bt-header-pill-icon { position: relative; display: inline-flex; width: 11px; height: 11px; flex: none; }
     .bt-header-pill-icon svg { display: block; width: 100%; height: 100%; }
-    .bt-header-pill-text { font-size: 11.5px; font-weight: 800; letter-spacing: 0.01em; color: #555555; white-space: nowrap; line-height: 1.3; }
+    .bt-header-pill-text { font-size: var(--bt-fs-2xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); white-space: nowrap; line-height: var(--bt-lh-snug); }
     #site-header.is-scrolled .bt-header-tagline { opacity: 0; pointer-events: none; }
     #site-header.is-scrolled .bt-header-pill { opacity: 1; pointer-events: auto; }
     html.reduced-motion .bt-header-tagline,
@@ -316,7 +343,7 @@ label: Biotium – SfN 2026 Landing Page
     a.bt-card { cursor: pointer; }
     /* Resource preview: on mouse and trackpad, hovering a resource button shows a small thumbnail of
        the resource beside the pointer, so visitors see what they'll get before they click */
-    .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
+    .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: var(--bt-r-sm); box-shadow: var(--bt-shadow-float); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
     @media (hover: hover) and (pointer: fine) {
       .bt-res-card.is-peeking .bt-res-peek { opacity: 1; transform: translate(var(--px, 0px), var(--py, 0px)) scale(1); transition: opacity 0.16s ease; }
     }
@@ -331,21 +358,16 @@ label: Biotium – SfN 2026 Landing Page
     html.reduced-motion #site-header { transition: none !important; }
 
     @media (max-width: 900px) {
-      .bt-section { padding-top: 56px; padding-bottom: 64px; }
-      .bt-section--compact { padding-top: 48px; padding-bottom: 48px; }
-      .bt-section--join-next { padding-bottom: 32px; }
-      .bt-h2 { font-size: 26px; }
-      .bt-h2--lg { font-size: 28px; }
-      .bt-surface--lg { padding: 24px; }
-      .bt-feature { flex-direction: column; align-items: stretch; gap: 28px; }
+      .bt-section { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-16); }
+      .bt-section--compact { padding-top: var(--bt-s-12); padding-bottom: var(--bt-s-12); }
+      .bt-section--join-next { padding-bottom: var(--bt-s-8); }
+      .bt-feature { flex-direction: column; align-items: stretch; gap: var(--bt-s-6); }
       .bt-feature-copy, .bt-feature-media { flex: none; }
       .bt-feature-media { max-width: 100%; }
       .bt-wrap { padding-left: 24px !important; padding-right: 24px !important; }
       .bt-hero-row { flex-direction: column !important; }
       .bt-hero-copy { max-width: 100% !important; }
-      .bt-h1 { font-size: 40px !important; }
-      .bt-hero-badge { padding: 8px 14px !important; gap: 7px !important; }
-      .bt-hero-badge-text { font-size: 12px !important; line-height: 1.45 !important; letter-spacing: 0.01em !important; }
+      .bt-hero-badge-text { font-size: var(--bt-fs-2xs); line-height: var(--bt-lh-body); }
       .bt-hero-glass-overlay {
         background: linear-gradient(180deg,
           rgba(247,247,247,0.75) 0%,
@@ -360,12 +382,12 @@ label: Biotium – SfN 2026 Landing Page
     }
     @media (max-width: 560px) {
       .bt-cat-grid { grid-template-columns: minmax(0,1fr) !important; }
-      .bt-header-pill { padding: 4px 10px; gap: 5px; }
+      .bt-header-pill { padding: var(--bt-s-1) 10px; gap: var(--bt-s-1); }
       .bt-header-pill-text { font-size: 9.5px; }
       /* Scrolled pill on phones: drop the city so it stays on one line */
       .bt-header-pill-city { display: none; }
       /* Portfolio cards: free up width for the title and sharpen title/body contrast */
-      .bt-cat-grid .bt-card { gap: 14px !important; }
+      .bt-cat-grid .bt-card { gap: var(--bt-s-3) !important; }
       .bt-cat-grid .bt-icon-box { width: 64px !important; height: 64px !important; }
       .bt-cat-grid .bt-icon-box svg { width: 26px !important; height: 26px !important; }
     }
@@ -403,8 +425,8 @@ label: Biotium – SfN 2026 Landing Page
 </svg>
     </a>
     <div class="bt-header-right">
-      <span class="bt-header-tagline" style="font-size:12px; font-weight:700; color:#767676; letter-spacing:0.02em; white-space:nowrap;">Glowing Products for Science&trade;</span>
-      <span class="bt-header-pill">
+      <span class="bt-header-tagline">Glowing Products for Science&trade;</span>
+      <span class="bt-header-pill bt-badge bt-badge--sm">
         <span class="bt-header-pill-icon">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="#454545"/>
@@ -418,7 +440,7 @@ label: Biotium – SfN 2026 Landing Page
 </div>
 
 <!-- Hero zone: the neuron field runs behind the hero and the MiniMab card, down to the portfolio -->
-<div class="bt-hero-zone" style="position:relative; overflow:hidden; background-color:#F7F7F7; margin-top:-59px;">
+<div class="bt-hero-zone">
   <canvas id="hero-network"></canvas>
 <!-- Hero -->
 <div style="position:relative;">
