@@ -64,8 +64,8 @@
     .bt-media { position: relative; border-radius: var(--bt-r-inner); overflow: hidden; border: 1px solid var(--bt-line); }
     /* Feature card: copy beside media or a panel (MiniMab, sale) */
     .bt-feature { display: flex; align-items: center; gap: 56px; }
-    .bt-feature-copy { position: relative; flex: 1 1 0; max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
-    .bt-feature-media { flex: 1 1 0; max-width: 560px; width: 100%; }
+    .bt-feature-copy { position: relative; flex: 0 0 calc(50% - 28px); max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+    .bt-feature-media { flex: 0 0 calc(50% - 28px); max-width: 560px; width: 100%; }
     /* Link cards: portfolio (row) and resource (stacked) share title, description, icon box and hover */
     .bt-card-title { margin: 0 0 6px 0; font-size: 17px; line-height: 1.3; font-weight: 800; color: var(--bt-ink); }
     .bt-card-desc { margin: 0; font-size: 14px; line-height: 1.55; color: var(--bt-text); }
@@ -217,7 +217,7 @@
     .bt-sale-feature { position: relative; overflow: hidden; }
     .bt-sale-neurons { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1100px; max-width: none; height: auto; pointer-events: none; opacity: 0.85; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); }
     /* Copy and terms panel split 50/50, same as the MiniMab card */
-    .bt-sale-panel { position: relative; flex: 1 1 0; max-width: 560px; }
+    .bt-sale-panel { position: relative; flex: 0 0 calc(50% - 28px); max-width: 560px; }
     @media (max-width: 900px) {
       .bt-sale-panel { flex: none; }
       .bt-sale-neurons { opacity: 0.4; }
@@ -332,6 +332,7 @@
       .bt-h2--lg { font-size: 28px; }
       .bt-surface--lg { padding: 24px; }
       .bt-feature { flex-direction: column; align-items: stretch; gap: 28px; }
+      .bt-feature-copy, .bt-feature-media { flex: none; }
       .bt-feature-media { max-width: 100%; }
       .bt-wrap { padding-left: 24px !important; padding-right: 24px !important; }
       .bt-hero-row { flex-direction: column !important; }
