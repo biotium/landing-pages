@@ -210,8 +210,10 @@ label: Biotium – SfN 2026 Landing Page
     html.reduced-motion { scroll-behavior: auto; }
     #minimab { position: relative; z-index: 2; padding-bottom: 80px; scroll-margin-top: 58px; }
     .bt-btn-go { transition: transform 0.2s ease; }
-    .bt-btn-primary:hover .bt-btn-go { transform: translateY(2px); }
-    html.reduced-motion .bt-btn-primary:hover .bt-btn-go { transform: none; }
+    /* Button arrows nudge the way they point: right for links, down for in-page jumps */
+    .bt-btn-primary:hover .bt-btn-go { transform: translateX(3px); }
+    .bt-btn-primary:hover .bt-btn-go--down { transform: translateY(2px); }
+    html.reduced-motion .bt-btn-primary:hover .bt-btn-go, html.reduced-motion .bt-btn-primary:hover .bt-btn-go--down { transform: none; }
     /* Neuroscience sale: top announcement bar */
     .bt-promo-bar { background: #0084FF; color: #ffffff; text-align: center; font-size: 13.5px; line-height: 1.4; padding: 9px 16px; position: relative; z-index: 101; }
     .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
@@ -438,7 +440,7 @@ label: Biotium – SfN 2026 Landing Page
       <div class="hero-in" style="transition-delay:240ms; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
         <a href="#minimab" class="bt-btn-primary">
           Meet MiniMab&trade;
-          <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
+          <svg class="bt-btn-go bt-btn-go--down" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
         </a>
       </div>
     </div>
@@ -589,7 +591,7 @@ label: Biotium – SfN 2026 Landing Page
       </div>
       <a href="https://biotium.com/neuroscience/" target="_blank" rel="noopener" class="bt-btn-primary">
         Shop the sale
-        <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
     <div class="bt-panel bt-sale-panel">
