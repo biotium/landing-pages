@@ -31,7 +31,7 @@ label: Biotium – SfN 2026 Landing Page
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap">
 """
 BODY_RULE = ("    body.bt-body { margin: 0; font-family: 'Mulish', Arial, sans-serif; background: #ffffff; "
-             "color: #454545; -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }")
+             "color: var(--bt-text); -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }")
 MIME = {'svg': 'image/svg+xml', 'webp': 'image/webp', 'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'png': 'image/png'}
 
 s = open(SRC, encoding='utf-8').read()
@@ -41,6 +41,12 @@ m = re.search(r'<helmet>\n.*?\n  <style>\n(.*?)\n  </style>\n</helmet>\n', s, re
 style = m.group(1)
 style, n = re.subn(r"^    \.bt-body-scope \{[^\n]*\}$", BODY_RULE, style, count=1, flags=re.M)
 assert n == 1, 'no .bt-body-scope rule'
+# The design tokens (and any other rule) scoped to .bt-body-scope must move to the HubSpot body,
+# or every var(--bt-...) resolves to nothing once the wrapper div is gone
+style = style.replace('.bt-body-scope', 'body.bt-body')
+defined = set(re.findall(r'(--bt-[\w-]+)\s*:', style))
+used = set(re.findall(r'var\((--bt-[\w-]+)', style))
+assert used <= defined, f'undefined tokens: {sorted(used - defined)}'
 
 # 2. everything inside <x-dc> after the helmet, minus the .bt-body-scope wrapper div
 rest = s[m.end():s.rindex('</x-dc>')]

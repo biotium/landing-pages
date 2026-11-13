@@ -16,7 +16,7 @@ label: Biotium – SfN 2026 Landing Page
     * { box-sizing: border-box; }
     h1, h2, h3, h4 { text-wrap: balance; }
     p { text-wrap: pretty; }
-    body.bt-body { margin: 0; font-family: 'Mulish', Arial, sans-serif; background: #ffffff; color: #454545; -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }
+    body.bt-body { margin: 0; font-family: 'Mulish', Arial, sans-serif; background: #ffffff; color: var(--bt-text); -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }
     .bt-a { color: var(--bt-link); text-decoration: none; }
     .bt-a:hover { color: var(--bt-blue-dark); }
     .bt-wrap { max-width: 1160px; margin: 0 auto; padding-left: 48px; padding-right: 48px; }
@@ -25,7 +25,7 @@ label: Biotium – SfN 2026 Landing Page
        Type scale (px): 12 13 14 15 16 17 20 | 30 34 56 (26 28 40 on phones).
        Spacing: 4px grid (--bt-s-*). Radii: 6 small, 12 inner, 16 card, pill, round.
        Buttons follow the Biotium LP button standard and keep its literal values. */
-    .bt-body-scope {
+    body.bt-body {
       /* Brand */
       --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec; --bt-tint: #E9F3FF;
       --bt-blue-a08: rgba(0,132,255,0.08); --bt-blue-a12: rgba(0,132,255,0.12); --bt-blue-a14: rgba(0,132,255,0.14); --bt-blue-a16: rgba(0,132,255,0.16);
@@ -61,7 +61,7 @@ label: Biotium – SfN 2026 Landing Page
       --bt-focus-ring: 0 0 0 4px var(--bt-blue-a12);
     }
     @media (max-width: 900px) {
-      .bt-body-scope { --bt-fs-h2: 26px; --bt-fs-h2-lg: 28px; --bt-fs-h1: 40px; --bt-pad-card-lg: var(--bt-s-6); }
+      body.bt-body { --bt-fs-h2: 26px; --bt-fs-h2-lg: 28px; --bt-fs-h1: 40px; --bt-pad-card-lg: var(--bt-s-6); }
     }
     /* Section: one vertical rhythm, three backgrounds */
     .bt-section { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-20); background: #ffffff; }
