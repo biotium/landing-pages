@@ -16,18 +16,79 @@
     .bt-a { color: #087eec; text-decoration: none; }
     .bt-a:hover { color: #0062be; }
     .bt-wrap { max-width: 1160px; margin: 0 auto; padding-left: 48px; padding-right: 48px; }
+    /* ================= Design system =================
+       Tokens first, then the component set every section is built from:
+       section, head (kicker + h2 + lead), surface (card), panel, feature card, link card,
+       icon box, check list, link arrow, notes. Buttons follow the Biotium LP button standard. */
+    .bt-body-scope {
+      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec;
+      --bt-ink: #2d2d2d; --bt-text: #555555; --bt-muted: #888888;
+      --bt-line: #EEEEEE; --bt-line-strong: #E3E3E3; --bt-alt: #F7F7F7; --bt-tint: #E9F3FF; --bt-dark: #232323;
+      --bt-r-card: 16px; --bt-r-inner: 12px; --bt-r-pill: 999px;
+      --bt-shadow: 0 10px 30px rgba(17,17,17,0.05);
+      --bt-shadow-hover: 0 10px 30px rgba(17,17,17,0.08);
+      --bt-gap-block: 40px;
+    }
+    /* Section: one vertical rhythm, four backgrounds */
+    .bt-section { padding-top: 72px; padding-bottom: 80px; background: #ffffff; }
+    .bt-section--alt { background: var(--bt-alt); }
+    .bt-section--blue { background: var(--bt-blue); }
+    .bt-section--compact { padding-top: 56px; padding-bottom: 56px; }
+    .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
+    .bt-section.bt-section--flush-top { padding-top: 0; }
+    /* Head: kicker, headline, optional lead (and note or link), always 12px apart */
+    .bt-head { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .bt-head--center { align-items: center; text-align: center; max-width: 680px; margin: 0 auto var(--bt-gap-block) auto; }
+    .bt-head--center:last-child { margin-bottom: 0; }
+    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: var(--bt-tint); color: var(--bt-blue-dark); font-size: 12.5px; font-weight: 800; padding: 6px 14px; border-radius: var(--bt-r-pill); }
+    .bt-h2 { margin: 0; font-size: 30px; line-height: 1.25; font-weight: 800; color: var(--bt-ink); }
+    .bt-h2--lg { font-size: 34px; line-height: 1.18; }
+    .bt-h3 { margin: 0 0 8px 0; font-size: 20px; line-height: 1.3; font-weight: 800; color: var(--bt-ink); }
+    .bt-lead { margin: 0; font-size: 16px; line-height: 1.6; color: var(--bt-text); }
+    .bt-tagline { margin: 0; font-size: 17px; line-height: 1.4; font-weight: 700; color: #444444; }
+    .bt-note { margin: 0; font-size: 13px; line-height: 1.5; color: var(--bt-muted); }
+    .bt-note a { color: var(--bt-link); }
+    .bt-fine { margin: 0; font-size: 12px; line-height: 1.5; color: var(--bt-muted); }
+    .bt-accent { color: var(--bt-blue); }
+    /* On Biotium blue: white type, white kicker, a deeper cool shadow under white cards */
+    .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
+    .bt-section--blue .bt-kicker { background: #ffffff; }
+    .bt-section--blue .bt-surface--raised { box-shadow: 0 12px 32px rgba(0,54,110,0.18); }
+    /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
+    .bt-surface { background: #ffffff; border: 1px solid var(--bt-line); border-radius: var(--bt-r-card); }
+    .bt-surface--raised { box-shadow: var(--bt-shadow); }
+    .bt-surface--lg { padding: 48px; }
+    /* Panel: grey inset inside a surface. Media: framed video or image inside a surface */
+    .bt-panel { background: var(--bt-alt); border: 1px solid var(--bt-line); border-radius: var(--bt-r-inner); padding: 24px; }
+    .bt-panel-foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--bt-line-strong); }
+    .bt-media { position: relative; border-radius: var(--bt-r-inner); overflow: hidden; border: 1px solid var(--bt-line); }
+    /* Feature card: copy beside media or a panel (MiniMab, sale) */
+    .bt-feature { display: flex; align-items: center; gap: 56px; }
+    .bt-feature-copy { position: relative; flex: 1 1 0; max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+    .bt-feature-media { flex: 1 1 0; max-width: 560px; width: 100%; }
+    /* Link cards: portfolio (row) and resource (stacked) share title, description, icon box and hover */
+    .bt-card-title { margin: 0 0 6px 0; font-size: 17px; line-height: 1.3; font-weight: 800; color: var(--bt-ink); }
+    .bt-card-desc { margin: 0; font-size: 14px; line-height: 1.55; color: var(--bt-text); }
+    /* Check list */
+    .bt-check-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .bt-check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--bt-text); }
+    .bt-check-list li svg { flex: none; margin-top: 2px; }
+    .bt-check-list strong { color: var(--bt-ink); }
+    /* Pill badge (hero location) */
+    .bt-badge { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--bt-line-strong); border-radius: var(--bt-r-pill); padding: 7px 14px; }
+    /* ============== end design system core ============== */
     .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
     .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
-    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.55); color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); backdrop-filter: blur(10px) saturate(1.4); -webkit-backdrop-filter: blur(10px) saturate(1.4); text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
-    .bt-btn-outline:hover { background: rgba(229,242,255,0.78); color: #0062be; }
-    .bt-link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 14px; text-decoration: none; }
-    /* Eyebrow pill always sits above its headline, same gap everywhere */
-    .bt-kicker-row { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-    .bt-kicker-row--center { align-items: center; text-align: center; }
-    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: #E9F3FF; color: #0062be; font-size: 12.5px; font-weight: 800; padding: 6px 14px; border-radius: 999px; }
+    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
+    /* Link arrow: the one text-link CTA */
+    .bt-link-arrow { display: inline-flex; align-items: center; gap: 6px; color: var(--bt-link); font-weight: 800; font-size: 15px; text-decoration: none; }
+    .bt-link-arrow:hover { color: var(--bt-link); }
     .bt-card { position: relative; transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
     /* Show merch photo: smooth, slight scale on hover (pointer devices only) */
-    .bt-tshirts { transition: transform 0.45s cubic-bezier(.16,.8,.24,1); }
+    .bt-promo-row { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .bt-promo-copy { flex: 1 1 260px; min-width: 220px; }
+    .bt-tshirts { width: 320px; max-width: 100%; height: auto; flex: none; display: block; transition: transform 0.45s cubic-bezier(.16,.8,.24,1); }
     @media (hover: hover) { .bt-tshirts:hover { transform: scale(1.04); } }
     @media (prefers-reduced-motion: reduce) { .bt-tshirts { transition: none; } .bt-tshirts:hover { transform: none; } }
     /* Text-link underline: draws in from the left on hover, slides out to the right on leave */
@@ -36,8 +97,8 @@
     @media (prefers-reduced-motion: reduce) { .bt-ul { transition: none; } }
     /* Come say hi: floating team faces. They pop in one by one
        when the section scrolls into view, then drift gently. On tablets the copy narrows and the faces pull in; at 720px and below they gather in a row just above the copy. */
-    .bt-say-hi { position: relative; overflow: hidden; }
-    .bt-say-hi > .bt-wrap { padding-top: 104px !important; padding-bottom: 112px !important; }
+    .bt-section.bt-say-hi { position: relative; overflow: hidden; padding-top: 104px; padding-bottom: 112px; }
+    .bt-say-hi .bt-head { max-width: 620px; }
     .bt-team-float { position: absolute; inset: 0; pointer-events: none; }
     .bt-face { --sz: calc(var(--s) * var(--z, 1)); position: absolute; left: calc(50% + var(--x) * var(--k, 1)); top: var(--y); width: var(--sz); height: var(--sz); margin: calc(var(--sz) / -2) 0 0 calc(var(--sz) / -2); animation: btFaceFloat var(--f) ease-in-out infinite alternate; }
     .bt-face-in {
@@ -51,13 +112,14 @@
     @keyframes btFaceFloat { from { transform: translateY(-6px); } to { transform: translateY(6px); } }
     @media (min-width: 721px) and (max-width: 1180px) {
       .bt-team-float { --k: 0.68; --z: 0.85; }
-      .bt-say-hi > .bt-wrap > div { max-width: 400px !important; }
+      .bt-say-hi .bt-head { max-width: 400px; }
     }
     @media (max-width: 720px) {
       .bt-team-float { position: relative; inset: auto; display: flex; justify-content: center; padding-top: 64px; }
       .bt-face { position: relative; left: auto; top: auto; width: 56px; height: 56px; margin: 0 -5px; }
       .bt-face:nth-child(n+8) { display: none; }
-      .bt-say-hi > .bt-wrap { padding-top: 18px !important; padding-bottom: 88px !important; }
+      .bt-section.bt-say-hi { padding-top: 0; padding-bottom: 88px; }
+      .bt-say-hi > .bt-wrap { padding-top: 18px; }
     }
     @media (max-width: 400px) { .bt-face { width: 48px; height: 48px; } }
     @media (prefers-reduced-motion: reduce) {
@@ -66,7 +128,10 @@
     }
     .bt-cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
     .bt-res-row { display: flex; gap: 24px; align-items: stretch; flex-wrap: wrap; }
-    .bt-res-card { flex: 1 1 260px; }
+    .bt-cat-card { display: flex; align-items: center; gap: 18px; padding: 20px; }
+    .bt-cat-body { flex: 1 1 auto; min-width: 0; }
+    .bt-res-card { flex: 1 1 260px; padding: 28px; }
+    .bt-res-card .bt-card-desc { margin-bottom: 20px; }
     .bt-choice-badge { position: relative; display: inline-flex; vertical-align: middle; cursor: pointer; }
     .bt-choice-tip {
       position: absolute; bottom: calc(100% + 9px); left: 50%; transform: translateX(-50%);
@@ -102,24 +167,30 @@
       pointer-events: none;
     }
 
-    /* Icon chips: background brightens on card hover */
-    .bt-icon-box {
-      background: rgba(0,132,255,0.08);
-      border: 1px solid rgba(0,132,255,0.16);
-      transition: background-color 0.2s ease;
-    }
-    .bt-card:hover .bt-icon-box {
-      background: rgba(0,132,255,0.14);
-    }
-    .bt-icon-box-res {
-      background: rgba(0,132,255,0.10);
-      border: 1px solid rgba(0,132,255,0.18);
-      transition: background-color 0.2s ease;
-    }
-    .bt-res-card:hover .bt-icon-box-res {
-      background: rgba(0,132,255,0.16);
-    }
+    /* Icon box: tinted chip, two sizes (image thumb, document icon); brightens on card hover */
+    .bt-icon-box { display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden; border-radius: var(--bt-r-inner); background: rgba(0,132,255,0.08); border: 1px solid rgba(0,132,255,0.16); transition: background-color 0.2s ease; }
+    .bt-card:hover .bt-icon-box { background: rgba(0,132,255,0.14); }
+    .bt-icon-box--lg { width: 96px; height: 96px; }
+    .bt-icon-box--sm { width: 44px; height: 44px; margin-bottom: 18px; }
+    .bt-icon-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+
+    /* Hero type */
+    .bt-h1 { margin: 0 0 22px 0; font-size: 56px; line-height: 1.06; font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
+    .bt-hero-sub { margin: 0 0 32px 0; font-size: 19px; line-height: 1.5; font-weight: 600; color: #444444; max-width: 480px; }
+    .bt-hero-badge { margin-bottom: 22px; }
+    .bt-hero-badge-text { font-size: 12.5px; font-weight: 800; letter-spacing: 0.04em; color: var(--bt-text); }
+    /* Footer */
+    .bt-footer { background: var(--bt-dark); }
+    .bt-footer > .bt-wrap { padding-top: 52px; padding-bottom: 32px; }
+    .bt-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid #565656; }
+    .bt-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .bt-footer-tag { color: #CFCFCF; font-size: 12px; }
+    .bt-footer-links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .bt-footer-link { color: #CFCFCF; font-size: 14px; font-weight: 600; }
+    .bt-footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; }
+    .bt-footer-legal { color: #A0A0A0; font-size: 12px; }
+    .bt-footer-legal-link { font-weight: 600; }
 
     /* Scroll progress bar */
     #scroll-progress {
@@ -132,7 +203,7 @@
     /* Sticky header elevation on scroll — subtle glass */
     html { scroll-behavior: smooth; }
     html.reduced-motion { scroll-behavior: auto; }
-    #minimab { scroll-margin-top: 58px; }
+    #minimab { position: relative; z-index: 2; padding-bottom: 80px; scroll-margin-top: 58px; }
     .bt-btn-go { transition: transform 0.2s ease; }
     .bt-btn-primary:hover .bt-btn-go { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go { transform: none; }
@@ -141,46 +212,32 @@
     .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
     .bt-promo-bar strong { font-weight: 800; }
     .bt-promo-bar .bt-ul { font-weight: 800; }
-    /* Neuroscience sale: a card at the foot of the portfolio, same card language as the rest of the page */
-    .bt-sale { background: #ffffff; padding-bottom: 72px; }
-    .bt-sale-card-wrap { position: relative; overflow: hidden; display: flex; align-items: center; gap: 40px; background: #ffffff; border: 1px solid #EEEEEE; border-radius: 16px; padding: 44px 48px; box-shadow: 0 10px 30px rgba(17,17,17,0.05); }
+    /* Neuroscience sale: a feature card at the foot of the portfolio, with a neuron layer behind the terms panel */
+    .bt-sale-feature { position: relative; overflow: hidden; }
     .bt-sale-neurons { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1100px; max-width: none; height: auto; pointer-events: none; opacity: 0.85; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); mask-image: linear-gradient(90deg, transparent 0%, transparent 38%, #000 72%); }
-    .bt-sale-copy { position: relative; flex: 1 1 0; max-width: 560px; }
-    .bt-sale-h { margin: 14px 0 10px 0; font-size: 34px; line-height: 1.18; font-weight: 800; color: #2d2d2d; }
-    .bt-sale-sub { margin: 0 0 12px 0; font-size: 17px; line-height: 1.4; font-weight: 700; color: #444444; }
-    .bt-sale-body { margin: 0 0 24px 0; font-size: 15.5px; line-height: 1.6; color: #555555; }
-    .bt-sale-card { position: relative; flex: 0 1 360px; background: #F7F7F7; border: 1px solid #EEEEEE; border-radius: 12px; padding: 24px; }
-    .bt-sale-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .bt-sale-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: #2d2d2d; }
-    .bt-sale-card li svg { flex: none; margin-top: 2px; }
-    .bt-sale-fine { margin: 16px 0 0 0; padding-top: 14px; border-top: 1px solid #E3E3E3; font-size: 12px; line-height: 1.5; color: #888888; }
+    .bt-sale-panel { position: relative; flex: 0 1 360px; }
     @media (max-width: 900px) {
-      .bt-sale-card-wrap { flex-direction: column; align-items: stretch; gap: 24px; padding: 28px 24px; }
-      .bt-sale-card { flex: none; }
-      .bt-sale-h { font-size: 28px; }
+      .bt-sale-panel { flex: none; }
       .bt-sale-neurons { opacity: 0.4; }
     }
     /* Recommendations form */
-    .bt-rec-card { max-width: 720px; margin: 0 auto; background: #ffffff; border: 1px solid #EEEEEE; border-radius: 18px; padding: 36px; box-shadow: 0 12px 32px rgba(0,54,110,0.18); }
+    .bt-rec-card { max-width: 720px; margin: 0 auto; }
     .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .bt-rec-field { display: flex; flex-direction: column; gap: 6px; text-align: left; }
-    .bt-rec-field label { font-size: 13px; font-weight: 800; color: #2d2d2d; }
-    .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: 15px; color: #2d2d2d; background: #ffffff; border: 1.5px solid #E2E2E2; border-radius: 12px; padding: 12px 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
+    .bt-rec-field label { font-size: 13px; font-weight: 800; color: var(--bt-ink); }
+    .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: 15px; color: var(--bt-ink); background: #ffffff; border: 1.5px solid var(--bt-line-strong); border-radius: var(--bt-r-inner); padding: 12px 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
     .bt-rec-field textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
     .bt-rec-field input::placeholder, .bt-rec-field textarea::placeholder { color: #A0A0A0; }
-    .bt-rec-field input:focus, .bt-rec-field textarea:focus { border-color: #0084FF; box-shadow: 0 0 0 4px rgba(0,132,255,0.12); }
+    .bt-rec-field input:focus, .bt-rec-field textarea:focus { border-color: var(--bt-blue); box-shadow: 0 0 0 4px rgba(0,132,255,0.12); }
     .bt-rec-actions { display: flex; flex-direction: column-reverse; align-items: center; gap: 14px; margin-top: 24px; text-align: center; }
     .bt-rec-actions .bt-btn-primary { cursor: pointer; font-family: inherit; }
     .bt-rec-actions .bt-btn-primary[disabled] { opacity: 0.6; cursor: wait; }
-    .bt-rec-note { font-size: 12.5px; color: #888888; line-height: 1.5; }
-    .bt-rec-note a { color: #087eec; }
     .bt-rec-done { display: none; text-align: center; padding: 12px 0 4px; }
     .bt-rec-card.is-sent form { display: none; }
     .bt-rec-card.is-sent .bt-rec-done:not(.bt-rec-mailed) { display: block; }
     .bt-rec-card.is-mailed form { display: none; }
     .bt-rec-card.is-mailed .bt-rec-mailed { display: block; }
     @media (max-width: 720px) {
-      .bt-rec-card { padding: 24px 20px; }
       .bt-rec-grid { grid-template-columns: 1fr; }
       .bt-rec-actions .bt-btn-primary { width: 100%; justify-content: center; }
     }
@@ -247,14 +304,8 @@
        the pointer stays put and hover can't stick or flicker. Revealed cards drop the slow, staggered
        reveal transition so the hover answers instantly. */
     .bt-card.is-settled { transition: box-shadow 0.18s ease, border-color 0.18s ease !important; transition-delay: 0s !important; }
-    .bt-card:hover { transform: none; border-color: rgba(8,126,236,0.45) !important; box-shadow: 0 10px 26px rgba(17,17,17,0.07); }
+    .bt-card:hover { transform: none; border-color: rgba(8,126,236,0.45) !important; box-shadow: var(--bt-shadow-hover); }
     a.bt-card { cursor: pointer; }
-    .bt-card .bt-btn-outline { -webkit-backdrop-filter: none; backdrop-filter: none; }
-    .bt-card:hover .bt-btn-outline { background: rgba(229,242,255,0.78); color: #0062be; }
-    .bt-card .bt-btn-outline, .bt-card .bt-btn-outline:hover { box-shadow: none; }
-    /* Resource buttons: pointer on the button inverts it to Biotium blue, the clearest "click here" */
-    .bt-res-card .bt-btn-outline { transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
-    .bt-res-card .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
     /* Resource preview: on mouse and trackpad, hovering a resource button shows a small thumbnail of
        the resource beside the pointer, so visitors see what they'll get before they click */
     .bt-res-peek { position: absolute; left: 0; top: 0; width: 64px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px rgba(17,17,17,0.22); pointer-events: none; z-index: 10; opacity: 0; transform: translate(var(--px, 0px), var(--py, 0px)) scale(0.92); transition: opacity 0.16s ease, transform 0.16s ease; }
@@ -262,7 +313,7 @@
       .bt-res-card.is-peeking .bt-res-peek { opacity: 1; transform: translate(var(--px, 0px), var(--py, 0px)) scale(1); transition: opacity 0.16s ease; }
     }
     @media (hover: none), (pointer: coarse) { .bt-res-peek { display: none; } }
-    .bt-card-go { transition: transform 0.18s ease; }
+    .bt-card-go { flex: none; transition: transform 0.18s ease; }
     .bt-card:hover .bt-card-go { transform: translateX(3px); }
     .bt-card:hover .bt-card-go--down { transform: translateY(2px); }
     @media (prefers-reduced-motion: reduce) { .bt-card:hover .bt-card-go { transform: none; } }
@@ -272,12 +323,18 @@
     html.reduced-motion #site-header { transition: none !important; }
 
     @media (max-width: 900px) {
-      .bt-feature-card { padding: 24px !important; gap: 28px !important; }
+      .bt-section { padding-top: 56px; padding-bottom: 64px; }
+      .bt-section--compact { padding-top: 48px; padding-bottom: 48px; }
+      .bt-section--join-next { padding-bottom: 32px; }
+      .bt-h2 { font-size: 26px; }
+      .bt-h2--lg { font-size: 28px; }
+      .bt-surface--lg { padding: 24px; }
+      .bt-feature { flex-direction: column; align-items: stretch; gap: 28px; }
+      .bt-feature-media { max-width: 100%; }
       .bt-wrap { padding-left: 24px !important; padding-right: 24px !important; }
-      .bt-hero-row, .bt-featured-row { flex-direction: column !important; }
+      .bt-hero-row { flex-direction: column !important; }
       .bt-hero-copy { max-width: 100% !important; }
       .bt-h1 { font-size: 40px !important; }
-      .bt-flagship-img-col { max-width: 100% !important; }
       .bt-hero-badge { padding: 8px 14px !important; gap: 7px !important; }
       .bt-hero-badge-text { font-size: 11.5px !important; line-height: 1.45 !important; letter-spacing: 0.02em !important; }
       .bt-hero-glass-overlay {
@@ -302,8 +359,6 @@
       .bt-cat-grid .bt-card { gap: 14px !important; }
       .bt-cat-grid .bt-icon-box { width: 64px !important; height: 64px !important; }
       .bt-cat-grid .bt-icon-box svg { width: 26px !important; height: 26px !important; }
-      .bt-cat-title { font-size: 17px !important; }
-      .bt-cat-desc { font-size: 13px !important; color: #6b6b6b !important; }
     }
     @media (max-width: 340px) {
       .bt-header-pill-text { font-size: 9px; }
@@ -361,7 +416,7 @@
   <div class="bt-hero-glass-overlay"></div>
   <div class="bt-wrap" style="padding-top:104px; padding-bottom:96px; position:relative; z-index:1; pointer-events:none;">
     <div class="bt-hero-copy" style="max-width:620px; position:relative; pointer-events:auto;">
-      <div class="hero-in bt-hero-badge" style="transition-delay:0ms; display:inline-flex; align-items:center; gap:8px; background:#ffffff; border:1px solid #E3E3E3; border-radius:999px; padding:7px 14px; margin-bottom:22px;">
+      <div class="hero-in bt-badge bt-hero-badge" style="transition-delay:0ms;">
         <span class="bt-hero-pin">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="#454545"/>
@@ -369,10 +424,10 @@
           </svg>
           <span class="bt-hero-pin-tip" style="position:absolute; left:50%; bottom:-1px; width:3px; height:3px; border-radius:999px; background:#0084FF; transform:translateX(-50%);"></span>
         </span>
-        <span class="bt-hero-badge-text" style="font-size:12.5px; font-weight:800; letter-spacing:0.04em; color:#555555;">WASHINGTON, DC &middot; NOV 15&ndash;18</span>
+        <span class="bt-hero-badge-text">WASHINGTON, DC &middot; NOV 15&ndash;18</span>
       </div>
-      <h1 class="hero-in bt-h1" style="transition-delay:80ms; margin:0 0 22px 0; font-size:56px; line-height:1.06; font-weight:800; letter-spacing:-0.01em; color:#2d2d2d;">Biotium at SfN 2026</h1>
-      <p class="hero-in" style="transition-delay:160ms; margin:0 0 32px 0; font-size:19px; line-height:1.5; font-weight:600; color:#444444; max-width:480px;">Unlock deeper insights.</p>
+      <h1 class="hero-in bt-h1" style="transition-delay:80ms;">Biotium at SfN 2026</h1>
+      <p class="hero-in bt-hero-sub" style="transition-delay:160ms;">Unlock deeper insights.</p>
       <div class="hero-in" style="transition-delay:240ms; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
         <a href="#minimab" class="bt-btn-primary">
           Meet MiniMab&trade;
@@ -387,39 +442,39 @@
 </div>
 
 <!-- Flagship story: MiniMab, a card on the neuron field (it overlaps the brain's stem, so the brain rises from behind it) -->
-<div id="minimab" style="position:relative; z-index:2; padding-bottom:80px;">
+<div id="minimab">
   <div class="bt-wrap">
-  <div class="bt-featured-row bt-feature-card" style="display:flex; align-items:center; gap:56px; background:#ffffff; border:1px solid #EEEEEE; border-radius:16px; padding:48px; box-shadow:0 10px 30px rgba(17,17,17,0.05);">
-    <div class="reveal" style="transition-delay:0ms; flex:1 1 0; max-width:560px;">
-      <div class="bt-kicker-row" style="margin-bottom:18px;">
+  <div class="bt-surface bt-surface--raised bt-surface--lg bt-feature">
+    <div class="reveal bt-feature-copy" style="transition-delay:0ms;">
+      <div class="bt-head">
         <span class="bt-kicker">Featured at Neuroscience 2026</span>
-        <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:34px; line-height:1.18; font-weight:800; color:#2d2d2d;">MiniMab&trade;: Small Format, Big Difference</h2>
+        <h2 class="bt-h2 bt-h2--lg">MiniMab&trade;: Small Format, Big Difference</h2>
       </div>
-      <ul style="margin:0 0 26px 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;">
-        <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#555555;">~15 kDa single-domain antibodies, a fraction of a full-size IgG (~150 kDa)</span>
+      <ul class="bt-check-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span>~15 kDa single-domain antibodies, a fraction of a full-size IgG (~150 kDa)</span>
         </li>
-        <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Deeper penetration into thick tissues</span>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span>Deeper penetration into thick tissues</span>
         </li>
-        <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Faster binding kinetics</span>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span>Faster binding kinetics</span>
         </li>
-        <li style="display:flex; align-items:flex-start; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg>
-          <span style="font-size:15.5px; line-height:1.5; color:#555555;">Minimal epitope-dye displacement for super-resolution work</span>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>
+          <span>Minimal epitope-dye displacement for super-resolution work</span>
         </li>
       </ul>
-      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="bt-link-arrow" style="color:#087eec; font-size:15px;">
+      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="bt-link-arrow">
         <span class="bt-ul">Learn More About MiniMab&trade;</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
-    <div class="reveal bt-flagship-img-col" style="transition-delay:140ms; flex:1 1 0; max-width:560px; width:100%;">
-      <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid #EEEEEE;">
+    <div class="reveal bt-feature-media" style="transition-delay:140ms;">
+      <div class="bt-media">
         <script src="https://fast.wistia.com/player.js" async></script>
         <script src="https://fast.wistia.com/embed/lztnsxqbfz.js" async type="module"></script>
         <style>wistia-player[media-id='lztnsxqbfz']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/lztnsxqbfz/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
@@ -432,83 +487,81 @@
 </div>
 
 <!-- Portfolio grid -->
-<div style="background:#ffffff;">
-  <div class="bt-wrap" style="padding-top:56px; padding-bottom:32px;">
-    <div class="reveal" style="transition-delay:0ms; max-width:680px; margin:0 auto 32px auto; text-align:center;">
-      <div class="bt-kicker-row bt-kicker-row--center">
-        <span class="bt-kicker">Portfolio</span>
-        <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:28px; line-height:1.3; font-weight:800; color:#2d2d2d;">Everything you need for neuroscience research</h2>
-      </div>
+<div class="bt-section bt-section--join-next">
+  <div class="bt-wrap">
+    <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
+      <span class="bt-kicker">Portfolio</span>
+      <h2 class="bt-h2">Everything you need for neuroscience research</h2>
     </div>
-    <div class="bt-cat-grid" style="padding-bottom:40px;">
+    <div class="bt-cat-grid">
 
-      <a href="https://biotium.com/advanced-search/?filters=taxonomies.pa_antibody-type%3ABiotium+Choice&amp;filters=taxonomies.pa_antibody-research-areas%3ANeuroscience" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:0ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-neuronal-markers.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/advanced-search/?filters=taxonomies.pa_antibody-type%3ABiotium+Choice&amp;filters=taxonomies.pa_antibody-research-areas%3ANeuroscience" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:0ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-neuronal-markers.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neuronal &amp; Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Neuronal &amp; Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
             <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
             <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton.</p>
+          <p class="bt-card-desc">GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
-      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:60ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-small-format-antibodies.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:60ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-small-format-antibodies.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Small Format Antibodies</div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">MiniMab&trade; SdAbs: single-domain antibodies for staining thick tissues.</p>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Small Format Antibodies</div>
+          <p class="bt-card-desc">MiniMab&trade; SdAbs: single-domain antibodies for staining thick tissues.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
-      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#tracers" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:120ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-axonal-tracers.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#tracers" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:120ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-axonal-tracers.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Axonal Tracers</div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Neuro-DiI: lipophilic tracing for neuronal connectivity.</p>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Axonal Tracers</div>
+          <p class="bt-card-desc">Neuro-DiI: lipophilic tracing for neuronal connectivity.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
-      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#membrane-potential" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:180ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-functional-imaging.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#membrane-potential" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:180ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-functional-imaging.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Functional Imaging</div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Membrane potential dyes for live-cell imaging.</p>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Functional Imaging</div>
+          <p class="bt-card-desc">Membrane potential dyes for live-cell imaging.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
-      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#amyloid" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:240ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-neurodegeneration-probes.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#amyloid" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:240ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-neurodegeneration-probes.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Neurodegeneration Probes</div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">Amyloid &amp; aggregate stains for disease-model research.</p>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Neurodegeneration Probes</div>
+          <p class="bt-card-desc">Amyloid &amp; aggregate stains for disease-model research.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
-      <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/" target="_blank" rel="noopener" class="reveal bt-card" style="transition-delay:300ms; display:flex; align-items:center; gap:18px; border:1px solid #EEEEEE; border-radius:16px; background:#ffffff; padding:20px; text-decoration:none;">
-        <div class="bt-icon-box" style="overflow:hidden; width:96px; height:96px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;">
-          <img src="portfolio-signal-amplification.webp" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:300ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="portfolio-signal-amplification.webp" alt="">
         </div>
-        <div style="flex:1 1 auto; min-width:0;">
-          <div class="bt-cat-title" style="font-size:16px; font-weight:800; color:#2d2d2d; margin-bottom:4px;">Signal Amplification</div>
-          <p class="bt-cat-desc" style="margin:0; font-size:13.5px; line-height:1.5; color:#555555;">TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp.</p>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">Signal Amplification</div>
+          <p class="bt-card-desc">TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
     </div>
@@ -516,59 +569,59 @@
 </div>
 
 <!-- Neuroscience sale -->
-<div id="neuro-sale" class="bt-sale">
+<div id="neuro-sale" class="bt-section bt-section--flush-top">
   <div class="bt-wrap">
-  <div class="reveal bt-sale-card-wrap" style="transition-delay:0ms;">
+  <div class="reveal bt-surface bt-surface--raised bt-surface--lg bt-feature bt-sale-feature" style="transition-delay:0ms;">
     <img class="bt-sale-neurons" src="promo-neurons.webp" alt="" aria-hidden="true">
-    <div class="bt-sale-copy">
-      <span class="bt-kicker">Neuroscience sale</span>
-      <h2 class="bt-sale-h"><span style="color:#0084FF;">30% off</span> tools for your neuroscience research</h2>
-      <p class="bt-sale-sub">Trace. Label. Visualize. Save.</p>
-      <p class="bt-sale-body">Neuronal tracers, synaptic vesicle dyes, membrane potential indicators and more, including MiniMab&trade; single-domain antibodies.</p>
+    <div class="bt-feature-copy">
+      <div class="bt-head">
+        <span class="bt-kicker">Neuroscience sale</span>
+        <h2 class="bt-h2 bt-h2--lg"><span class="bt-accent">30% off</span> tools for your neuroscience research</h2>
+        <p class="bt-tagline">Trace. Label. Visualize. Save.</p>
+        <p class="bt-lead">Neuronal tracers, synaptic vesicle dyes, membrane potential indicators and more, including MiniMab&trade; single-domain antibodies.</p>
+      </div>
       <a href="https://biotium.com/neuroscience/" target="_blank" rel="noopener" class="bt-btn-primary">
         Shop the sale
         <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
-    <div class="bt-sale-card">
-      <ul>
+    <div class="bt-panel bt-sale-panel">
+      <ul class="bt-check-list">
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Discounts apply automatically at checkout.</span></li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Offer runs through <strong>December 31, 2026</strong>.</span></li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0084FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Ordering through customer service? Mention code <strong>NEURO2026</strong>.</span></li>
       </ul>
-      <p class="bt-sale-fine">Terms and conditions apply. Valid for US customers only, while supplies last. Cannot be combined with other offers.</p>
+      <p class="bt-fine bt-panel-foot">Terms and conditions apply. Valid for US customers only, while supplies last. Cannot be combined with other offers.</p>
     </div>
   </div>
   </div>
 </div>
 
 <!-- Resources -->
-<div style="background:#F7F7F7;">
-  <div class="bt-wrap" style="padding-top:72px; padding-bottom:80px;">
-    <div class="reveal" style="transition-delay:0ms; max-width:680px; margin:0 auto 44px auto; text-align:center;">
-      <div class="bt-kicker-row bt-kicker-row--center">
-        <span class="bt-kicker">Take it with you</span>
-        <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:28px; line-height:1.3; font-weight:800; color:#2d2d2d;">Resources for the show and after</h2>
-      </div>
+<div class="bt-section bt-section--alt">
+  <div class="bt-wrap">
+    <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
+      <span class="bt-kicker">Take it with you</span>
+      <h2 class="bt-h2">Resources for the show and after</h2>
     </div>
     <div class="bt-res-row">
 
-      <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:0ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:0ms;">
         <img class="bt-res-peek" src="resource-neuronal-probes.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
-        <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+        <div class="bt-icon-box bt-icon-box--sm">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
         </div>
-        <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Neuronal Probes Flyer</div>
-        <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">A quick-reference guide to Biotium's synaptic biology probes and stains.</p>
+        <div class="bt-card-title">Neuronal Probes Flyer</div>
+        <p class="bt-card-desc">A quick-reference guide to Biotium's synaptic biology probes and stains.</p>
         <span class="bt-btn-outline">
           Download PDF
           <svg class="bt-card-go bt-card-go--down" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 21h14"></path></svg>
         </span>
       </a>
 
-      <a href="https://biotium.com/wp-content/uploads/2022/12/Literature-Digest-TrueBlack-Neuro.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:80ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/wp-content/uploads/2022/12/Literature-Digest-TrueBlack-Neuro.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:80ms;">
         <img class="bt-res-peek" src="resource-trueblack-neuro.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
-        <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+        <div class="bt-icon-box bt-icon-box--sm">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M81.8262 29.5977H38.1738V90.4023H81.8262V29.5977Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -578,17 +631,17 @@
 <path d="M54.9609 51.4336H48.2523" stroke="#0084FF" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
         </div>
-        <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">TrueBlack&reg; in Neuroscience</div>
-        <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">Lipofuscin autofluorescence quenching across diverse neuroscience applications.</p>
+        <div class="bt-card-title">TrueBlack&reg; in Neuroscience</div>
+        <p class="bt-card-desc">Lipofuscin autofluorescence quenching across diverse neuroscience applications.</p>
         <span class="bt-btn-outline">
           Download PDF
           <svg class="bt-card-go bt-card-go--down" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 21h14"></path></svg>
         </span>
       </a>
 
-      <a href="https://biotium.com/wp-content/uploads/2022/02/Literature-Digest-STORM.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-res-card" style="transition-delay:160ms; background:#ffffff; border:1px solid #EEEEEE; border-radius:14px; padding:28px;">
+      <a href="https://biotium.com/wp-content/uploads/2022/02/Literature-Digest-STORM.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:160ms;">
         <img class="bt-res-peek" src="resource-cf-dyes-storm.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
-        <div class="bt-icon-box-res" style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+        <div class="bt-icon-box bt-icon-box--sm">
           <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M91.9043 19.5195H28.0957V100.48H91.9043V19.5195Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M81.8262 29.5977H38.1738V90.4023H81.8262V29.5977Z" stroke="black" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -598,8 +651,8 @@
 <path d="M54.9609 51.4336H48.2523" stroke="#0084FF" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
         </div>
-        <div style="font-size:17px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">CF&reg; Dyes for STORM</div>
-        <p style="margin:0 0 20px 0; font-size:14px; line-height:1.55; color:#555555;">CF&reg; Dyes for STORM super-resolution microscopy in advanced imaging workflows.</p>
+        <div class="bt-card-title">CF&reg; Dyes for STORM</div>
+        <p class="bt-card-desc">CF&reg; Dyes for STORM super-resolution microscopy in advanced imaging workflows.</p>
         <span class="bt-btn-outline">
           Download PDF
           <svg class="bt-card-go bt-card-go--down" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"></path><path d="M6 11l6 6 6-6"></path><path d="M5 21h14"></path></svg>
@@ -611,23 +664,23 @@
 </div>
 
 <!-- Show promo -->
-<div style="background:#ffffff;">
-  <div class="bt-wrap" style="padding-top:56px; padding-bottom:56px;">
-    <div class="reveal" style="transition-delay:0ms; display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap;">
-      <img src="tshirts.webp" alt="Biotium spectra and TrueBlack conference T-shirts" class="bt-tshirts" style="width:320px; max-width:100%; height:auto; flex:none; display:block;">
-      <div style="flex:1 1 260px; min-width:220px;">
-        <div class="bt-kicker-row" style="margin-bottom:8px;">
+<div class="bt-section bt-section--compact">
+  <div class="bt-wrap">
+    <div class="reveal bt-promo-row" style="transition-delay:0ms;">
+      <img src="tshirts.webp" alt="Biotium spectra and TrueBlack conference T-shirts" class="bt-tshirts">
+      <div class="bt-promo-copy">
+        <div class="bt-head">
           <span class="bt-kicker">Win cool merch</span>
-          <h2 style="margin:0; flex:0 1 auto; min-width:0; font-size:28px; line-height:1.3; font-weight:800; color:#2d2d2d;">Come play Lab DnD for a chance to win a limited release tee and other prizes</h2>
+          <h2 class="bt-h2">Come play Lab DnD for a chance to win a limited release tee and other prizes</h2>
+          <p class="bt-lead">Stop by our booth to play for a chance to win various prizes, including our limited-release T-shirts, while supplies last.</p>
         </div>
-        <p style="margin:0; font-size:14px; line-height:1.55; color:#555555;">Stop by our booth to play for a chance to win various prizes, including our limited-release T-shirts, while supplies last.</p>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Come say hi -->
-<div id="come-say-hi" class="bt-say-hi" style="background:#F7F7F7;">
+<div id="come-say-hi" class="bt-section bt-section--alt bt-say-hi">
   <!-- Team faces: seven headshots -->
   <div class="bt-team-float" aria-hidden="true">
     <div class="bt-face" style="--x:-366px; --y:30%; --s:64px; --f:5.2s; --d:0ms; --bg:#E9F3FF; --fg:#8DBDF0;"><div class="bt-face-in"><img src="data:image/webp;base64,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" alt="" width="64" height="64" loading="lazy"></div></div>
@@ -650,28 +703,29 @@
       io.observe(el);
     })();
   </script>
-  <div class="reveal bt-wrap" style="transition-delay:0ms; padding-top:72px; padding-bottom:80px; text-align:center;">
-    <div style="max-width:620px; margin:0 auto;">
-      <h2 style="margin:0 0 16px 0; font-size:30px; line-height:1.25; font-weight:800; color:#2d2d2d;">Come say hi. Bring your questions.</h2>
-      <p style="margin:0 0 20px 0; font-size:16px; line-height:1.6; color:#555555;">Walk up any time. Talk to our team, PhD scientists included, about MiniMab&trade;, CF&reg; Dyes for <em>in vivo</em> imaging, neuronal probes, and optimizing your experimental workflow.</p>
-      <div style="font-size:13px; color:#888888;">Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.</div>
-      <a href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" class="bt-link-arrow" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; color:#087eec; font-size:14px; font-weight:700; text-decoration:none;">
+  <div class="reveal bt-wrap" style="transition-delay:0ms;">
+    <div class="bt-head bt-head--center">
+      <span class="bt-kicker">Booth 1106</span>
+      <h2 class="bt-h2">Come say hi. Bring your questions.</h2>
+      <p class="bt-lead">Walk up any time. Talk to our team, PhD scientists included, about MiniMab&trade;, CF&reg; Dyes for <em>in vivo</em> imaging, neuronal probes, and optimizing your experimental workflow.</p>
+      <p class="bt-note">Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.</p>
+      <a href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" class="bt-link-arrow">
         <span class="bt-ul">Find Booth 1106 on the floor plan</span>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
     </div>
   </div>
 </div>
 
 <!-- Personal recommendations form: sends to tech support through HubSpot -->
-<div id="recommendations" style="background:#0084FF;">
-  <div class="reveal bt-wrap" style="transition-delay:0ms; padding-top:72px; padding-bottom:80px;">
-    <div style="max-width:620px; margin:0 auto 28px auto; text-align:center;">
-      <span class="bt-kicker" style="background:#ffffff;">Ask a scientist</span>
-      <h2 style="margin:14px 0 12px 0; font-size:28px; line-height:1.3; font-weight:800; color:#ffffff;">Let our scientists do the searching</h2>
-      <p style="margin:0; font-size:16px; line-height:1.6; color:#ffffff;">Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.</p>
+<div id="recommendations" class="bt-section bt-section--blue">
+  <div class="reveal bt-wrap" style="transition-delay:0ms;">
+    <div class="bt-head bt-head--center">
+      <span class="bt-kicker">Ask a scientist</span>
+      <h2 class="bt-h2">Let our scientists do the searching</h2>
+      <p class="bt-lead">Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.</p>
     </div>
-    <div class="bt-rec-card" id="bt-rec-card">
+    <div class="bt-rec-card bt-surface bt-surface--raised bt-surface--lg" id="bt-rec-card">
       <form id="bt-rec-form" novalidate data-hs-do-not-collect="true">
         <div class="bt-rec-grid">
           <div class="bt-rec-field">
@@ -688,19 +742,19 @@
           <textarea id="bt-rec-msg" name="message" placeholder="Sample or model, target, imaging method, and where you're stuck. Example: staining microglia in 300 &micro;m mouse brain sections, need better antibody penetration." required></textarea>
         </div>
         <div class="bt-rec-actions">
-          <div class="bt-rec-note">Goes straight to our technical support team. We only use your email to reply. <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+          <div class="bt-note">Goes straight to our technical support team. We only use your email to reply. <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
           <button type="submit" class="bt-btn-primary">
             Ask our scientists
           </button>
         </div>
       </form>
       <div class="bt-rec-done" role="status" aria-live="polite">
-        <div style="font-size:20px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Thanks, we're on it.</div>
-        <p style="margin:0; font-size:15px; line-height:1.6; color:#555555;">A Biotium scientist will reply to your email, usually within one business day. See you at Booth 1106.</p>
+        <div class="bt-h3">Thanks, we're on it.</div>
+        <p class="bt-lead">A Biotium scientist will reply to your email, usually within one business day. See you at Booth 1106.</p>
       </div>
       <div class="bt-rec-done bt-rec-mailed" role="status" aria-live="polite">
-        <div style="font-size:20px; font-weight:800; color:#2d2d2d; margin-bottom:8px;">Almost there: hit send in your email app.</div>
-        <p style="margin:0; font-size:15px; line-height:1.6; color:#555555;">We opened an email to <a href="mailto:techsupport@biotium.com" style="color:#087eec;">techsupport@biotium.com</a> with your details filled in. If nothing opened, write to that address and we'll take it from there.</p>
+        <div class="bt-h3">Almost there: hit send in your email app.</div>
+        <p class="bt-lead">We opened an email to <a href="mailto:techsupport@biotium.com" class="bt-a">techsupport@biotium.com</a> with your details filled in. If nothing opened, write to that address and we'll take it from there.</p>
       </div>
     </div>
   </div>
@@ -756,10 +810,10 @@
 </script>
 
 <!-- Footer -->
-<div style="background:#232323;">
-  <div class="bt-wrap" style="padding-top:52px; padding-bottom:32px;">
-    <div style="display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid #565656;">
-      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:8px;">
+<div class="bt-footer">
+  <div class="bt-wrap">
+    <div class="bt-footer-top">
+      <div class="bt-footer-brand">
         <a href="https://biotium.com" style="display:block; line-height:0;">
         <svg style="height:28px; width:auto; display:block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
   <defs>
@@ -786,17 +840,17 @@
   </g>
 </svg>
         </a>
-        <span style="color:#CFCFCF; font-size:12px;">Glowing Products for Science&trade;</span>
+        <span class="bt-footer-tag">Glowing Products for Science&trade;</span>
       </div>
-      <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
-        <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/" target="_blank" rel="noopener" style="color:#CFCFCF; font-size:14px; font-weight:600;">Full neuroscience portfolio</a>
-        <a href="https://biotium.com/about-us/news/" target="_blank" rel="noopener" style="color:#CFCFCF; font-size:14px; font-weight:600;">Other Biotium events</a>
-        <a href="https://biotium.com/distributors/" target="_blank" rel="noopener" style="color:#CFCFCF; font-size:14px; font-weight:600;">Contact a distributor</a>
+      <div class="bt-footer-links">
+        <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/" target="_blank" rel="noopener" class="bt-footer-link">Full neuroscience portfolio</a>
+        <a href="https://biotium.com/about-us/news/" target="_blank" rel="noopener" class="bt-footer-link">Other Biotium events</a>
+        <a href="https://biotium.com/distributors/" target="_blank" rel="noopener" class="bt-footer-link">Contact a distributor</a>
       </div>
     </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:24px;">
-      <span style="color:#A0A0A0; font-size:12px;">&copy;2026 Biotium, Inc. All rights reserved.</span>
-      <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener" style="color:#A0A0A0; font-size:12px; font-weight:600;">Privacy Policy</a>
+    <div class="bt-footer-bottom">
+      <span class="bt-footer-legal">&copy;2026 Biotium, Inc. All rights reserved.</span>
+      <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener" class="bt-footer-legal bt-footer-legal-link">Privacy Policy</a>
     </div>
   </div>
 </div>

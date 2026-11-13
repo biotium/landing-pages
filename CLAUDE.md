@@ -35,6 +35,18 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
 - Icons inside buttons use `stroke="currentColor"` so they flip to white with the text.
 - When a whole card is the link, its button is a `<span class="bt-btn-outline">` inside the card's `<a>`, never a second link.
 
+## SfN component set
+
+`sfn-2026/QuietFieldVariant.dc.html` is built from tokens and components defined at the top of its `<style>` ("Design system" block). Build new content from these classes instead of inline styles.
+
+- **Tokens** (CSS variables on `.bt-body-scope`): colors (`--bt-blue`, `--bt-link`, `--bt-ink`, `--bt-text`, `--bt-muted`, `--bt-line`, `--bt-alt`, `--bt-tint`), radii (`--bt-r-card` 16, `--bt-r-inner` 12, `--bt-r-pill`), shadows, `--bt-gap-block` 40.
+- **Section**: `.bt-section` (72/80 padding) with `--alt` (grey), `--blue`, `--compact`, `--join-next`, `--flush-top`.
+- **Head**: `.bt-head` (kicker, `.bt-h2`, optional `.bt-lead`, 12px apart); `.bt-head--center` for centered section heads. `.bt-h2--lg` only inside feature cards.
+- **Surface**: `.bt-surface` (white, hairline, 16px corners), `--raised` adds the shadow, `--lg` 48px padding. `.bt-panel` is the grey inset; `.bt-media` frames video or images.
+- **Feature card**: `.bt-surface--raised.bt-surface--lg.bt-feature` with `.bt-feature-copy` plus `.bt-feature-media` or a panel (MiniMab, sale).
+- **Link cards**: `.bt-card.bt-surface` plus `.bt-cat-card` (portfolio row) or `.bt-res-card` (resource), with `.bt-card-title`, `.bt-card-desc`, `.bt-icon-box--lg` / `--sm`, `.bt-card-go` arrow.
+- **Text**: `.bt-lead` 16px, `.bt-note` 13px, `.bt-fine` 12px, `.bt-tagline`, `.bt-accent`, `.bt-check-list`, `.bt-link-arrow`.
+
 
 
 Manny still edits the ASCB design canvas visually on claude.ai: https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g (shared with the Biotium org). It can fall behind this repo, or get ahead of it. Before syncing in either direction, check which side is newer and ask.
