@@ -930,7 +930,8 @@ label: Biotium – SfN 2026 Landing Page
           r: 1.2 + Math.random() * 1.3 + xt * 0.28
         });
       }
-      var minDim = Math.min(cssW, cssH);
+      /* Link reach stays at the original hero's scale, so a taller field (hero plus MiniMab card) keeps the same sparse web */
+      var minDim = Math.min(cssW, cssH, 480);
       var distLeft = minDim * 0.13, distRight = minDim * 0.17;
       for (var a = 0; a < nodes.length; a++) {
         for (var b = a + 1; b < nodes.length; b++) {
