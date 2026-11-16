@@ -233,7 +233,7 @@
     /* Scroll progress bar */
     #scroll-progress {
       position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-      background: linear-gradient(90deg, #39B54A 0%, #0084FF 50%, #ED1C24 100%);
+      background: var(--bt-blue);
       z-index: 200; transition: width 0.08s linear;
       pointer-events: none;
     }
@@ -303,11 +303,11 @@
     #site-header.is-scrolled { background: rgba(255,255,255,0.95); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 24px rgba(20,20,20,0.08), 0 1px 0 rgba(0,132,255,0.18); }
     html.reduced-motion #site-header,
     html.reduced-motion #site-header.is-scrolled { background: #ffffff; backdrop-filter: none; -webkit-backdrop-filter: none; }
-    #header-logo { transform: scale(0.88); transform-origin: left center; }
+    #header-logo { transform: none; }
 
     /* Sticky event pill: crossfades in over the tagline once scrolled (both occupy the same grid cell) */
     .bt-header-right { position: relative; display: grid; align-items: center; justify-items: end; }
-    .bt-header-tagline { grid-area: 1 / 1; font-size: var(--bt-fs-2xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
+    .bt-header-tagline { grid-area: 1 / 1; font-size: var(--bt-fs-xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
     .bt-header-pill { grid-area: 1 / 1; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     .bt-header-pill-icon { position: relative; display: inline-flex; width: 11px; height: 11px; flex: none; }
     .bt-header-pill-icon svg { display: block; width: 100%; height: 100%; }
@@ -402,6 +402,42 @@
     @media (max-width: 340px) {
       .bt-header-pill-text { font-size: 9px; }
     }
+    /* Section nav in the sticky header, and the roomier desktop rhythm */
+    .bt-body-scope { --bt-header-h: 61px; }
+    /* Desktop sections breathe more; phones keep the tighter rhythm */
+    @media (min-width: 901px) {
+      .bt-body-scope { --bt-gap-block: var(--bt-s-12); }
+      .bt-section { padding-top: 104px; padding-bottom: 112px; }
+      .bt-section--compact { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-18); }
+      .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
+      .bt-section.bt-say-hi { padding-top: 120px; padding-bottom: 128px; }
+      #minimab { padding-bottom: 112px; }
+    }
+    #header-inner { align-items: center !important; }
+    .bt-nav { display: flex; align-items: center; gap: var(--bt-s-1); margin: 0 auto; }
+    .bt-nav a { position: relative; font-size: var(--bt-fs-sm); font-weight: 700; color: var(--bt-text); text-decoration: none; padding: var(--bt-s-2) var(--bt-s-3); border-radius: var(--bt-r-pill); white-space: nowrap; transition: color 0.2s ease, background-color 0.2s ease; }
+    .bt-nav a:hover { color: var(--bt-link); }
+    .bt-nav a::after { content: ""; position: absolute; left: var(--bt-s-3); right: var(--bt-s-3); bottom: 2px; height: 2px; border-radius: 2px; background: var(--bt-blue); transform: scaleX(0); transition: transform 0.25s cubic-bezier(.16,.8,.24,1); }
+    .bt-nav a.is-active { color: var(--bt-ink); }
+    .bt-nav a.is-active::after { transform: scaleX(1); }
+    [id="minimab"], [id="portfolio"], [id="neuro-sale"], [id="resources"], [id="come-say-hi"], [id="recommendations"] { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-4)); }
+    #neuro-sale { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-6)); }
+    /* Mid widths: the tagline steps aside so the links fit */
+    @media (max-width: 1180px) and (min-width: 901px) {
+      .bt-header-tagline { display: none !important; }
+      .bt-nav a { padding: var(--bt-s-2) 10px; }
+    }
+    /* Phones and tablets: the links become a swipeable chip row under the logo */
+    @media (max-width: 900px) {
+      .bt-body-scope { --bt-header-h: 114px; }
+      #header-inner { flex-wrap: wrap; row-gap: var(--bt-s-2); padding-bottom: var(--bt-s-2) !important; }
+      .bt-nav { order: 3; flex: 1 0 100%; margin: 0 -24px; padding: 2px 24px var(--bt-s-1); gap: var(--bt-s-2); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+      .bt-nav::-webkit-scrollbar { display: none; }
+      .bt-nav a { flex: none; scroll-snap-align: start; font-size: var(--bt-fs-xs); padding: 6px 14px; background: #ffffff; border: 1px solid var(--bt-line-strong); }
+      .bt-nav a::after { display: none; }
+      .bt-nav a.is-active { background: var(--bt-tint); border-color: var(--bt-tint); color: var(--bt-blue-dark); }
+    }
+    @media (prefers-reduced-motion: reduce) { .bt-nav a::after { transition: none; } }
   </style>
 </helmet>
 <div class="bt-body-scope">
@@ -432,6 +468,14 @@
   <path d="M498.12,118.36c-1.25-3.29-2.96-5.94-5.11-7.92s-4.66-3.44-7.5-4.36c-2.84-.9-5.8-1.36-8.86-1.36-3.98,0-7.48.71-10.49,2.14-3.01,1.42-5.99,3.72-8.95,6.9-2.16-3.29-4.6-5.62-7.33-6.98-2.73-1.37-6.53-2.05-11.42-2.05-4.21,0-7.73.8-10.57,2.39-2.84,1.6-5.57,3.87-8.19,6.83l-1.7-7.16h-22.85v80.12h25.58v-48.25c0-3.4.65-6.02,1.96-7.84,1.3-1.82,3.09-2.72,5.37-2.72.79,0,1.59.08,2.39.25.79.17,1.53.57,2.21,1.19.69.62,1.22,1.54,1.62,2.73.4,1.19.6,2.8.6,4.86v49.78h25.57v-49.26c0-3.07.62-5.42,1.87-7.08,1.26-1.65,3.01-2.47,5.29-2.47,1.71,0,3.27.51,4.69,1.53,1.42,1.03,2.13,3.52,2.13,7.51v49.78h25.57v-56.42c0-4.77-.63-8.81-1.88-12.11Z"/>
 </svg>
     </a>
+    <nav class="bt-nav" aria-label="Page sections">
+      <a href="#minimab">MiniMab&trade;</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#neuro-sale">Sale</a>
+      <a href="#resources">Resources</a>
+      <a href="#come-say-hi">Visit us</a>
+      <a href="#recommendations">Ask a scientist</a>
+    </nav>
     <div class="bt-header-right">
       <span class="bt-header-tagline">Glowing Products for Science&trade;</span>
       <span class="bt-header-pill bt-badge bt-badge--sm">
@@ -526,7 +570,7 @@
 </div>
 
 <!-- Portfolio grid -->
-<div class="bt-section bt-section--join-next">
+<div id="portfolio" class="bt-section bt-section--join-next">
   <div class="bt-wrap">
     <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
       <span class="bt-kicker">Portfolio</span>
@@ -637,7 +681,7 @@
 </div>
 
 <!-- Resources -->
-<div class="bt-section bt-section--alt">
+<div id="resources" class="bt-section bt-section--alt">
   <div class="bt-wrap">
     <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
       <span class="bt-kicker">Take it with you</span>
@@ -1355,6 +1399,33 @@
   })();
 </script>
 
+<script>
+  /* Section nav: highlight the section under the header, keep the active chip in view on phones */
+  (function () {
+    var nav = document.querySelector('.bt-nav');
+    if (!nav) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var current = -1, ticking = false;
+    function update() {
+      ticking = false;
+      var line = (parseFloat(getComputedStyle(document.querySelector('.bt-body-scope')).getPropertyValue('--bt-header-h')) || 58) + window.innerHeight * 0.25;
+      var idx = -1;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= line) idx = i; }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = targets.length - 1;
+      if (idx === current) return;
+      current = idx;
+      links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); if (i === idx) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+      if (idx >= 0 && nav.scrollWidth > nav.clientWidth) {
+        var a = links[idx];
+        nav.scrollTo({ left: a.offsetLeft - 24, behavior: 'smooth' });
+      }
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
 </x-dc>
 </body>
 </html>
