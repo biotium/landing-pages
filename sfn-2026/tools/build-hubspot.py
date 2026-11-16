@@ -1,24 +1,28 @@
-"""Build the SfN HubSpot page template from a design-canvas page.
+"""Build a HubSpot page template from a design-canvas page (SfN and ASCB both use it).
 
-Usage: python3 sfn-2026/tools/build-hubspot.py [source.dc.html] > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html
+Usage: python3 sfn-2026/tools/build-hubspot.py [source.dc.html] [template label] > out.html
+  SfN:  python3 sfn-2026/tools/build-hubspot.py > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html
+  ASCB: python3 sfn-2026/tools/build-hubspot.py ascb-cell-bio-2026/design/Main.dc.html "Biotium – ASCB Cell Bio 2026 Landing Page" > ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html
 Default source: sfn-2026/QuietFieldVariant.dc.html
 
 What it does to the .dc.html source:
   - swaps the canvas wrapper (support.js, <x-dc>, <helmet>, the .bt-body-scope div) for a
     HubSpot page template (templateType header, HubL includes, body.bt-body)
-  - inlines every local image (biotium-choice-icon.svg, tshirts.webp, ...) as a base64 data URI
-    so nothing needs uploading to HubSpot's File Manager
+  - inlines every local image (src and data-img) as a base64 data URI so nothing needs uploading
+    to HubSpot's File Manager, except images listed in hosted-images.json next to the source,
+    which point at copies already hosted on learn.biotium.com (keeps the template small)
 Everything else (styles, markup, scripts) is copied as-is.
 """
-import base64, os, re, sys
+import base64, json, os, re, sys
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else 'sfn-2026/QuietFieldVariant.dc.html'
+LABEL = sys.argv[2] if len(sys.argv) > 2 else 'Biotium – SfN 2026 Landing Page'
 HERE = os.path.dirname(os.path.abspath(SRC))
 
 HEAD = """<!--
 templateType: page
 isAvailableForNewContent: true
-label: Biotium – SfN 2026 Landing Page
+label: {LABEL}
 -->
 <!doctype html>
 <html lang="en">
@@ -34,10 +38,13 @@ BODY_RULE = ("    body.bt-body { margin: 0; font-family: 'Mulish', Arial, sans-s
              "color: var(--bt-text); -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }")
 MIME = {'svg': 'image/svg+xml', 'webp': 'image/webp', 'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'png': 'image/png'}
 
+HEAD = HEAD.replace('{LABEL}', LABEL)
+hosted_path = os.path.join(HERE, 'hosted-images.json')
+HOSTED = json.load(open(hosted_path)) if os.path.exists(hosted_path) else {}
 s = open(SRC, encoding='utf-8').read()
 
 # 1. styles from the helmet, with the canvas scope rule swapped for the HubSpot body rule
-m = re.search(r'<helmet>\n.*?\n  <style>\n(.*?)\n  </style>\n</helmet>\n', s, re.S)
+m = re.search(r'<helmet>\n.*?\n  <style>\n(.*?)\n[ \t]*</style>\n</helmet>\n', s, re.S)
 style = m.group(1)
 style, n = re.subn(r"^    \.bt-body-scope \{[^\n]*\}$", BODY_RULE, style, count=1, flags=re.M)
 assert n == 1, 'no .bt-body-scope rule'
@@ -64,10 +71,12 @@ body = rest[len(open_tag):close] + rest[close + len('</div>'):]
 # 3. inline local images
 def inline(m):
     name = m.group(2); ext = name.rsplit('.', 1)[1].lower()
+    if name in HOSTED:
+        return f'{m.group(1)}"{HOSTED[name]}"'
     data = base64.b64encode(open(os.path.join(HERE, name), 'rb').read()).decode()
     return f'{m.group(1)}"data:{MIME[ext]};base64,{data}"'
-body = re.sub(r'(src=)"([\w.-]+\.(?:svg|webp|jpe?g|png))"', inline, body)
-assert not re.search(r'src="(?!data:|https?:)', body), 'unresolved local src'
+body = re.sub(r'((?:src|data-img)=)"([\w.-]+\.(?:svg|webp|jpe?g|png))"', inline, body)
+assert not re.search(r'(?:src|data-img)="(?!data:|https?:)', body), 'unresolved local image'
 
 sys.stdout.write(HEAD + '  <style>\n' + style + '\n    </style>\n</head>\n<body class="bt-body {{ body_classes }}">\n'
                  + body.rstrip('\n') + '\n\n{{ standard_footer_includes }}\n</body>\n</html>\n')

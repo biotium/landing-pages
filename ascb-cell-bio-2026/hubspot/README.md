@@ -1,16 +1,13 @@
 # ASCB Cell Bio 2026: HubSpot landing page
 
-One self-contained, copy-paste-ready coded file: `ascb-cell-bio-2026-paste-into-design-manager.html`.
-No CLI, no separate asset uploads, no fields.json. Content is hardcoded;
-editing it later means editing the code directly.
+`ascb-cell-bio-2026-paste-into-design-manager.html` is generated from `../design/Main.dc.html`. Don't edit it by hand.
 
-## Deploying it
+Rebuild after changing the page:
 
-**Design Manager → New file → HTML + HubL**, paste the contents in, save.
-The file's `<!-- templateType: page ... -->` comment at the top registers
-it as a page template automatically. Then **Marketing → Landing Pages →
-Create → select this template**.
+```
+python3 sfn-2026/tools/build-hubspot.py ascb-cell-bio-2026/design/Main.dc.html "Biotium – ASCB Cell Bio 2026 Landing Page" > ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html
+```
 
-Self-contained: CSS is inlined, the hero background photo is embedded as a
-base64 data URI, and every other image points at the original
-`learn.biotium.com`-hosted URLs, so nothing needs to be uploaded separately.
+The build inlines local images, except the ones listed in `../design/hosted-images.json`, which point at copies already hosted on learn.biotium.com.
+
+Merging to `main` deploys it to Design Manager (`Landing Pages/ascb-cell-bio-2026.html`) through `.github/workflows/deploy-hubspot.yml`. Pasting it in by hand still works as a fallback.
