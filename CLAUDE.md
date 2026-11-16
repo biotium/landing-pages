@@ -16,7 +16,16 @@ Each event has its own folder:
   - `hubspot/` holds the single copy-paste file for HubSpot Design Manager, built from `QuietFieldVariant.dc.html` by `tools/build-hubspot.py`. Rebuild it after changing that page.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15. `design/` holds the source, `hubspot/` holds the HubSpot file.
 
-Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub. Live pages are pasted into HubSpot Design Manager by hand.
+Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub.
+
+## Deploying to HubSpot
+
+`.github/workflows/deploy-hubspot.yml` uploads the HubSpot files to Design Manager on every push to `main` that touches them, so merging to `main` is going live (there is no draft step):
+
+- `sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html` → `Landing Pages/sfn-2026.html`
+- `ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html` → `Landing Pages/ascb-cell-bio-2026.html`
+
+It authenticates with the repository secret `HUBSPOT_PERSONAL_ACCESS_KEY` (portal 39765345, Design Manager scope) and refuses to deploy an SfN file that doesn't match a fresh build. It can also be run by hand from the Actions tab. Edits made directly in Design Manager get overwritten on the next deploy, so make changes here. Pasting the file by hand still works as a fallback.
 
 ## Button standard
 

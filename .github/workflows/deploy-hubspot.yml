@@ -1,0 +1,57 @@
+# Uploads the HubSpot page templates to Design Manager whenever they change on main,
+# so a merge to main goes live without copy and paste.
+# Needs the repository secret HUBSPOT_PERSONAL_ACCESS_KEY (Design Manager scope).
+# Run it by hand from the Actions tab with "Run workflow".
+name: Deploy to HubSpot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sfn-2026/hubspot/**'
+      - 'ascb-cell-bio-2026/hubspot/**'
+      - '.github/workflows/deploy-hubspot.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: hubspot-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HUBSPOT_ACCOUNT_ID: '39765345'
+      HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
+      HS_CLI: '@hubspot/cli@8.18.0'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check the access key is set
+        run: |
+          if [ -z "$HUBSPOT_PERSONAL_ACCESS_KEY" ]; then
+            echo "::error::Add the HUBSPOT_PERSONAL_ACCESS_KEY secret under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      # The SfN file is generated; refuse to deploy a stale copy
+      - name: Check the SfN HubSpot file matches its source
+        run: |
+          python3 sfn-2026/tools/build-hubspot.py > "$RUNNER_TEMP/sfn.html"
+          if ! cmp -s "$RUNNER_TEMP/sfn.html" sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html; then
+            echo "::error::sfn-2026/hubspot is out of date. Run: python3 sfn-2026/tools/build-hubspot.py > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html"
+            exit 1
+          fi
+
+      - name: Upload SfN 2026 template
+        run: npx --yes "$HS_CLI" cms upload sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html "Landing Pages/sfn-2026.html" --use-env
+
+      - name: Upload ASCB Cell Bio 2026 template
+        run: npx --yes "$HS_CLI" cms upload ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html "Landing Pages/ascb-cell-bio-2026.html" --use-env
