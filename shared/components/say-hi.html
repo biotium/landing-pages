@@ -1,0 +1,22 @@
+{% import '_icons.html' as i %}
+<!-- Come say hi: the team, the booth, the floor plan -->
+<div id="{{ section.id or 'come-say-hi' }}" class="bt-section bt-section--alt bt-say-hi">
+  <div class="bt-team-float" aria-hidden="true">
+{% for face in team.faces %}
+    <div class="bt-face" style="--x:{{ face.x }}; --y:{{ face.y }}; --s:{{ face.size }}px; --f:{{ face.float }}; --d:{{ face.delay }}; --bg:{{ face.bg }}; --fg:{{ face.fg }};"><div class="bt-face-in"><img src="{{ shared_path }}/team/{{ face.image }}" alt="" width="{{ face.size }}" height="{{ face.size }}" loading="lazy"></div></div>
+{% endfor %}
+  </div>
+  <div class="reveal bt-wrap" style="transition-delay:0ms;">
+    <div class="bt-head bt-head--center">
+      <span class="bt-kicker">Booth {{ event.booth }}</span>
+      <h2 class="bt-h2">{{ section.title }}</h2>
+      <p class="bt-lead">{{ section.lead }}</p>
+      <p class="bt-note">{{ section.note }}</p>
+      <a href="{{ event.floor_plan }}" target="_blank" rel="noopener" class="bt-link-arrow">
+        <span class="bt-ul">Find Booth {{ event.booth }} on the floor plan</span>
+        {{ i.arrow(14) }}
+      </a>
+    </div>
+  </div>
+</div>
+

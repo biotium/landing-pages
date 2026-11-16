@@ -1,0 +1,19 @@
+{% import '_icons.html' as i %}
+<!-- Header: logo, section links, booth pill -->
+<div id="site-header">
+  <div id="header-inner" class="bt-wrap">
+    <a id="header-logo" href="https://biotium.com" aria-label="Biotium home">
+      {% include '_logo-header.svg' %}
+    </a>
+    <nav class="bt-nav" aria-label="Page sections">
+{% for link in nav %}
+      <a href="{{ link.href }}">{{ link.label }}</a>
+{% endfor %}
+    </nav>
+    <a class="bt-booth-pill" href="{{ event.floor_plan }}" target="_blank" rel="noopener" aria-label="Booth {{ event.booth }}, open the {{ event.short_name }} floor plan">
+      {{ i.pin('currentColor') }}
+      <span>Booth {{ event.booth }}</span>
+    </a>
+  </div>
+</div>
+

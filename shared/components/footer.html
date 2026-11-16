@@ -1,0 +1,23 @@
+<!-- Footer -->
+<div class="bt-footer">
+  <div class="bt-wrap">
+    <div class="bt-footer-top">
+      <div class="bt-footer-brand">
+        <a href="https://biotium.com" aria-label="Biotium home">
+        {% include '_logo-footer.svg' %}
+        </a>
+        <span class="bt-footer-tag">Glowing Products for Science&trade;</span>
+      </div>
+      <div class="bt-footer-links">
+{% for link in footer.links %}
+        <a href="{{ link.href }}" target="_blank" rel="noopener" class="bt-footer-link">{{ link.label }}</a>
+{% endfor %}
+      </div>
+    </div>
+    <div class="bt-footer-bottom">
+      <span class="bt-footer-legal">&copy;2026 Biotium, Inc. All rights reserved.</span>
+      <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener" class="bt-footer-legal bt-footer-legal-link">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+

@@ -7,27 +7,35 @@ Biotium event landing pages. Manny Criado (mcriado@biotium.com) owns and maintai
 - Never use em dashes in any copy: page text, commit messages, READMEs, comments or chat replies. Use commas, periods, colons or parentheses instead.
 - Keep trademark symbols on product names (MiniMab™, TyraMax™, CytoLiner™, Biotium Choice™).
 
-## Layout
+## How pages are built
 
-Each event has its own folder:
+Every landing page is assembled from shared components; only content differs between pages.
 
-- `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 15-18, Booth 1106. Not live yet.
-  - `QuietFieldVariant.dc.html` is the page. Earlier hero directions were removed and live in git history.
-  - `hubspot/` holds the single copy-paste file for HubSpot Design Manager, built from `QuietFieldVariant.dc.html` by `tools/build-hubspot.py`. Rebuild it after changing that page.
-- `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15, Booth 1216. `design/Main.dc.html` is the page, built on the same design system and layout as SfN. `hubspot/` holds the HubSpot file, built by the same `sfn-2026/tools/build-hubspot.py` (see `hubspot/README.md`).
+```
+<event>/page.yaml          content only: copy, links, images, event details, which sections to show
+shared/components/*.html   markup, one component per piece (header, hero, feature card, portfolio, offer,
+                           resources, merch, say-hi, ask-form, footer, promo bar, icons, logos)
+shared/landing-page.css    all styling (tokens, components, buttons, hero variants)
+shared/landing-page.js     all shared behavior (progress bar, header, reveals, nav, faces, swatches, neuron field)
+shared/team.yaml + team/   the Come say hi headshots, shared by every page
+        |
+        v  python3 tools/build-pages.py   (needs: pip install -r tools/requirements.txt)
+<event>/...dc.html         generated self-contained page (design canvas, artifacts). Never edit by hand.
+<event>/hubspot/*.html     generated HubSpot template (tools/build-hubspot.py inlines images)
+```
+
+- To change content, edit the event's `page.yaml`. To change how anything looks or behaves, edit `shared/` (and it changes on every page). Then run `python3 tools/build-pages.py` and commit the generated files too.
+- Sections in `page.yaml` are a list; each `type` maps to a component (`portfolio`, `offer`, `resources`, `merch`, `say-hi`, `ask-form`). Reorder, add or drop them per page. The hero has two visuals: `neurons` (SfN's neuron field and particle brain) and `photo`. The feature card media can be `wistia`, `swatches` or an image.
+- Page-specific data scripts are listed under `scripts:` (SfN's `hero-brain.js`). Images live in the event folder (paths relative to the generated page); shared images live in `shared/`. `hosted-images.json` next to a page swaps listed images for copies already hosted on learn.biotium.com.
+- A new event: copy a `page.yaml` into a new folder, change the content, add its HubSpot upload step to the workflow, build.
+- The deploy runs `tools/build-pages.py --check` and refuses to ship if any generated file is out of date.
+
+Events:
+
+- `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 15-18, Booth 1106. Generates `QuietFieldVariant.dc.html`.
+- `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15, Booth 1216. Generates `design/Main.dc.html`.
 
 Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub.
-
-## One source of truth: shared/
-
-Every landing page looks and behaves the same; only content differs.
-
-- `shared/landing-page.css` holds all styling: tokens, components, header and nav, buttons, sections, hero variants (neuron field, photo), swatches, forms.
-- `shared/landing-page.js` holds all shared behavior: scroll progress, sticky header, reveals, section nav, team faces, resource previews, swatches, the hero neuron field.
-- Each page keeps an inline copy of both (so it stays self-contained for the canvas, artifacts and HubSpot). Never edit those copies. Edit `shared/`, then run `python3 tools/sync-shared.py` to update every page, and rebuild the HubSpot files.
-- Pages contain only content: markup built from the shared classes, copy, images, links, and page-specific data scripts (SfN's brain particles, the recommendations form config). No `<style>` of their own and no inline layout styles; per-item data like reveal delays or face positions is fine.
-- A new page opts in by including `<script data-shared="landing-page.js"></script>` and a `<helmet><style>` block; `tools/sync-shared.py` fills both.
-- The deploy runs `tools/sync-shared.py --check` and refuses to ship a page that drifted.
 
 ## Deploying to HubSpot
 
@@ -36,7 +44,7 @@ Every landing page looks and behaves the same; only content differs.
 - `sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html` → `Landing Pages/sfn-2026.html`
 - `ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html` → `Landing Pages/ascb-cell-bio-2026.html`
 
-It authenticates with the repository secret `HUBSPOT_PERSONAL_ACCESS_KEY` (portal 39765345, Design Manager scope) and refuses to deploy an SfN file that doesn't match a fresh build. It can also be run by hand from the Actions tab. Edits made directly in Design Manager get overwritten on the next deploy, so make changes here. Pasting the file by hand still works as a fallback.
+It authenticates with the repository secret `HUBSPOT_PERSONAL_ACCESS_KEY` (portal 39765345, Design Manager scope) and refuses to deploy pages that don't match a fresh build. It can also be run by hand from the Actions tab. Edits made directly in Design Manager get overwritten on the next deploy, so make changes here. Pasting the file by hand still works as a fallback.
 
 ## Button standard
 
@@ -58,7 +66,7 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
 
 ## Component set
 
-Defined in `shared/landing-page.css` and used by every page. Build new content from these classes instead of inline styles.
+The CSS classes in `shared/landing-page.css` that the components use. New components should be built from these instead of new one-off styles.
 
 - **Tokens** (CSS variables on `.bt-body-scope`). Use a token, never a raw value; the button standard is the only exception.
   - Color: brand (`--bt-blue`, `--bt-blue-dark`, `--bt-link`, `--bt-tint`, blue alphas), neutrals darkest to lightest (`--bt-ink` #2d2d2d, `--bt-text-strong` #444, `--bt-text` #555, `--bt-muted` #6b6b6b, `--bt-subtle` #767676 placeholders only, `--bt-line-input` #8c8c8c form field borders (3:1, WCAG 1.4.11), `--bt-line-strong`, `--bt-line`, `--bt-alt`), dark surfaces (`--bt-dark`, `--bt-dark-line`, `--bt-on-dark`, `--bt-on-dark-muted`).

@@ -1,0 +1,142 @@
+# SfN 2026 landing page: content only. Layout, styling and behavior come from shared/.
+# Build with: python3 tools/build-pages.py
+# Text can use HTML entities (&trade; &reg; &ndash;) and simple tags (<em>, <strong>, <br>).
+
+output: QuietFieldVariant.dc.html
+hubspot:
+  output: hubspot/sfn-2026-paste-into-design-manager.html
+  label: Biotium – SfN 2026 Landing Page
+
+event:
+  short_name: SfN 2026
+  city: Washington, DC
+  dates: Nov 15&ndash;18
+  booth: 1106
+  floor_plan: https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12
+
+promo_bar:
+  text: <strong>30% off</strong> neuroscience tools through Dec 31.
+  link: Shop the sale
+  href: "#neuro-sale"
+
+nav:
+  - {href: "#minimab", label: MiniMab&trade;}
+  - {href: "#portfolio", label: Portfolio}
+  - {href: "#neuro-sale", label: Sale}
+  - {href: "#resources", label: Resources}
+  - {href: "#come-say-hi", label: Visit us}
+  - {href: "#recommendations", label: Ask a scientist}
+
+hero:
+  visual: neurons          # neuron field + particle brain (hero-brain.js)
+  title: Biotium at SfN 2026
+  subtitle: Unlock deeper insights.
+  cta: {label: Meet MiniMab&trade;, href: "#minimab"}
+
+feature:
+  id: minimab
+  kicker: Featured at Neuroscience 2026
+  title: "MiniMab&trade;: Small Format, Big Difference"
+  checks:
+    - ~15 kDa single-domain antibodies, a fraction of a full-size IgG (~150 kDa)
+    - Deeper penetration into thick tissues
+    - Faster binding kinetics
+    - Minimal epitope-dye displacement for super-resolution work
+  link: {label: Learn More About MiniMab&trade;, href: "https://biotium.com/technology/minimab-single-domain-antibodies/"}
+  media: {type: wistia, id: lztnsxqbfz}
+
+sections:
+  - type: portfolio
+    joined: true           # the sale card follows directly
+    kicker: Portfolio
+    title: Everything you need for neuroscience research
+    cards:
+      - title: Neuronal &amp; Structural Markers
+        biotium_choice: true
+        text: "GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton."
+        image: portfolio-neuronal-markers.webp
+        href: https://biotium.com/advanced-search/?filters=taxonomies.pa_antibody-type%3ABiotium+Choice&amp;filters=taxonomies.pa_antibody-research-areas%3ANeuroscience
+      - title: Small Format Antibodies
+        text: "MiniMab&trade; SdAbs: single-domain antibodies for staining thick tissues."
+        image: portfolio-small-format-antibodies.webp
+        href: https://biotium.com/technology/minimab-single-domain-antibodies/
+      - title: Axonal Tracers
+        text: "Neuro-DiI: lipophilic tracing for neuronal connectivity."
+        image: portfolio-axonal-tracers.webp
+        href: https://biotium.com/technology/cellular-stains/neuronal-probes/#tracers
+      - title: Functional Imaging
+        text: Membrane potential dyes for live-cell imaging.
+        image: portfolio-functional-imaging.webp
+        href: https://biotium.com/technology/cellular-stains/neuronal-probes/#membrane-potential
+      - title: Neurodegeneration Probes
+        text: Amyloid &amp; aggregate stains for disease-model research.
+        image: portfolio-neurodegeneration-probes.webp
+        href: https://biotium.com/technology/cellular-stains/neuronal-probes/#amyloid
+      - title: Signal Amplification
+        text: "TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp."
+        image: portfolio-signal-amplification.webp
+        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/
+
+  - type: offer
+    id: neuro-sale
+    background: promo-neurons.webp
+    kicker: Neuroscience sale
+    title: <span class="bt-accent">30% off</span> tools for your neuroscience research
+    tagline: Trace. Label. Visualize. Save.
+    lead: Neuronal tracers, synaptic vesicle dyes, membrane potential indicators and more, including MiniMab&trade; SdAbs.
+    cta: {label: Shop the sale, href: "https://biotium.com/neuroscience/"}
+    terms:
+      - Discounts apply automatically at checkout.
+      - Offer runs through <strong>December 31, 2026</strong>.
+      - Ordering through customer service? Mention code <strong>NEURO2026</strong>.
+    fine_print: Terms and conditions apply. Valid for US customers only, while supplies last. Cannot be combined with other offers.
+
+  - type: resources
+    kicker: Take it with you
+    title: Resources for the show and after
+    cards:
+      - title: Neuronal Probes Flyer
+        text: A quick-reference guide to Biotium's synaptic biology probes and stains.
+        href: https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf
+        preview: resource-neuronal-probes.webp
+      - title: TrueBlack&reg; in Neuroscience
+        text: Lipofuscin autofluorescence quenching across diverse neuroscience applications.
+        href: https://biotium.com/wp-content/uploads/2022/12/Literature-Digest-TrueBlack-Neuro.pdf
+        preview: resource-trueblack-neuro.webp
+        icon: digest
+      - title: CF&reg; Dyes for STORM
+        text: CF&reg; Dyes for STORM super-resolution microscopy in advanced imaging workflows.
+        href: https://biotium.com/wp-content/uploads/2022/02/Literature-Digest-STORM.pdf
+        preview: resource-cf-dyes-storm.webp
+        icon: digest
+
+  - type: merch
+    id: merch
+    image: tshirts.webp
+    alt: Biotium spectra and TrueBlack conference T-shirts
+    kicker: Win cool merch
+    title: Come play Lab DnD for a chance to win a limited release tee and other prizes
+    lead: Stop by our booth to play for a chance to win various prizes, including our limited-release T-shirts, while supplies last.
+
+  - type: say-hi
+    title: Come say hi. Bring your questions.
+    lead: Walk up any time. Talk to our team, PhD scientists included, about MiniMab&trade;, CF&reg; Dyes for <em>in vivo</em> imaging, neuronal probes, and optimizing your experimental workflow.
+    note: Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.
+
+  - type: ask-form
+    kicker: Ask a scientist
+    title: Let our scientists do the searching
+    lead: Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.
+    placeholder: "Sample or model, target, imaging method, and where you're stuck. Example: staining microglia in 300 &micro;m mouse brain sections, need better antibody penetration."
+    button: Ask our scientists
+    hubspot_form: ff94b661-627a-4b92-b0c7-0387c81b1115
+    hubspot_form_name: SFN Landing Page Form
+
+footer:
+  links:
+    - {href: "https://biotium.com/technology/cellular-stains/neuronal-probes/", label: Full neuroscience portfolio}
+    - {href: "https://biotium.com/about-us/news/", label: Other Biotium events}
+    - {href: "https://biotium.com/distributors/", label: Contact a distributor}
+
+scripts:
+  - hero-brain.js          # the particle brain (data + renderer)

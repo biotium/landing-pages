@@ -1,0 +1,16 @@
+<!-- Show promo: merch and the booth game -->
+<div id="{{ section.id or 'merch' }}" class="bt-section bt-section--compact">
+  <div class="bt-wrap">
+    <div class="reveal bt-promo-row" style="transition-delay:0ms;">
+      <img src="{{ section.image }}" alt="{{ section.alt }}" class="bt-tshirts">
+      <div class="bt-promo-copy">
+        <div class="bt-head">
+          <span class="bt-kicker">{{ section.kicker }}</span>
+          <h2 class="bt-h2">{{ section.title }}</h2>
+          <p class="bt-lead">{{ section.lead }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

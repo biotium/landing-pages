@@ -1,0 +1,4 @@
+{% import '_icons.html' as i %}
+<!-- Announcement bar -->
+<div class="bt-promo-bar"><a href="{{ promo_bar.href }}"{{ i.target(promo_bar.href) }}><span>{{ promo_bar.text }}</span> <span class="bt-ul">{{ promo_bar.link }}</span>{% if promo_bar.href.startswith('#') %}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>{% else %}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>{% endif %}</a></div>
+

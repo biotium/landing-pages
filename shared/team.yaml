@@ -1,0 +1,9 @@
+# The Biotium team on Come say hi. Positions are offsets from the center of the section.
+faces:
+  - {image: face-1.webp, size: 64, x: '-366px', y: '30%', float: '5.2s', delay: '0ms', bg: '#E9F3FF', fg: '#8DBDF0'}
+  - {image: face-2.webp, size: 80, x: '384px', y: '28%', float: '6.1s', delay: '90ms', bg: '#EBF7ED', fg: '#8FCF99'}
+  - {image: face-3.webp, size: 88, x: '-396px', y: '72%', float: '6.8s', delay: '180ms', bg: '#FDECEC', fg: '#F0A2A5'}
+  - {image: face-4.webp, size: 56, x: '440px', y: '68%', float: '5.6s', delay: '270ms', bg: '#EEF0F3', fg: '#B5BCC6'}
+  - {image: face-5.webp, size: 58, x: '-452px', y: '18%', float: '4.9s', delay: '360ms', bg: '#E9F3FF', fg: '#8DBDF0'}
+  - {image: face-6.webp, size: 62, x: '370px', y: '80%', float: '6.4s', delay: '450ms', bg: '#EBF7ED', fg: '#8FCF99'}
+  - {image: face-7.webp, size: 54, x: '470px', y: '16%', float: '5.3s', delay: '630ms', bg: '#EEF0F3', fg: '#B5BCC6'}

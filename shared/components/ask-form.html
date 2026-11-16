@@ -1,0 +1,93 @@
+<!-- Ask a scientist: request form that goes to tech support through HubSpot -->
+<div id="{{ section.id or 'recommendations' }}" class="bt-section bt-section--blue">
+  <div class="reveal bt-wrap" style="transition-delay:0ms;">
+    <div class="bt-head bt-head--center">
+      <span class="bt-kicker">{{ section.kicker }}</span>
+      <h2 class="bt-h2">{{ section.title }}</h2>
+      <p class="bt-lead">{{ section.lead }}</p>
+    </div>
+    <div class="bt-rec-card bt-surface bt-surface--raised bt-surface--lg" id="bt-rec-card">
+      <form id="bt-rec-form" novalidate data-hs-do-not-collect="true">
+        <div class="bt-rec-grid">
+          <div class="bt-rec-field">
+            <label for="bt-rec-name">First name</label>
+            <input id="bt-rec-name" name="firstname" type="text" autocomplete="given-name" placeholder="Jordan" required>
+          </div>
+          <div class="bt-rec-field">
+            <label for="bt-rec-email">Work email</label>
+            <input id="bt-rec-email" name="email" type="email" autocomplete="email" placeholder="you@university.edu" required>
+          </div>
+        </div>
+        <div class="bt-rec-field">
+          <label for="bt-rec-msg">Your experiment</label>
+          <textarea id="bt-rec-msg" name="message" placeholder="{{ section.placeholder }}" required></textarea>
+        </div>
+        <div class="bt-rec-actions">
+          <div class="bt-note">Goes straight to our technical support team. We only use your email to reply. <a href="https://biotium.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+          <button type="submit" class="bt-btn-primary">
+            {{ section.button }}
+          </button>
+        </div>
+      </form>
+      <div class="bt-rec-done" role="status" aria-live="polite">
+        <div class="bt-h3">Thanks, we're on it.</div>
+        <p class="bt-lead">A Biotium scientist will reply to your email, usually within one business day. See you at Booth {{ event.booth }}.</p>
+      </div>
+      <div class="bt-rec-done bt-rec-mailed" role="status" aria-live="polite">
+        <div class="bt-h3">Almost there: hit send in your email app.</div>
+        <p class="bt-lead">We opened an email to <a href="mailto:techsupport@biotium.com" class="bt-a">techsupport@biotium.com</a> with your details filled in. If nothing opened, write to that address and we'll take it from there.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  /* Ask a scientist form. Submissions go to the HubSpot form below, whose notification emails
+     techsupport@biotium.com. Without a form id (or if HubSpot can't be reached), the form opens a
+     pre-filled email to tech support instead, so no request is ever lost. */
+  (function () {
+    var HS_PORTAL = '39765345';
+    var HS_FORM = '{{ section.hubspot_form or '' }}';{% if section.hubspot_form_name %} /* "{{ section.hubspot_form_name }}" */{% endif %}
+
+    /* The account lives in HubSpot's na2 region; try its regional endpoint first, then the global one */
+    var HS_HOSTS = ['https://api-na2.hsforms.com', 'https://api.hsforms.com'];
+    var SUPPORT = 'techsupport@biotium.com';
+    var card = document.getElementById('bt-rec-card');
+    var form = document.getElementById('bt-rec-form');
+    if (!form) return;
+    function val(n) { return (form.elements[n].value || '').trim(); }
+    function mailFallback(d) {
+      var body = 'Name: ' + d.firstname + '\nEmail: ' + d.email + '\n\nMy experiment:\n' + d.message + '\n\n(Sent from the Biotium {{ event.short_name }} page)';
+      window.location.href = 'mailto:' + SUPPORT + '?subject=' + encodeURIComponent('{{ event.short_name }}: product recommendations for my experiment') + '&body=' + encodeURIComponent(body);
+      card.classList.add('is-mailed');
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var d = { firstname: val('firstname'), email: val('email'), message: val('message') };
+      if (!HS_FORM) { mailFallback(d); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      var hutk = (document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/) || [])[1];
+      var ctx = { pageUri: window.location.href, pageName: document.title };
+      if (hutk) ctx.hutk = hutk;
+      var payload = JSON.stringify({
+        fields: [
+          { objectTypeId: '0-1', name: 'firstname', value: d.firstname },
+          { objectTypeId: '0-1', name: 'email', value: d.email },
+          { objectTypeId: '0-1', name: 'message', value: d.message }
+        ],
+        context: ctx
+      });
+      function attempt(i) {
+        if (i >= HS_HOSTS.length) { mailFallback(d); btn.disabled = false; return; }
+        fetch(HS_HOSTS[i] + '/submissions/v3/integration/submit/' + HS_PORTAL + '/' + HS_FORM, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload
+        }).then(function (r) {
+          if (r.ok) { card.classList.add('is-sent'); btn.disabled = false; } else attempt(i + 1);
+        }).catch(function () { attempt(i + 1); });
+      }
+      attempt(0);
+    });
+  })();
+</script>
+

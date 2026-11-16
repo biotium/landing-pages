@@ -1,0 +1,34 @@
+{% import '_icons.html' as i %}
+<!-- Offer: a feature card for a sale or promotion, with a terms panel -->
+<div id="{{ section.id }}" class="bt-section bt-section--flush-top">
+  <div class="bt-wrap">
+  <div class="reveal bt-surface bt-surface--raised bt-surface--lg bt-feature bt-sale-feature" style="transition-delay:0ms;">
+{% if section.background %}
+    <img class="bt-sale-neurons" src="{{ section.background }}" alt="" aria-hidden="true">
+{% endif %}
+    <div class="bt-feature-copy">
+      <div class="bt-head">
+        <span class="bt-kicker">{{ section.kicker }}</span>
+        <h2 class="bt-h2 bt-h2--lg">{{ section.title }}</h2>
+{% if section.tagline %}
+        <p class="bt-tagline">{{ section.tagline }}</p>
+{% endif %}
+        <p class="bt-lead">{{ section.lead }}</p>
+      </div>
+      <a href="{{ section.cta.href }}"{{ i.target(section.cta.href) }} class="bt-btn-primary">
+        {{ section.cta.label }}
+        {{ i.go(section.cta.href) }}
+      </a>
+    </div>
+    <div class="bt-panel bt-sale-panel">
+      <ul class="bt-check-list">
+{% for item in section.terms %}
+        <li>{{ i.check() }}<span>{{ item }}</span></li>
+{% endfor %}
+      </ul>
+      <p class="bt-fine bt-panel-foot">{{ section.fine_print }}</p>
+    </div>
+  </div>
+  </div>
+</div>
+

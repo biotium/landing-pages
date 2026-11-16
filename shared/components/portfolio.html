@@ -1,0 +1,30 @@
+{% import '_icons.html' as i %}
+<!-- Portfolio: product category link cards -->
+<div id="{{ section.id or 'portfolio' }}" class="bt-section{% if section.joined %} bt-section--join-next{% endif %}">
+  <div class="bt-wrap">
+    <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
+      <span class="bt-kicker">{{ section.kicker }}</span>
+      <h2 class="bt-h2">{{ section.title }}</h2>
+    </div>
+    <div class="bt-cat-grid">
+{% for card in section.cards %}
+
+      <a href="{{ card.href }}" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:{{ loop.index0 * 60 }}ms;">
+        <div class="bt-icon-box bt-icon-box--lg">
+          <img src="{{ card.image }}" alt="">
+        </div>
+        <div class="bt-cat-body">
+          <div class="bt-card-title">{{ card.title }}{% if card.biotium_choice %}<span class="bt-choice-badge" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
+            <img src="{{ shared_path }}/biotium-choice-icon.svg" alt="Biotium Choice">
+            <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
+          </span>{% endif %}</div>
+          <p class="bt-card-desc">{{ card.text }}</p>
+        </div>
+        {{ i.arrow(16, 'bt-card-go') }}
+      </a>
+{% endfor %}
+
+    </div>
+  </div>
+</div>
+

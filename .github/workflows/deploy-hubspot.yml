@@ -9,6 +9,8 @@ on:
     branches: [main]
     paths:
       - 'shared/**'
+      - 'tools/**'
+      - '*/page.yaml'
       - 'sfn-2026/hubspot/**'
       - 'ascb-cell-bio-2026/hubspot/**'
       - '.github/workflows/deploy-hubspot.yml'
@@ -42,26 +44,15 @@ jobs:
             exit 1
           fi
 
-      # Every page carries the shared styling and behavior; refuse to deploy a page that drifted from shared/
-      - name: Check every page matches the shared design system
-        run: python3 tools/sync-shared.py --check
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-      # The SfN file is generated; refuse to deploy a stale copy
-      - name: Check the SfN HubSpot file matches its source
+      # Pages are generated from page.yaml + shared/; refuse to deploy anything that wasn't rebuilt
+      - name: Check every page is built from its content and the shared components
         run: |
-          python3 sfn-2026/tools/build-hubspot.py > "$RUNNER_TEMP/sfn.html"
-          if ! cmp -s "$RUNNER_TEMP/sfn.html" sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html; then
-            echo "::error::sfn-2026/hubspot is out of date. Run: python3 sfn-2026/tools/build-hubspot.py > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html"
-            exit 1
-          fi
-
-      - name: Check the ASCB HubSpot file matches its source
-        run: |
-          python3 sfn-2026/tools/build-hubspot.py ascb-cell-bio-2026/design/Main.dc.html "Biotium – ASCB Cell Bio 2026 Landing Page" > "$RUNNER_TEMP/ascb.html"
-          if ! cmp -s "$RUNNER_TEMP/ascb.html" ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html; then
-            echo "::error::ascb-cell-bio-2026/hubspot is out of date. Rebuild it with sfn-2026/tools/build-hubspot.py (see CLAUDE.md)."
-            exit 1
-          fi
+          pip install --quiet -r tools/requirements.txt
+          python3 tools/build-pages.py --check
 
       - name: Upload SfN 2026 template
         run: npx --yes --package "$HS_CLI" hs cms upload sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html "Landing Pages/sfn-2026.html" --use-env

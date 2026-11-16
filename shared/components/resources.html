@@ -1,0 +1,32 @@
+{% import '_icons.html' as i %}
+<!-- Resources: downloadable PDF cards -->
+<div id="{{ section.id or 'resources' }}" class="bt-section bt-section--alt">
+  <div class="bt-wrap">
+    <div class="reveal bt-head bt-head--center" style="transition-delay:0ms;">
+      <span class="bt-kicker">{{ section.kicker }}</span>
+      <h2 class="bt-h2">{{ section.title }}</h2>
+    </div>
+    <div class="bt-res-row">
+{% for card in section.cards %}
+
+      <a href="{{ card.href }}" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:{{ loop.index0 * 80 }}ms;">
+{% if card.preview %}
+        <img class="bt-res-peek" src="{{ card.preview }}" alt="" loading="lazy" decoding="async" width="64" height="83">
+{% endif %}
+        <div class="bt-icon-box bt-icon-box--sm">
+          {% if card.icon == 'digest' %}{% include '_icon-digest.svg' %}{% else %}{{ i.doc() }}{% endif %}
+
+        </div>
+        <div class="bt-card-title">{{ card.title }}</div>
+        <p class="bt-card-desc">{{ card.text }}</p>
+        <span class="bt-btn-outline">
+          {{ card.button or 'Download PDF' }}
+          {{ i.download() }}
+        </span>
+      </a>
+{% endfor %}
+
+    </div>
+  </div>
+</div>
+

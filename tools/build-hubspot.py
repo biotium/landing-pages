@@ -1,8 +1,8 @@
-"""Build a HubSpot page template from a design-canvas page (SfN and ASCB both use it).
+"""Build a HubSpot page template from a generated page (tools/build-pages.py calls this for every page).
 
-Usage: python3 sfn-2026/tools/build-hubspot.py [source.dc.html] [template label] > out.html
-  SfN:  python3 sfn-2026/tools/build-hubspot.py > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html
-  ASCB: python3 sfn-2026/tools/build-hubspot.py ascb-cell-bio-2026/design/Main.dc.html "Biotium – ASCB Cell Bio 2026 Landing Page" > ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html
+Usage: python3 tools/build-hubspot.py [source.dc.html] [template label] > out.html
+  SfN:  python3 tools/build-hubspot.py > sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html
+  ASCB: python3 tools/build-hubspot.py ascb-cell-bio-2026/design/Main.dc.html "Biotium – ASCB Cell Bio 2026 Landing Page" > ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html
 Default source: sfn-2026/QuietFieldVariant.dc.html
 
 What it does to the .dc.html source:
@@ -75,7 +75,7 @@ def inline(m):
         return f'{m.group(1)}"{HOSTED[name]}"'
     data = base64.b64encode(open(os.path.join(HERE, name), 'rb').read()).decode()
     return f'{m.group(1)}"data:{MIME[ext]};base64,{data}"'
-body = re.sub(r'((?:src|data-img)=)"([\w.-]+\.(?:svg|webp|jpe?g|png))"', inline, body)
+body = re.sub(r'((?:src|data-img)=)"([\w./-]+\.(?:svg|webp|jpe?g|png))"', inline, body)
 assert not re.search(r'(?:src|data-img)="(?!data:|https?:)', body), 'unresolved local image'
 
 sys.stdout.write(HEAD + '  <style>\n' + style + '\n    </style>\n</head>\n<body class="bt-body {{ body_classes }}">\n'

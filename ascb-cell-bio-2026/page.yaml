@@ -1,0 +1,112 @@
+# ASCB Cell Bio 2026 landing page: content only. Layout, styling and behavior come from shared/.
+# Build with: python3 tools/build-pages.py
+# Text can use HTML entities (&trade; &reg; &ndash;) and simple tags (<em>, <strong>, <br>).
+
+output: design/Main.dc.html
+hubspot:
+  output: hubspot/ascb-cell-bio-2026-paste-into-design-manager.html
+  label: Biotium – ASCB Cell Bio 2026 Landing Page
+
+event:
+  short_name: ASCB Cell Bio 2026
+  city: San Diego
+  dates: Dec 12&ndash;15
+  booth: 1216
+  floor_plan: https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;ID=122552&amp;sortMenu=103000
+
+nav:
+  - {href: "#cytoliner", label: CytoLiner&trade;}
+  - {href: "#portfolio", label: Portfolio}
+  - {href: "#resources", label: Resources}
+  - {href: "#merch", label: Win merch}
+  - {href: "#come-say-hi", label: Visit us}
+
+hero:
+  visual: photo
+  background: hero-bg.jpg
+  title: Biotium at ASCB<br>Cell Bio 2026
+  subtitle: Not sales reps. Your research partners.
+  cta: {label: Meet CytoLiner&trade;, href: "#cytoliner"}
+  media: {src: booth_sm.jpg, alt: The Biotium team at a trade show booth, caption: From a previous show}
+
+feature:
+  id: cytoliner
+  kicker: Featured at Cell Bio 2026
+  title: "CytoLiner&trade;: Built for Real Workflows"
+  checks:
+    - Robust and consistent staining of plasma membrane in formaldehyde-fixed cells
+    - Suitable for antibody co-staining
+    - Compatible with poly-L-lysine coated cultureware
+    - Available in 6 colors from blue to near-IR
+  link: {label: Learn more about CytoLiner&trade;, href: "https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/"}
+  media:
+    type: swatches         # hover a color to swap the image
+    swatches:
+      - {image: cytoliner-410-450.jpg, label: CytoLiner&trade; 410/450, colors: ["#B2F0FA", "#22D3EE", "#0E8FA6"]}
+      - {image: cytoliner-495-510.jpg, label: CytoLiner&trade; 495/510, colors: ["#B8F5C6", "#3DDC5B", "#219B3E"]}
+      - {image: cytoliner-570-590.jpg, label: CytoLiner&trade; 570/590, colors: ["#FFB3AD", "#FF3B30", "#C22019"]}
+      - {image: cytoliner-650-675.jpg, label: CytoLiner&trade; 650/675, colors: ["#F7A8D6", "#E91E8C", "#A01262"]}
+      - {image: cytoliner-680-710.jpg, label: CytoLiner&trade; 680/710, colors: ["#D9C4F7", "#9B5DE5", "#6B34A8"]}
+
+sections:
+  - type: portfolio
+    kicker: Portfolio
+    title: Simplify cell biology research with innovative tools
+    cards:
+      - title: Nuclear Stains
+        text: Bright, wash-free nuclear counterstains with minimal spectral overlap for easy multiplexing.
+        image: nuclear_sm.jpg
+        href: https://biotium.com/technology/cellular-stains/nuclear-stains/
+      - title: Membrane Stains
+        text: Lipophilic dyes and CytoLiner&trade; conjugates that label the plasma membrane, live or fixed.
+        image: membrane_sm.jpg
+        href: https://biotium.com/technology/cellular-stains/cell-surface-stains/
+      - title: Antibodies
+        text: Validated primary and secondary conjugates, ready to use straight off the shelf.
+        image: antibody_sm.jpg
+        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/
+      - title: Flow Cytometry
+        text: Multiplex up to 15 samples in one tube with fixable viability dyes and bright conjugates.
+        image: flow_sm.jpg
+        href: https://biotium.com/technology/flow-cytometry-reagents/
+      - title: Exosome &amp; EV Detection
+        text: Detect and quantify exosomes and EVs without ultracentrifugation or bulky isolation kits.
+        image: evs_sm.jpg
+        href: https://biotium.com/technology/exosome-ev-labeling/
+      - title: Signal Amplification
+        text: Tyramide-based amplification that boosts faint signals while keeping resolution sharp.
+        image: tsa_sm.jpg
+        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/
+
+  - type: resources
+    kicker: Take it with you
+    title: Free guides for the show and after
+    cards:
+      - title: Cell Stain Selection Guide
+        text: Comparison charts and a cellular diagram to match stains to your target, organism, and application at a glance.
+        href: https://biotium.com/wp-content/uploads/2020/01/CellStainsGuide_WebVersion.pdf
+      - title: Cell Stains Under the Hood
+        text: Illustrated staining mechanisms for viability, organelle, and apoptosis dyes, with guidance on choosing the right one.
+        href: https://biotium.com/wp-content/uploads/2024/10/Biotium-Stains_Dyes_Guide-Final-web-version.pdf
+      - title: CF&reg; Dyes &amp; Cell Stains for Microscopy
+        text: Excitation and emission spectra for 40+ CF&reg; Dyes and cell stains, plus laser and filter guidance for microscopy.
+        href: https://biotium.com/wp-content/uploads/2024/11/CF-Dyes-for-Microscopy-Web.pdf
+
+  - type: merch
+    id: merch
+    image: tshirts.webp
+    alt: Biotium spectra and TrueBlack conference T-shirts
+    kicker: Win cool merch
+    title: Come play Lab DnD for a chance to win a limited release tee and other prizes
+    lead: Stop by our booth to play for a chance to win various prizes, including our limited-release T-shirts, while supplies last.
+
+  - type: say-hi
+    title: Come say hi. Bring your questions.
+    lead: Walk up any time. Talk to our team, PhD scientists included, and play a quick game for a chance to win prizes, maybe even a T-shirt. We want to hear what challenges you&rsquo;re running into in your research, whether we already have a solution or need to build one.
+    note: No forms. No sales pitch. Just come find us at Booth 1216.
+
+footer:
+  links:
+    - {href: "https://biotium.com/products/", label: Full product catalog}
+    - {href: "https://biotium.com/about-us/news/", label: Other Biotium events}
+    - {href: "https://biotium.com/distributors/", label: Contact a distributor}
