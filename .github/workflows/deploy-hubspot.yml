@@ -51,7 +51,7 @@ jobs:
           fi
 
       - name: Upload SfN 2026 template
-        run: npx --yes "$HS_CLI" cms upload sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html "Landing Pages/sfn-2026.html" --use-env
+        run: npx --yes --package "$HS_CLI" hs cms upload sfn-2026/hubspot/sfn-2026-paste-into-design-manager.html "Landing Pages/sfn-2026.html" --use-env
 
       - name: Upload ASCB Cell Bio 2026 template
-        run: npx --yes "$HS_CLI" cms upload ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html "Landing Pages/ascb-cell-bio-2026.html" --use-env
+        run: npx --yes --package "$HS_CLI" hs cms upload ascb-cell-bio-2026/hubspot/ascb-cell-bio-2026-paste-into-design-manager.html "Landing Pages/ascb-cell-bio-2026.html" --use-env
