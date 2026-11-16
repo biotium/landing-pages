@@ -36,10 +36,10 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
   .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 19px; padding: 14px 30px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
   .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
   ```
-- **Outline** (secondary actions, card buttons): white pill with a blue outline that inverts to solid Biotium blue on hover.
+- **Outline** (secondary actions, card buttons): white pill with a blue outline that inverts to the dark Biotium blue on hover (white 14px text fails AA on `#0084FF`).
   ```css
   .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #0070d9; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
-  .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
+  .bt-btn-outline:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
   ```
 - Icons inside buttons use `stroke="currentColor"` so they flip to white with the text.
 - When a whole card is the link, its button is a `<span class="bt-btn-outline">` inside the card's `<a>`, never a second link.
@@ -50,7 +50,7 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
 `sfn-2026/QuietFieldVariant.dc.html` is built from tokens and components defined at the top of its `<style>` ("Design system" block). Build new content from these classes instead of inline styles.
 
 - **Tokens** (CSS variables on `.bt-body-scope`). Use a token, never a raw value; the button standard is the only exception.
-  - Color: brand (`--bt-blue`, `--bt-blue-dark`, `--bt-link`, `--bt-tint`, blue alphas), neutrals darkest to lightest (`--bt-ink` #2d2d2d, `--bt-text-strong` #444, `--bt-text` #555, `--bt-muted` #6b6b6b, `--bt-subtle` placeholders only, `--bt-line-strong`, `--bt-line`, `--bt-alt`), dark surfaces (`--bt-dark`, `--bt-dark-line`, `--bt-on-dark`, `--bt-on-dark-muted`).
+  - Color: brand (`--bt-blue`, `--bt-blue-dark`, `--bt-link`, `--bt-tint`, blue alphas), neutrals darkest to lightest (`--bt-ink` #2d2d2d, `--bt-text-strong` #444, `--bt-text` #555, `--bt-muted` #6b6b6b, `--bt-subtle` #767676 placeholders only, `--bt-line-input` #8c8c8c form field borders (3:1, WCAG 1.4.11), `--bt-line-strong`, `--bt-line`, `--bt-alt`), dark surfaces (`--bt-dark`, `--bt-dark-line`, `--bt-on-dark`, `--bt-on-dark-muted`).
   - Type: `--bt-fs-2xs` 12, `xs` 13, `sm` 14, `base` 15, `md` 16, `lg` 17, `xl` 20, `h2` 30, `h2-lg` 34, `h1` 56 (phones: 26, 28, 40). Line heights `display` 1.06, `tight` 1.2, `snug` 1.3, `body` 1.5, `relaxed` 1.6. Weights 600, 700, 800.
   - Spacing: 4px grid, `--bt-s-1` 4 through `--bt-s-20` 80, plus `--bt-gap-block` 40, `--bt-gutter` 24, `--bt-pad-card` 24, `--bt-pad-card-lg` 48 (24 on phones).
   - Radius: `--bt-r-sm` 6, `--bt-r-inner` 12, `--bt-r-card` 16, `--bt-r-pill`, `--bt-r-round`.
