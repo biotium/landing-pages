@@ -27,7 +27,7 @@ label: Biotium – SfN 2026 Landing Page
        Buttons follow the Biotium LP button standard and keep its literal values. */
     body.bt-body {
       /* Brand */
-      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec; --bt-tint: #E9F3FF;
+      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #0070d9; --bt-tint: #E9F3FF;
       --bt-blue-a08: rgba(0,132,255,0.08); --bt-blue-a12: rgba(0,132,255,0.12); --bt-blue-a14: rgba(0,132,255,0.14); --bt-blue-a16: rgba(0,132,255,0.16);
       /* Neutrals, darkest to lightest */
       --bt-ink: #2d2d2d;          /* headings, labels, emphasis */
@@ -89,6 +89,8 @@ label: Biotium – SfN 2026 Landing Page
     .bt-accent { color: var(--bt-blue); }
     /* On Biotium blue: white type, white kicker, a deeper cool shadow under white cards */
     .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
+    /* White on brand blue only passes at WCAG large-text sizes, so leads on blue go 20px bold */
+    .bt-section--blue .bt-lead { font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 700; }
     .bt-section--blue .bt-kicker { background: #ffffff; }
     .bt-section--blue .bt-surface--raised { box-shadow: var(--bt-shadow-on-blue); }
     /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
@@ -116,14 +118,14 @@ label: Biotium – SfN 2026 Landing Page
     .bt-badge { display: inline-flex; align-items: center; gap: var(--bt-s-2); background: #ffffff; border: 1px solid var(--bt-line-strong); border-radius: var(--bt-r-pill); padding: 7px 14px; }
     .bt-badge--sm { gap: 6px; padding: 5px 12px; }
     /* ============== end design system core ============== */
-    .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
+    .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 19px; padding: 14px 30px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
     .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
-    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #0070d9; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
     /* Link arrow: the one text-link CTA */
     .bt-link-arrow { display: inline-flex; align-items: center; gap: var(--bt-s-2); color: var(--bt-link); font-weight: 800; font-size: var(--bt-fs-base); text-decoration: none; }
     .bt-link-arrow:hover { color: var(--bt-link); }
-    .bt-card { position: relative; transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
+    .bt-card { position: relative; color: var(--bt-link); transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
     /* Show merch photo: smooth, slight scale on hover (pointer devices only) */
     .bt-promo-row { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-8); flex-wrap: wrap; }
     .bt-promo-copy { flex: 1 1 260px; min-width: 220px; }
@@ -251,7 +253,7 @@ label: Biotium – SfN 2026 Landing Page
     .bt-btn-primary:hover .bt-btn-go--down { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go, html.reduced-motion .bt-btn-primary:hover .bt-btn-go--down { transform: none; }
     /* Neuroscience sale: top announcement bar */
-    .bt-promo-bar { background: var(--bt-blue); color: #ffffff; text-align: center; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); padding: var(--bt-s-2) var(--bt-s-4); position: relative; z-index: 101; }
+    .bt-promo-bar { background: var(--bt-blue-dark); color: #ffffff; text-align: center; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); padding: var(--bt-s-2) var(--bt-s-4); position: relative; z-index: 101; }
     .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: var(--bt-s-2); flex-wrap: wrap; justify-content: center; }
     .bt-promo-bar strong { font-weight: 800; }
     .bt-promo-bar .bt-ul { font-weight: 800; }
@@ -546,7 +548,7 @@ label: Biotium – SfN 2026 Landing Page
           </span></div>
           <p class="bt-card-desc">GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:60ms;">
@@ -557,7 +559,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-card-title">Small Format Antibodies</div>
           <p class="bt-card-desc">MiniMab&trade; SdAbs: single-domain antibodies for staining thick tissues.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#tracers" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:120ms;">
@@ -568,7 +570,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-card-title">Axonal Tracers</div>
           <p class="bt-card-desc">Neuro-DiI: lipophilic tracing for neuronal connectivity.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#membrane-potential" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:180ms;">
@@ -579,7 +581,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-card-title">Functional Imaging</div>
           <p class="bt-card-desc">Membrane potential dyes for live-cell imaging.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#amyloid" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:240ms;">
@@ -590,7 +592,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-card-title">Neurodegeneration Probes</div>
           <p class="bt-card-desc">Amyloid &amp; aggregate stains for disease-model research.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:300ms;">
@@ -601,7 +603,7 @@ label: Biotium – SfN 2026 Landing Page
           <div class="bt-card-title">Signal Amplification</div>
           <p class="bt-card-desc">TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
     </div>
@@ -649,7 +651,7 @@ label: Biotium – SfN 2026 Landing Page
       <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:0ms;">
         <img class="bt-res-peek" src="data:image/webp;base64,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" alt="" loading="lazy" decoding="async" width="64" height="83">
         <div class="bt-icon-box bt-icon-box--sm">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
         </div>
         <div class="bt-card-title">Neuronal Probes Flyer</div>
         <p class="bt-card-desc">A quick-reference guide to Biotium's synaptic biology probes and stains.</p>

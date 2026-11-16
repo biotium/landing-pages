@@ -23,7 +23,7 @@
        Buttons follow the Biotium LP button standard and keep its literal values. */
     .bt-body-scope {
       /* Brand */
-      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #087eec; --bt-tint: #E9F3FF;
+      --bt-blue: #0084FF; --bt-blue-dark: #0062be; --bt-link: #0070d9; --bt-tint: #E9F3FF;
       --bt-blue-a08: rgba(0,132,255,0.08); --bt-blue-a12: rgba(0,132,255,0.12); --bt-blue-a14: rgba(0,132,255,0.14); --bt-blue-a16: rgba(0,132,255,0.16);
       /* Neutrals, darkest to lightest */
       --bt-ink: #2d2d2d;          /* headings, labels, emphasis */
@@ -85,6 +85,8 @@
     .bt-accent { color: var(--bt-blue); }
     /* On Biotium blue: white type, white kicker, a deeper cool shadow under white cards */
     .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
+    /* White on brand blue only passes at WCAG large-text sizes, so leads on blue go 20px bold */
+    .bt-section--blue .bt-lead { font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 700; }
     .bt-section--blue .bt-kicker { background: #ffffff; }
     .bt-section--blue .bt-surface--raised { box-shadow: var(--bt-shadow-on-blue); }
     /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
@@ -112,14 +114,14 @@
     .bt-badge { display: inline-flex; align-items: center; gap: var(--bt-s-2); background: #ffffff; border: 1px solid var(--bt-line-strong); border-radius: var(--bt-r-pill); padding: 7px 14px; }
     .bt-badge--sm { gap: 6px; padding: 5px 12px; }
     /* ============== end design system core ============== */
-    .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
+    .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 19px; padding: 14px 30px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
     .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
-    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #0070d9; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
     /* Link arrow: the one text-link CTA */
     .bt-link-arrow { display: inline-flex; align-items: center; gap: var(--bt-s-2); color: var(--bt-link); font-weight: 800; font-size: var(--bt-fs-base); text-decoration: none; }
     .bt-link-arrow:hover { color: var(--bt-link); }
-    .bt-card { position: relative; transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
+    .bt-card { position: relative; color: var(--bt-link); transition: box-shadow 0.15s ease, border-color 0.15s ease; text-decoration: none; display: block; }
     /* Show merch photo: smooth, slight scale on hover (pointer devices only) */
     .bt-promo-row { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-8); flex-wrap: wrap; }
     .bt-promo-copy { flex: 1 1 260px; min-width: 220px; }
@@ -247,7 +249,7 @@
     .bt-btn-primary:hover .bt-btn-go--down { transform: translateY(2px); }
     html.reduced-motion .bt-btn-primary:hover .bt-btn-go, html.reduced-motion .bt-btn-primary:hover .bt-btn-go--down { transform: none; }
     /* Neuroscience sale: top announcement bar */
-    .bt-promo-bar { background: var(--bt-blue); color: #ffffff; text-align: center; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); padding: var(--bt-s-2) var(--bt-s-4); position: relative; z-index: 101; }
+    .bt-promo-bar { background: var(--bt-blue-dark); color: #ffffff; text-align: center; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); padding: var(--bt-s-2) var(--bt-s-4); position: relative; z-index: 101; }
     .bt-promo-bar a { color: #ffffff; text-decoration: none; display: inline-flex; align-items: center; gap: var(--bt-s-2); flex-wrap: wrap; justify-content: center; }
     .bt-promo-bar strong { font-weight: 800; }
     .bt-promo-bar .bt-ul { font-weight: 800; }
@@ -542,7 +544,7 @@
           </span></div>
           <p class="bt-card-desc">GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/minimab-single-domain-antibodies/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:60ms;">
@@ -553,7 +555,7 @@
           <div class="bt-card-title">Small Format Antibodies</div>
           <p class="bt-card-desc">MiniMab&trade; SdAbs: single-domain antibodies for staining thick tissues.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#tracers" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:120ms;">
@@ -564,7 +566,7 @@
           <div class="bt-card-title">Axonal Tracers</div>
           <p class="bt-card-desc">Neuro-DiI: lipophilic tracing for neuronal connectivity.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#membrane-potential" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:180ms;">
@@ -575,7 +577,7 @@
           <div class="bt-card-title">Functional Imaging</div>
           <p class="bt-card-desc">Membrane potential dyes for live-cell imaging.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/cellular-stains/neuronal-probes/#amyloid" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:240ms;">
@@ -586,7 +588,7 @@
           <div class="bt-card-title">Neurodegeneration Probes</div>
           <p class="bt-card-desc">Amyloid &amp; aggregate stains for disease-model research.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
       <a href="https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-cat-card" style="transition-delay:300ms;">
@@ -597,7 +599,7 @@
           <div class="bt-card-title">Signal Amplification</div>
           <p class="bt-card-desc">TyraMax&trade; Dyes: boost faint targets while keeping resolution sharp.</p>
         </div>
-        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        <svg class="bt-card-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
       </a>
 
     </div>
@@ -645,7 +647,7 @@
       <a href="https://biotium.com/wp-content/uploads/2018/08/Neuronal-Probes.pdf" target="_blank" rel="noopener" class="reveal bt-card bt-surface bt-res-card" style="transition-delay:0ms;">
         <img class="bt-res-peek" src="resource-neuronal-probes.webp" alt="" loading="lazy" decoding="async" width="64" height="83">
         <div class="bt-icon-box bt-icon-box--sm">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#087eec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
         </div>
         <div class="bt-card-title">Neuronal Probes Flyer</div>
         <p class="bt-card-desc">A quick-reference guide to Biotium's synaptic biology probes and stains.</p>

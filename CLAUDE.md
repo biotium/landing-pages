@@ -16,24 +16,25 @@ Each event has its own folder:
   - `hubspot/` holds the single copy-paste file for HubSpot Design Manager, built from `QuietFieldVariant.dc.html` by `tools/build-hubspot.py`. Rebuild it after changing that page.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15. `design/` holds the source, `hubspot/` holds the HubSpot file.
 
-Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#087eec`), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub. Live pages are pasted into HubSpot Design Manager by hand.
+Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub. Live pages are pasted into HubSpot Design Manager by hand.
 
 ## Button standard
 
-Every Biotium landing page uses these two buttons. Copy them as is; don't add gradients, glass blur, glows or shadows, or hover movement.
+Every Biotium landing page uses these two buttons. Copy them as is; don't add gradients, glass blur, glows or shadows, or hover movement. Both pass WCAG 2.2 AA: white on `#0084FF` is 3.7:1, which only passes as large text, so the primary label is 19px bold.
 
 - **Primary** (one main CTA per section): solid Biotium blue pill, white text.
   ```css
-  .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 28px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
+  .bt-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #ffffff; font-weight: 800; font-size: 19px; padding: 14px 30px; border-radius: 999px; border: 1px solid #0084FF; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; }
   .bt-btn-primary:hover { background: #0062be; border-color: #0062be; color: #ffffff; }
   ```
 - **Outline** (secondary actions, card buttons): white pill with a blue outline that inverts to solid Biotium blue on hover.
   ```css
-  .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #087eec; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+  .bt-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #0070d9; font-weight: 800; font-size: 14px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid rgba(8,126,236,0.55); text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
   .bt-btn-outline:hover { background: #0084FF; border-color: #0084FF; color: #ffffff; }
   ```
 - Icons inside buttons use `stroke="currentColor"` so they flip to white with the text.
 - When a whole card is the link, its button is a `<span class="bt-btn-outline">` inside the card's `<a>`, never a second link.
+- Small white text never sits on `#0084FF` (it fails AA). Use `#0062be` behind small white text (the promo bar), or set the text at large size (20px bold leads on the blue section).
 
 ## SfN component set
 
