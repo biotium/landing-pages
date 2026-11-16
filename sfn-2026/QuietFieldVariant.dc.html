@@ -438,6 +438,21 @@
       .bt-nav a.is-active { background: var(--bt-tint); border-color: var(--bt-tint); color: var(--bt-blue-dark); }
     }
     @media (prefers-reduced-motion: reduce) { .bt-nav a::after { transition: none; } }
+    /* Header: section links beside the logo, Booth 1106 pill on the right */
+    .bt-nav { margin: 0 auto 0 var(--bt-s-8); }
+    .bt-booth-pill { display: inline-flex; align-items: center; gap: 6px; flex: none; font-size: var(--bt-fs-sm); font-weight: 800; color: var(--bt-blue-dark); background: var(--bt-tint); border: 1px solid var(--bt-tint); border-radius: var(--bt-r-pill); padding: 7px 14px; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .bt-booth-pill svg { width: 14px; height: 14px; display: block; }
+    .bt-booth-pill:hover { background: var(--bt-blue-dark); border-color: var(--bt-blue-dark); color: #ffffff; }
+    .bt-booth-pill:hover svg circle { fill: var(--bt-blue-dark); }
+    @media (max-width: 1180px) and (min-width: 901px) { .bt-nav { margin-left: var(--bt-s-5); } .bt-nav a { padding: var(--bt-s-2) var(--bt-s-2); } }
+    /* Phones: the header stays one slim row; the chip row slides down under it once you scroll past the hero */
+    @media (max-width: 900px) {
+      #header-inner { flex-wrap: nowrap !important; padding-bottom: 13px !important; }
+      .bt-booth-pill { font-size: var(--bt-fs-xs); padding: 6px 12px; }
+      .bt-nav { position: absolute; top: 100%; left: 0; right: 0; margin: 0 !important; padding: var(--bt-s-2) 24px; background: rgba(255,255,255,0.96); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--bt-line); opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+      #site-header.is-past-hero .bt-nav, .bt-nav:focus-within { opacity: 1; transform: none; pointer-events: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { .bt-nav { transition: none !important; } }
   </style>
 </helmet>
 <div class="bt-body-scope">
@@ -476,18 +491,10 @@
       <a href="#come-say-hi">Visit us</a>
       <a href="#recommendations">Ask a scientist</a>
     </nav>
-    <div class="bt-header-right">
-      <span class="bt-header-tagline">Glowing Products for Science&trade;</span>
-      <span class="bt-header-pill bt-badge bt-badge--sm">
-        <span class="bt-header-pill-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="#454545"/>
-            <circle cx="12" cy="9" r="2.7" fill="#ffffff"/>
-          </svg>
-        </span>
-        <span class="bt-header-pill-text">SfN 2026<span class="bt-header-pill-city"> &middot; Washington, DC</span> &middot; Nov 15&ndash;18</span>
-      </span>
-    </div>
+    <a class="bt-booth-pill" href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" aria-label="Booth 1106, open the SfN floor plan">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="currentColor"/><circle cx="12" cy="9" r="2.7" fill="#ffffff"/></svg>
+      <span>Booth 1106</span>
+    </a>
   </div>
 </div>
 
@@ -1423,6 +1430,17 @@
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+<script>
+  /* Header: reveal the phone chip row once the hero zone has scrolled under the header */
+  (function () {
+    var header = document.getElementById('site-header'), zone = document.querySelector('.bt-hero-zone');
+    if (!header || !zone) return;
+    var ticking = false;
+    function update() { ticking = false; header.classList.toggle('is-past-hero', zone.getBoundingClientRect().bottom < header.offsetHeight + 40); }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     update();
   })();
 </script>

@@ -55,7 +55,7 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
   - Spacing: 4px grid, `--bt-s-1` 4 through `--bt-s-20` 80, plus `--bt-gap-block` 40, `--bt-gutter` 24, `--bt-pad-card` 24, `--bt-pad-card-lg` 48 (24 on phones).
   - Radius: `--bt-r-sm` 6, `--bt-r-inner` 12, `--bt-r-card` 16, `--bt-r-pill`, `--bt-r-round`.
   - Elevation: `--bt-shadow`, `--bt-shadow-hover`, `--bt-shadow-float`, `--bt-shadow-on-blue`, `--bt-focus-ring`.
-- **Section nav**: `.bt-nav` in the sticky header links to #minimab, #portfolio, #neuro-sale, #resources, #come-say-hi, #recommendations and highlights the section in view; on phones it becomes a swipeable chip row. `--bt-header-h` (61px, 114px on phones) sets where anchor jumps land, so update it if the header height changes.
+- **Header**: logo, then `.bt-nav` section links (#minimab, #portfolio, #neuro-sale, #resources, #come-say-hi, #recommendations) that highlight the section in view, then the `.bt-booth-pill` (Booth 1106, opens the floor plan). On phones the header is one slim row and the links appear as a swipeable chip row under it once the hero has scrolled away (or when a chip gets keyboard focus). `--bt-header-h` (61px, 114px on phones) sets where anchor jumps land, so update it if the header height changes.
 - **Section**: `.bt-section` (72/80 padding; 104/112 on desktop) with `--alt` (grey), `--blue`, `--compact`, `--join-next`, `--flush-top`.
 - **Head**: `.bt-head` (kicker, `.bt-h2`, optional `.bt-lead`, 12px apart); `.bt-head--center` for centered section heads. `.bt-h2--lg` only inside feature cards.
 - **Surface**: `.bt-surface` (white, hairline, 16px corners), `--raised` adds the shadow, `--lg` 48px padding. `.bt-panel` is the grey inset; `.bt-media` frames video or images.
