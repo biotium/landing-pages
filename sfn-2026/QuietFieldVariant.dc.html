@@ -9,6 +9,7 @@
 <helmet>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap">
   <style>
+    /* Generated from shared/landing-page.css by tools/sync-shared.py. Edit that file, not this copy. */
     * { box-sizing: border-box; }
     h1, h2, h3, h4 { text-wrap: balance; }
     p { text-wrap: pretty; }
@@ -241,9 +242,10 @@
     /* Sticky header elevation on scroll — subtle glass */
     html { scroll-behavior: smooth; }
     html.reduced-motion { scroll-behavior: auto; }
-    #minimab { position: relative; z-index: 2; padding-bottom: 80px; scroll-margin-top: 58px; }
-    /* Promo bar jumps here; land the sale card just below the sticky header */
-    #neuro-sale { scroll-margin-top: calc(58px + var(--bt-s-6)); }
+    /* Hero feature card (MiniMab, CytoLiner): sits on the hero visual, above the next section */
+    .bt-hero-feature { position: relative; z-index: 2; padding-bottom: var(--bt-s-20); }
+    /* Any anchor target lands just below the sticky header */
+    .bt-body-scope [id] { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-4)); }
     .bt-btn-go { transition: transform 0.2s ease; }
     /* Button arrows nudge the way they point: right for links, down for in-page jumps */
     .bt-btn-primary:hover .bt-btn-go { transform: translateX(3px); }
@@ -411,7 +413,7 @@
       .bt-section--compact { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-18); }
       .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
       .bt-section.bt-say-hi { padding-top: 120px; padding-bottom: 128px; }
-      #minimab { padding-bottom: 112px; }
+      .bt-hero-feature { padding-bottom: 112px; }
     }
     #header-inner { align-items: center !important; }
     .bt-nav { display: flex; align-items: center; gap: var(--bt-s-1); margin: 0 auto; }
@@ -420,8 +422,6 @@
     .bt-nav a::after { content: ""; position: absolute; left: var(--bt-s-3); right: var(--bt-s-3); bottom: 2px; height: 2px; border-radius: 2px; background: var(--bt-blue); transform: scaleX(0); transition: transform 0.25s cubic-bezier(.16,.8,.24,1); }
     .bt-nav a.is-active { color: var(--bt-ink); }
     .bt-nav a.is-active::after { transform: scaleX(1); }
-    [id="minimab"], [id="portfolio"], [id="neuro-sale"], [id="resources"], [id="come-say-hi"], [id="recommendations"] { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-4)); }
-    #neuro-sale { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-6)); }
     /* Mid widths: the tagline steps aside so the links fit */
     @media (max-width: 1180px) and (min-width: 901px) {
       .bt-header-tagline { display: none !important; }
@@ -453,6 +453,51 @@
       #site-header.is-past-hero .bt-nav, .bt-nav:focus-within { opacity: 1; transform: none; pointer-events: auto; }
     }
     @media (prefers-reduced-motion: reduce) { .bt-nav { transition: none !important; } }
+    /* Photo hero zone (ASCB): a dark photo with a shade behind the hero and its feature card */
+    .bt-hero-zone--photo { background-color: #050b12; }
+    .bt-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .bt-hero-shade { position: absolute; inset: 0; background-image: linear-gradient(100deg, rgba(3,8,14,0.94) 0%, rgba(3,8,14,0.84) 38%, rgba(3,8,14,0.5) 68%, rgba(3,8,14,0.2) 100%); }
+    .bt-hero-zone--photo .bt-h1 { color: #ffffff; }
+    .bt-hero-zone--photo .bt-hero-sub { color: #E4EAF0; }
+    .bt-hero-zone--photo .bt-hero-badge { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    .bt-hero-zone--photo .bt-hero-badge-text { color: #D7DEE5; }
+    .bt-hero-row { display: flex; align-items: center; gap: var(--bt-s-16); }
+    .bt-hero-row .bt-hero-copy { flex: 1 1 0; }
+    .bt-hero-media { flex: 1 1 0; max-width: 420px; width: 100%; }
+    .bt-hero-media .bt-media { border-radius: var(--bt-r-card); border-color: rgba(255,255,255,0.14); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+    .bt-hero-media img, .bt-cyto-frame img { width: 100%; height: auto; display: block; }
+    .bt-img-pill { position: absolute; left: var(--bt-s-4); bottom: var(--bt-s-4); padding: var(--bt-s-2) 14px; border-radius: var(--bt-r-pill); background: #11151b; border: 1px solid rgba(255,255,255,0.14); color: #ffffff; font-size: var(--bt-fs-2xs); font-weight: 800; letter-spacing: 0.02em; pointer-events: none; }
+    .bt-cyto-frame { max-width: 400px; margin: 0 auto; }
+    /* Color swatches that swap the feature image (CytoLiner) */
+    .bt-swatches { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: var(--bt-s-5); }
+    .cytoliner-swatch { -webkit-appearance: none; appearance: none; padding: 0; width: 24px; height: 24px; border-radius: var(--bt-r-pill); cursor: pointer; position: relative; flex: none; border: 1px solid rgba(17,17,17,0.18); transition: transform 0.18s ease, box-shadow 0.18s ease; --ring: rgba(255,255,255,0); box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -3px 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2), 0 0 7px 2px var(--ring), 0 0 13px 3px var(--ring); }
+    .cytoliner-swatch:hover, .cytoliner-swatch.is-active { transform: scale(1.25); --ring: var(--glow); }
+    .cytoliner-swatch:focus-visible { outline: 2px solid var(--bt-blue); outline-offset: 3px; }
+    .cytoliner-nudge { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-2); margin-top: 14px; transition: opacity 0.4s ease; }
+    .cytoliner-nudge svg { flex: none; animation: cytolinerNudgeBob 1.4s ease-in-out infinite; }
+    @keyframes cytolinerNudgeBob { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+    @media (hover: none) { .cytoliner-nudge { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .cytoliner-nudge svg { animation: none; } }
+    @media (max-width: 900px) {
+      .bt-hero-row { flex-direction: column; align-items: stretch; gap: var(--bt-s-10); }
+      .bt-hero-media { max-width: 100%; }
+      .bt-hero-shade { background-image: linear-gradient(180deg, rgba(3,8,14,0.92) 0%, rgba(3,8,14,0.8) 55%, rgba(3,8,14,0.6) 100%); }
+    }    /* Hero layout */
+    .bt-hero { position: relative; }
+    .bt-hero > .bt-wrap { padding-top: 104px; padding-bottom: 96px; position: relative; z-index: 1; }
+    .bt-hero--with-visual > .bt-wrap { pointer-events: none; }
+    .bt-hero--with-visual .bt-hero-copy { max-width: 620px; position: relative; pointer-events: auto; }
+    .bt-hero-actions { display: flex; align-items: center; gap: var(--bt-s-6); flex-wrap: wrap; }
+    .bt-hero-pin-tip { position: absolute; left: 50%; bottom: -1px; width: 3px; height: 3px; border-radius: var(--bt-r-pill); background: var(--bt-blue); transform: translateX(-50%); }
+    .bt-hero-zone--photo .bt-hero-pin-tip { background: #66b5ff; }
+    .bt-choice-badge { margin-left: var(--bt-s-2); }
+    .bt-choice-badge img { width: 17px; height: 17px; display: block; }
+    /* Header and footer logos */
+    #header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--bt-s-6); padding-top: 13px; padding-bottom: 13px; }
+    #header-logo, .bt-footer-brand > a { display: block; line-height: 0; }
+    #header-logo svg { height: 32px; width: auto; display: block; }
+    .bt-footer-brand > a svg { height: 28px; width: auto; display: block; }
+    .cytoliner-nudge .bt-note { font-weight: 600; }
   </style>
 </helmet>
 <div class="bt-body-scope">
@@ -464,9 +509,9 @@
 <div class="bt-promo-bar"><a href="#neuro-sale"><span><strong>30% off</strong> neuroscience tools through Dec 31.</span> <span class="bt-ul">Shop the sale</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></a></div>
 
 <div id="site-header">
-  <div id="header-inner" class="bt-wrap" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding-top:13px; padding-bottom:13px;">
-    <a id="header-logo" href="https://biotium.com" aria-label="Biotium home" style="display:block; line-height:0;">
-      <svg style="height:32px; width:auto; display:block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
+  <div id="header-inner" class="bt-wrap">
+    <a id="header-logo" href="https://biotium.com" aria-label="Biotium home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
   <path d="M34.61,125.86c-1.93,0-3.52.43-4.77,1.28s-2.21,1.96-2.89,3.33c-.69,1.36-1.17,2.93-1.45,4.69-.28,1.76-.43,3.55-.43,5.37v11.07c0,1.83.11,3.62.34,5.37.23,1.78.69,3.33,1.37,4.69.68,1.37,1.62,2.48,2.81,3.33,1.19.85,2.75,1.28,4.69,1.28,3.63,0,6.19-1.5,7.67-4.51,1.48-3.01,2.22-7.37,2.22-13.05v-5.27c0-6.48-.69-11.03-2.05-13.64-1.37-2.62-3.86-3.93-7.51-3.93Z" fill="none"/>
   <path d="M168.26,129.95c-.57-1.71-1.51-2.98-2.82-3.84-1.3-.85-3.04-1.28-5.2-1.28-4.43,0-7.19,1.71-8.27,5.12-1.08,3.41-1.62,8.35-1.62,14.83v4.43c0,6.48.49,11.43,1.45,14.83.96,3.41,3.67,5.12,8.1,5.12s7.01-1.71,8.09-5.12c1.08-3.4,1.62-8.35,1.62-14.83v-4.43c0-3.18-.09-6.02-.26-8.53-.17-2.5-.54-4.59-1.11-6.3Z" fill="none"/>
   <path d="M263.54,56.97l-61.22-21.5c-.58,4.26-2.01,8.24-4.13,11.77l61.23,21.5c.37-4.33,1.83-8.35,4.12-11.77Z"/>
@@ -502,23 +547,23 @@
 <div class="bt-hero-zone">
   <canvas id="hero-network"></canvas>
 <!-- Hero -->
-<div style="position:relative;">
+<div class="bt-hero bt-hero--with-visual">
   <div class="bt-hero-glass-overlay"></div>
-  <div class="bt-wrap" style="padding-top:104px; padding-bottom:96px; position:relative; z-index:1; pointer-events:none;">
-    <div class="bt-hero-copy" style="max-width:620px; position:relative; pointer-events:auto;">
+  <div class="bt-wrap">
+    <div class="bt-hero-copy">
       <div class="hero-in bt-badge bt-hero-badge" style="transition-delay:0ms;">
         <span class="bt-hero-pin">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="#454545"/>
             <circle cx="12" cy="9" r="2.7" fill="#ffffff"/>
           </svg>
-          <span class="bt-hero-pin-tip" style="position:absolute; left:50%; bottom:-1px; width:3px; height:3px; border-radius:999px; background:#0084FF; transform:translateX(-50%);"></span>
+          <span class="bt-hero-pin-tip"></span>
         </span>
         <span class="bt-hero-badge-text">Washington, DC &middot; Nov 15&ndash;18</span>
       </div>
       <h1 class="hero-in bt-h1" style="transition-delay:80ms;">Biotium at SfN 2026</h1>
       <p class="hero-in bt-hero-sub" style="transition-delay:160ms;">Unlock deeper insights.</p>
-      <div class="hero-in" style="transition-delay:240ms; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+      <div class="hero-in bt-hero-actions" style="transition-delay:240ms;">
         <a href="#minimab" class="bt-btn-primary">
           Meet MiniMab&trade;
           <svg class="bt-btn-go bt-btn-go--down" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg>
@@ -532,7 +577,7 @@
 </div>
 
 <!-- Flagship story: MiniMab, a card on the neuron field (it overlaps the brain's stem, so the brain rises from behind it) -->
-<div id="minimab">
+<div id="minimab" class="bt-hero-feature">
   <div class="bt-wrap">
   <div class="bt-surface bt-surface--raised bt-surface--lg bt-feature">
     <div class="reveal bt-feature-copy" style="transition-delay:0ms;">
@@ -590,8 +635,8 @@
           <img src="portfolio-neuronal-markers.webp" alt="">
         </div>
         <div class="bt-cat-body">
-          <div class="bt-card-title">Neuronal &amp; Structural Markers<span class="bt-choice-badge" style="margin-left:8px;" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
-            <img src="biotium-choice-icon.svg" alt="Biotium Choice" style="width:17px; height:17px; display:block;">
+          <div class="bt-card-title">Neuronal &amp; Structural Markers<span class="bt-choice-badge" tabindex="0" role="link" aria-label="About Biotium Choice" data-href="https://biotium.com/technology/primary-secondary-antibody-conjugates/primary-antibody-conjugates/#biotiumchoice">
+            <img src="biotium-choice-icon.svg" alt="Biotium Choice">
             <span class="bt-choice-tip">Biotium Choice&trade;: validated &amp; optimized</span>
           </span></div>
           <p class="bt-card-desc">GFAP, NeuN, Neurofilament-H, &beta;3-Tubulin: validated conjugates for neurons, glia and the cytoskeleton.</p>
@@ -781,18 +826,6 @@
     <div class="bt-face" style="--x:370px; --y:80%; --s:62px; --f:6.4s; --d:450ms; --bg:#EBF7ED; --fg:#8FCF99;"><div class="bt-face-in"><img src="data:image/webp;base64,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" alt="" width="62" height="62" loading="lazy"></div></div>
     <div class="bt-face" style="--x:470px; --y:16%; --s:54px; --f:5.3s; --d:630ms; --bg:#EEF0F3; --fg:#B5BCC6;"><div class="bt-face-in"><img src="data:image/webp;base64,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" alt="" width="54" height="54" loading="lazy"></div></div>
   </div>
-  <script>
-    /* Reveal the team faces once the section scrolls into view */
-    (function () {
-      var el = document.querySelector('.bt-team-float');
-      if (!el) return;
-      if (!('IntersectionObserver' in window)) { el.classList.add('is-in'); return; }
-      var io = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) { el.classList.add('is-in'); io.disconnect(); }
-      }, { threshold: 0.35 });
-      io.observe(el);
-    })();
-  </script>
   <div class="reveal bt-wrap" style="transition-delay:0ms;">
     <div class="bt-head bt-head--center">
       <span class="bt-kicker">Booth 1106</span>
@@ -904,8 +937,8 @@
   <div class="bt-wrap">
     <div class="bt-footer-top">
       <div class="bt-footer-brand">
-        <a href="https://biotium.com" aria-label="Biotium home" style="display:block; line-height:0;">
-        <svg style="height:28px; width:auto; display:block;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
+        <a href="https://biotium.com" aria-label="Biotium home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
   <defs>
     <style>
       .cls-1sfnsv { fill: #fff; }
@@ -947,7 +980,11 @@
 
 </div>
 
-<script>
+<script data-shared="landing-page.js">
+/* Generated from shared/landing-page.js by tools/sync-shared.py. Edit that file, not this copy. */
+/* Shared landing page behavior: scroll progress, sticky header, reveals, card hover settle, resource previews,
+   Biotium Choice badges, the hero neuron field (pages with #hero-network), section nav, team faces, swatches. */
+
 (function () {
   var root = document.documentElement;
   var reduced = false;
@@ -1173,6 +1210,79 @@
     document.addEventListener('visibilitychange', resume);
     requestAnimationFrame(frame);
   })();
+})();
+
+  /* Section nav: highlight the section under the header, keep the active chip in view on phones */
+  (function () {
+    var nav = document.querySelector('.bt-nav');
+    if (!nav) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var current = -1, ticking = false;
+    function update() {
+      ticking = false;
+      var line = (parseFloat(getComputedStyle(document.querySelector('.bt-body-scope')).getPropertyValue('--bt-header-h')) || 58) + window.innerHeight * 0.25;
+      var idx = -1;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= line) idx = i; }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = targets.length - 1;
+      if (idx === current) return;
+      current = idx;
+      links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); if (i === idx) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+      if (idx >= 0 && nav.scrollWidth > nav.clientWidth) {
+        var a = links[idx];
+        nav.scrollTo({ left: a.offsetLeft - 24, behavior: 'smooth' });
+      }
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  /* Header: reveal the phone chip row once the hero zone has scrolled under the header */
+  (function () {
+    var header = document.getElementById('site-header'), zone = document.querySelector('.bt-hero-zone');
+    if (!header || !zone) return;
+    var ticking = false;
+    function update() { ticking = false; header.classList.toggle('is-past-hero', zone.getBoundingClientRect().bottom < header.offsetHeight + 40); }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  })();
+
+/* Team faces pop in once Come say hi scrolls into view */
+/* Reveal the team faces once the section scrolls into view */
+(function () {
+  var el = document.querySelector('.bt-team-float');
+  if (!el) return;
+  if (!('IntersectionObserver' in window)) { el.classList.add('is-in'); return; }
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { el.classList.add('is-in'); io.disconnect(); }
+  }, { threshold: 0.35 });
+  io.observe(el);
+})();
+
+/* Color swatches swap the feature image (pages with #cytolinerImg) */
+(function(){
+  var img = document.getElementById('cytolinerImg');
+  var label = document.getElementById('cytolinerPill');
+  var nudge = document.getElementById('cytolinerNudge');
+  var swatches = document.querySelectorAll('.cytoliner-swatch');
+  if (!img || !swatches.length) return;
+  var nudged = false;
+  function select(btn){
+    for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); }
+    btn.classList.add('is-active');
+    img.setAttribute('src', btn.getAttribute('data-img'));
+    img.setAttribute('alt', btn.getAttribute('data-label'));
+    label.textContent = btn.getAttribute('data-label');
+    if (!nudged) { nudged = true; nudge.style.opacity = '0'; }
+  }
+  for (var j = 0; j < swatches.length; j++) {
+    (function(btn){
+      btn.addEventListener('mouseenter', function(){ select(btn); });
+      btn.addEventListener('click', function(){ select(btn); });
+      btn.addEventListener('focus', function(){ select(btn); });
+    })(swatches[j]);
+  }
 })();
 </script>
 
@@ -1406,44 +1516,6 @@
   })();
 </script>
 
-<script>
-  /* Section nav: highlight the section under the header, keep the active chip in view on phones */
-  (function () {
-    var nav = document.querySelector('.bt-nav');
-    if (!nav) return;
-    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
-    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    var current = -1, ticking = false;
-    function update() {
-      ticking = false;
-      var line = (parseFloat(getComputedStyle(document.querySelector('.bt-body-scope')).getPropertyValue('--bt-header-h')) || 58) + window.innerHeight * 0.25;
-      var idx = -1;
-      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= line) idx = i; }
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = targets.length - 1;
-      if (idx === current) return;
-      current = idx;
-      links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); if (i === idx) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
-      if (idx >= 0 && nav.scrollWidth > nav.clientWidth) {
-        var a = links[idx];
-        nav.scrollTo({ left: a.offsetLeft - 24, behavior: 'smooth' });
-      }
-    }
-    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-</script>
-<script>
-  /* Header: reveal the phone chip row once the hero zone has scrolled under the header */
-  (function () {
-    var header = document.getElementById('site-header'), zone = document.querySelector('.bt-hero-zone');
-    if (!header || !zone) return;
-    var ticking = false;
-    function update() { ticking = false; header.classList.toggle('is-past-hero', zone.getBoundingClientRect().bottom < header.offsetHeight + 40); }
-    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    update();
-  })();
-</script>
 </x-dc>
 </body>
 </html>

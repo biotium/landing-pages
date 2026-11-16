@@ -18,6 +18,17 @@ Each event has its own folder:
 
 Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub.
 
+## One source of truth: shared/
+
+Every landing page looks and behaves the same; only content differs.
+
+- `shared/landing-page.css` holds all styling: tokens, components, header and nav, buttons, sections, hero variants (neuron field, photo), swatches, forms.
+- `shared/landing-page.js` holds all shared behavior: scroll progress, sticky header, reveals, section nav, team faces, resource previews, swatches, the hero neuron field.
+- Each page keeps an inline copy of both (so it stays self-contained for the canvas, artifacts and HubSpot). Never edit those copies. Edit `shared/`, then run `python3 tools/sync-shared.py` to update every page, and rebuild the HubSpot files.
+- Pages contain only content: markup built from the shared classes, copy, images, links, and page-specific data scripts (SfN's brain particles, the recommendations form config). No `<style>` of their own and no inline layout styles; per-item data like reveal delays or face positions is fine.
+- A new page opts in by including `<script data-shared="landing-page.js"></script>` and a `<helmet><style>` block; `tools/sync-shared.py` fills both.
+- The deploy runs `tools/sync-shared.py --check` and refuses to ship a page that drifted.
+
 ## Deploying to HubSpot
 
 `.github/workflows/deploy-hubspot.yml` uploads the HubSpot files to Design Manager on every push to `main` that touches them, so merging to `main` is going live (there is no draft step):
@@ -45,9 +56,9 @@ Every Biotium landing page uses these two buttons. Copy them as is; don't add gr
 - When a whole card is the link, its button is a `<span class="bt-btn-outline">` inside the card's `<a>`, never a second link.
 - Small white text never sits on `#0084FF` (it fails AA). Use `#0062be` behind small white text (the promo bar), or set the text at large size (20px bold leads on the blue section).
 
-## SfN component set
+## Component set
 
-`sfn-2026/QuietFieldVariant.dc.html` is built from tokens and components defined at the top of its `<style>` ("Design system" block). Build new content from these classes instead of inline styles.
+Defined in `shared/landing-page.css` and used by every page. Build new content from these classes instead of inline styles.
 
 - **Tokens** (CSS variables on `.bt-body-scope`). Use a token, never a raw value; the button standard is the only exception.
   - Color: brand (`--bt-blue`, `--bt-blue-dark`, `--bt-link`, `--bt-tint`, blue alphas), neutrals darkest to lightest (`--bt-ink` #2d2d2d, `--bt-text-strong` #444, `--bt-text` #555, `--bt-muted` #6b6b6b, `--bt-subtle` #767676 placeholders only, `--bt-line-input` #8c8c8c form field borders (3:1, WCAG 1.4.11), `--bt-line-strong`, `--bt-line`, `--bt-alt`), dark surfaces (`--bt-dark`, `--bt-dark-line`, `--bt-on-dark`, `--bt-on-dark-muted`).

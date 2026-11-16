@@ -8,6 +8,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'shared/**'
       - 'sfn-2026/hubspot/**'
       - 'ascb-cell-bio-2026/hubspot/**'
       - '.github/workflows/deploy-hubspot.yml'
@@ -40,6 +41,10 @@ jobs:
             echo "::error::Add the HUBSPOT_PERSONAL_ACCESS_KEY secret under Settings > Secrets and variables > Actions."
             exit 1
           fi
+
+      # Every page carries the shared styling and behavior; refuse to deploy a page that drifted from shared/
+      - name: Check every page matches the shared design system
+        run: python3 tools/sync-shared.py --check
 
       # The SfN file is generated; refuse to deploy a stale copy
       - name: Check the SfN HubSpot file matches its source
