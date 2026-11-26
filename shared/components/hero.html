@@ -21,7 +21,7 @@
 
           <span class="bt-hero-pin-tip"></span>
         </span>
-        <span class="bt-hero-badge-text">{{ event.city }} &middot; {{ event.dates }}</span>
+        <span class="bt-hero-badge-text">{{ hero.eyebrow or (event.city ~ ' &middot; ' ~ event.dates) }}</span>
       </div>
       <h1 class="hero-in bt-h1" style="transition-delay:80ms;">{{ hero.title }}</h1>
       <p class="hero-in bt-hero-sub" style="transition-delay:160ms;">{{ hero.subtitle }}</p>

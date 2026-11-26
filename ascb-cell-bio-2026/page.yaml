@@ -25,8 +25,9 @@ nav:
 hero:
   visual: photo
   background: hero-bg.jpg
-  title: Biotium at ASCB<br>Cell Bio 2026.
-  subtitle: Not sales reps. Your research partners.
+  eyebrow: ASCB | EMBO Cell Bio 2026 &middot; Dec 12&ndash;15 &middot; Booth 1216
+  title: Bring us your toughest staining problem.
+  subtitle: Talk membranes, cytoskeleton and multiplexing with PhD scientists who run these experiments. Not sales reps. Research partners.
   cta: {label: Find us at Booth 1216, href: "https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;EventId=893&amp;MapItBoothID=1108038&amp;MapItBooth=1216&amp;MapID=1196"}
   media: {src: booth_cutout.webp, alt: The Biotium team at a trade show booth}
 
@@ -41,7 +42,7 @@ feature:
     - Available in 6 colors from blue to near-IR
   link: {label: Learn more about CytoLiner&trade;, href: "https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/"}
   # Secondary CTA: the live free-sample offer (terms from biotium.com/free-sample)
-  offer: {label: Claim a free sample, href: "https://biotium.com/free-sample/", note: One per lab. Ships to U.S. commercial addresses.}
+  offer: {label: Claim a free sample, href: "https://biotium.com/free-sample/", note: Terms apply.}
   media:
     type: swatches         # hover a color to swap the image; em = emission max (nm)
     # Marketing page: each chip is a key to a false-color micrograph, so its colors are sampled from
