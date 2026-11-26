@@ -555,6 +555,8 @@ label: Biotium – ASCB Cell Bio 2026 Landing Page
     @media (max-width: 1100px) { .bt-hero-overlay { width: 50%; } }
     @media (max-width: 900px) { .bt-hero-overlay { position: relative; right: auto; bottom: auto; width: min(100% - 48px, 480px); margin: calc(var(--bt-s-4) * -1) auto 0 auto; } }
     /* Feature band: copy beside the media on grey, no card */
+    .bt-feature-actions { display: flex; align-items: center; gap: var(--bt-s-6); flex-wrap: wrap; }
+    .bt-feature-copy .bt-feature-note { margin-top: calc(var(--bt-s-3) * -1); }
     .bt-feature-band .bt-feature-copy { max-width: 560px; }
     /* Come say hi: booth button with the note under it */
     .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-3); }
@@ -675,10 +677,18 @@ label: Biotium – ASCB Cell Bio 2026 Landing Page
           <span>Available in 6 colors from blue to near-IR</span>
         </li>
       </ul>
-      <a href="https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/" target="_blank" rel="noopener" class="bt-link-arrow">
-        <span class="bt-ul">Learn more about CytoLiner&trade;</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-      </a>
+      <!-- Optional offer: an outline button beside the learn-more link, with fine print under them -->
+      <div class="bt-feature-actions">
+        <a href="https://biotium.com/free-sample/" target="_blank" rel="noopener" class="bt-btn-outline">
+          Claim a free sample
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/" target="_blank" rel="noopener" class="bt-link-arrow">
+          <span class="bt-ul">Learn more about CytoLiner&trade;</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+      <p class="bt-note bt-feature-note">One per lab. Ships to U.S. commercial addresses.</p>
     </div>
     <div class="reveal bt-feature-media" style="transition-delay:140ms;">
       <div class="bt-cyto-frame">

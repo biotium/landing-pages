@@ -40,6 +40,8 @@ feature:
     - Compatible with poly-L-lysine coated cultureware
     - Available in 6 colors from blue to near-IR
   link: {label: Learn more about CytoLiner&trade;, href: "https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/"}
+  # Secondary CTA: the live free-sample offer (terms from biotium.com/free-sample)
+  offer: {label: Claim a free sample, href: "https://biotium.com/free-sample/", note: One per lab. Ships to U.S. commercial addresses.}
   media:
     type: swatches         # hover a color to swap the image; em = emission max (nm)
     # Marketing page: each chip is a key to a false-color micrograph, so its colors are sampled from

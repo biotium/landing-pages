@@ -18,10 +18,27 @@
         </li>
 {% endfor %}
       </ul>
+{% if f.offer %}
+      <!-- Optional offer: an outline button beside the learn-more link, with fine print under them -->
+      <div class="bt-feature-actions">
+        <a href="{{ f.offer.href }}"{{ i.target(f.offer.href) }} class="bt-btn-outline">
+          {{ f.offer.label }}
+          {{ i.arrow(14) }}
+        </a>
+        <a href="{{ f.link.href }}"{{ i.target(f.link.href) }} class="bt-link-arrow">
+          <span class="bt-ul">{{ f.link.label }}</span>
+          {{ i.arrow(14) }}
+        </a>
+      </div>
+{% if f.offer.note %}
+      <p class="bt-note bt-feature-note">{{ f.offer.note }}</p>
+{% endif %}
+{% else %}
       <a href="{{ f.link.href }}"{{ i.target(f.link.href) }} class="bt-link-arrow">
         <span class="bt-ul">{{ f.link.label }}</span>
         {{ i.arrow(14) }}
       </a>
+{% endif %}
     </div>
     <div class="reveal bt-feature-media" style="transition-delay:140ms;">
 {% if f.media.type == 'wistia' %}
