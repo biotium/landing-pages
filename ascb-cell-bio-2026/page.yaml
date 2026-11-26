@@ -41,13 +41,13 @@ feature:
     - Available in 6 colors from blue to near-IR
   link: {label: Learn more about CytoLiner&trade;, href: "https://biotium.com/product/cytoliner-fixed-cell-membrane-stains/"}
   media:
-    type: swatches         # hover a color to swap the image
+    type: swatches         # hover a color to swap the image; em = emission max (nm), colors come from shared/spectra-colors.yaml
     swatches:
-      - {image: cytoliner-410-450.jpg, label: CytoLiner&trade; 410/450, colors: ["#B2F0FA", "#22D3EE", "#0E8FA6"]}
-      - {image: cytoliner-495-510.jpg, label: CytoLiner&trade; 495/510, colors: ["#B8F5C6", "#3DDC5B", "#219B3E"]}
-      - {image: cytoliner-570-590.jpg, label: CytoLiner&trade; 570/590, colors: ["#FFB3AD", "#FF3B30", "#C22019"]}
-      - {image: cytoliner-650-675.jpg, label: CytoLiner&trade; 650/675, colors: ["#F7A8D6", "#E91E8C", "#A01262"]}
-      - {image: cytoliner-680-710.jpg, label: CytoLiner&trade; 680/710, colors: ["#D9C4F7", "#9B5DE5", "#6B34A8"]}
+      - {image: cytoliner-410-450.jpg, label: CytoLiner&trade; 410/450, em: 450}
+      - {image: cytoliner-495-510.jpg, label: CytoLiner&trade; 495/510, em: 510}
+      - {image: cytoliner-570-590.jpg, label: CytoLiner&trade; 570/590, em: 590}
+      - {image: cytoliner-650-675.jpg, label: CytoLiner&trade; 650/675, em: 675}
+      - {image: cytoliner-680-710.jpg, label: CytoLiner&trade; 680/710, em: 710}
 
 sections:
   - type: portfolio

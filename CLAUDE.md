@@ -25,7 +25,7 @@ shared/team.yaml + team/   the Come say hi headshots, shared by every page
 ```
 
 - To change content, edit the event's `page.yaml`. To change how anything looks or behaves, edit `shared/` (and it changes on every page). Then run `python3 tools/build-pages.py` and commit the generated files too.
-- Sections in `page.yaml` are a list; each `type` maps to a component (`portfolio`, `offer`, `resources`, `merch`, `say-hi`, `ask-form`). Reorder, add or drop them per page. The hero has two visuals: `neurons` (SfN's neuron field and particle brain) and `photo`. The feature card media can be `wistia`, `swatches` or an image.
+- Sections in `page.yaml` are a list; each `type` maps to a component (`portfolio`, `offer`, `resources`, `merch`, `say-hi`, `ask-form`). Reorder, add or drop them per page. The hero has two visuals: `neurons` (SfN's neuron field and particle brain) and `photo`. The feature card media can be `wistia`, `swatches` (colors from each swatch's `em:`, see Dye colors below) or an image.
 - Page-specific data scripts are listed under `scripts:` (SfN's `hero-brain.js`). Images live in the event folder (paths relative to the generated page); shared images live in `shared/`. `hosted-images.json` next to a page swaps listed images for copies already hosted on learn.biotium.com.
 - A new event: copy a `page.yaml` into a new folder, change the content, add its HubSpot upload step to the workflow, build.
 - The deploy runs `tools/build-pages.py --check` and refuses to ship if any generated file is out of date.
@@ -34,6 +34,8 @@ Events:
 
 - `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 15-18, Booth 1106. Generates `QuietFieldVariant.dc.html`.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15, Booth 1216. Generates `design/Main.dc.html`.
+
+Dye colors: wherever a dye or stain is shown as a color (like the CytoLiner color picker), use Biotium's spectral color code in `shared/spectra-colors.yaml` (the same code as the cf-spectra-svg skill), matched by emission max. Give each swatch `em:` (nm) in `page.yaml`; the build turns it into the swatch colors. Don't hand-pick dye colors or use the brand colors for them.
 
 Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub.
 

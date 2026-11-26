@@ -1,0 +1,17 @@
+# Biotium spectral color code, matched by emission max (nm). Same code as the cf-spectra-svg skill.
+# Use it wherever a dye or stain is shown as a color on a page (e.g. the CytoLiner color picker):
+# give the swatch its emission max as `em:` in page.yaml and the build picks the color from here.
+# These are not the Biotium brand colors; don't swap in brand blue/green/red.
+bands:
+  - {name: Blue,        hex: '#4f81bd', em: [250, 450]}
+  - {name: Cyan,        hex: '#4babc6', em: [451, 496]}
+  - {name: Light Green, hex: '#00ff99', em: [497, 512]}
+  - {name: Green,       hex: '#00b04f', em: [513, 560]}
+  - {name: Dark Orange, hex: '#d27c35', em: [561, 563]}
+  - {name: Red,         hex: '#ff0000', em: [564, 577]}
+  - {name: Dark Red,    hex: '#cc0000', em: [578, 584]}
+  - {name: Deep Red,    hex: '#990033', em: [585, 620]}
+  - {name: Dark Pink,   hex: '#d60092', em: [621, 643]}
+  - {name: Pink,        hex: '#ff33cc', em: [644, 673]}
+  - {name: Pink-Purple, hex: '#cc00ff', em: [674, 701]}
+  - {name: Near-IR,     hex: '#6d6e71', em: [702, 1000]}

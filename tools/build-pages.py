@@ -30,8 +30,36 @@ def read(path):
         return f.read()
 
 
+SPECTRA = yaml.safe_load(read(os.path.join(SHARED, 'spectra-colors.yaml')))['bands']
+
+
+def spectral_hex(em):
+    """The Biotium spectral color for an emission max in nm (shared/spectra-colors.yaml)."""
+    for band in SPECTRA:
+        lo, hi = band['em']
+        if lo <= em <= hi:
+            return band['hex']
+    raise ValueError(f'no spectral color for emission {em} nm')
+
+
+def mix(hex_color, target, amount):
+    rgb = [int(hex_color[i:i + 2], 16) for i in (1, 3, 5)]
+    return '#' + ''.join(f'{round(c + (target - c) * amount):02X}' for c in rgb)
+
+
+def apply_spectra(content):
+    """Swatches that give an emission max (`em:`) get their colors from the spectral code:
+    a light tint, the code color itself, and a darker shade."""
+    media = (content.get('feature') or {}).get('media') or {}
+    for sw in media.get('swatches', []):
+        if 'em' in sw:
+            base = spectral_hex(sw['em']).upper()
+            sw['colors'] = [mix(base, 255, 0.55), base, mix(base, 0, 0.35)]
+
+
 def render(event_dir):
     content = yaml.safe_load(read(os.path.join(event_dir, 'page.yaml')))
+    apply_spectra(content)
     out_path = os.path.join(event_dir, content['output'])
     out_dir = os.path.dirname(out_path)
     scripts = []
