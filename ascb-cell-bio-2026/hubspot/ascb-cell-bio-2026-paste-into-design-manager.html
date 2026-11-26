@@ -453,14 +453,23 @@ label: Biotium – ASCB Cell Bio 2026 Landing Page
     /* Color picker: flat chips with the wavelength under each. The selected chip gets a ring in its own color and a dark label */
     /* Prompt above the color chips */
     .cytoliner-prompt { margin: var(--bt-s-6) 0 0 0; text-align: left; font-size: var(--bt-fs-xs); font-weight: 400; letter-spacing: 0.01em; color: var(--bt-text); }
-    /* One row, each chip centered in an equal share of the image width */
-    .bt-swatches { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); justify-items: center; margin-top: var(--bt-s-3); }
+    /* One row spanning the image width: first dot flush left (under the prompt), last flush right, even spacing */
+    .bt-swatches { display: flex; justify-content: space-between; align-items: flex-start; margin-top: var(--bt-s-3); }
+    /* Each chip is as wide as its dot, so the dots space evenly; the label hangs centered under the dot
+       (with a mouse, where one label shows at a time, the end labels line up with the outer edges instead) */
+    .bt-swatches .cytoliner-swatch { position: relative; min-width: 0; width: 26px; padding: 0 0 26px 0; }
+    .bt-swatches .cytoliner-nm { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    @media (hover: hover) and (pointer: fine) {
+      .bt-swatches .cytoliner-swatch:first-child .cytoliner-nm { left: 0; transform: none; }
+      .bt-swatches .cytoliner-swatch:last-child .cytoliner-nm { left: auto; right: 0; transform: none; }
+    }
     /* Phones: tighter chips and labels; the smallest screens stack them in rows of three */
     @media (max-width: 480px) {
-      .bt-swatches .cytoliner-swatch { min-width: 0; padding-left: 2px; padding-right: 2px; }
       .bt-swatches .cytoliner-nm { font-size: var(--bt-fs-2xs); letter-spacing: 0.01em; }
     }
-    @media (max-width: 360px) { .bt-swatches { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--bt-s-3); } }
+    @media (max-width: 360px) {
+      .bt-swatches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; row-gap: var(--bt-s-3); }
+    }
     /* Mouse and trackpad: labels only show for the chip under the pointer (or with keyboard focus); the photo's label names the selected dye. Touch screens keep every label, since they can't hover */
     @media (hover: hover) and (pointer: fine) {
       .cytoliner-nm { opacity: 0; transition: opacity 0.18s ease, color 0.18s ease; }
