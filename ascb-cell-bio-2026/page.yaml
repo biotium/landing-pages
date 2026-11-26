@@ -27,7 +27,7 @@ hero:
   background: hero-bg.jpg
   eyebrow: ASCB | EMBO Cell Bio 2026 &middot; Dec 12&ndash;15
   title: Bring us your toughest staining problem.
-  subtitle: Talk membranes, cytoskeleton and multiplexing with our PhD scientists, and find the right stains for your experiment. Not sales reps. Research partners.
+  subtitle: Talk membranes, cytoskeleton and multiplexing with our PhD scientists, and find the right stains for your experiment.
   cta: {label: Find us at Booth 1216, href: "https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;EventId=893&amp;MapItBoothID=1108038&amp;MapItBooth=1216&amp;MapID=1196"}
   media: {src: booth_cutout.webp, alt: The Biotium team at a trade show booth}
 
@@ -130,7 +130,7 @@ sections:
   - type: ask-form
     kicker: Ask a scientist
     title: Let our scientists do the searching
-    lead: Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.
+    lead: Not sales reps. Research partners. Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.
     placeholder: "Cell type or model, target, imaging method, and where you&rsquo;re stuck. Example: live-cell imaging of mitochondria in primary fibroblasts, need a brighter far-red stain."
     button: Ask our scientists
     # No hubspot_form yet: submissions open a pre-filled email to techsupport@biotium.com
