@@ -61,8 +61,18 @@ sections:
     title: Simplify cell biology research with innovative tools
     # Each card uses the hero image of the biotium.com page it links to
     cards:
+      - title: Membrane Stains
+        text: Lipophilic dyes and CytoLiner&trade; conjugates that label the plasma membrane, live or fixed.
+        image: cat-membrane-stains.jpg
+        href: https://biotium.com/technology/cellular-stains/cell-surface-stains/
+      # Cytoskeleton is core Cell Bio programming (actin dynamics, organelles and the cytoskeleton, motility and mechanics).
+      # No hero on its page, so the image is the ViaFluor mitotic spindle from the product page.
+      - title: Cytoskeletal Stains
+        text: ActinBrite&trade; phalloidin conjugates for stable F&#8209;actin staining and ViaFluor&reg; stains for live-cell microtubules.
+        image: cat-cytoskeletal-stains.jpg
+        href: https://biotium.com/products/cell-organelle-stains/cytoskeletal-stains/
       - title: Cellular Stains
-        text: Nuclear, membrane, and cytoskeleton stains for live and fixed cells, built for easy multiplexing.
+        text: Nuclear, mitochondria, lysosome, and lipid droplet stains for live and fixed cells, built for easy multiplexing.
         image: cat-cellular-stains.jpg
         href: https://biotium.com/technology/cellular-stains/
       - title: Biotium Choice Antibodies &amp; MiniMabs
