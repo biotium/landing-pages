@@ -285,8 +285,9 @@
   if (!img || !swatches.length) return;
   var nudged = false;
   function select(btn){
-    for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); }
+    for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); swatches[i].setAttribute('aria-pressed', 'false'); }
     btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
     img.setAttribute('src', btn.getAttribute('data-img'));
     img.setAttribute('alt', btn.getAttribute('data-label'));
     label.textContent = btn.getAttribute('data-label');

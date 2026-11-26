@@ -40,7 +40,7 @@
         </div>
         <div class="bt-swatches">
 {% for sw in f.media.swatches %}
-          <button class="cytoliner-swatch{% if loop.first %} is-active{% endif %}" data-img="{{ sw.image }}" data-label="{{ sw.label }}" aria-label="{{ sw.label }}" style="--glow:{{ sw.colors[1] }}B3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, {{ sw.colors[0] }} 0%, {{ sw.colors[1] }} 50%, {{ sw.colors[2] }} 100%);"></button>
+          <button type="button" class="cytoliner-swatch{% if loop.first %} is-active{% endif %}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-img="{{ sw.image }}" data-label="{{ sw.label }}" aria-label="{{ sw.label }}" style="--sw-hi:{{ sw.colors[0] }}; --sw:{{ sw.colors[1] }}; --sw-lo:{{ sw.colors[2] }};"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">{{ sw.label.split(' ')[-1] }}</span></button>
 {% endfor %}
         </div>
         <div class="cytoliner-nudge" id="cytolinerNudge">

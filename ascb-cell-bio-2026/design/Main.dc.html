@@ -447,10 +447,16 @@
     .bt-img-pill { position: absolute; left: var(--bt-s-4); bottom: var(--bt-s-4); padding: var(--bt-s-2) 14px; border-radius: var(--bt-r-pill); background: #11151b; border: 1px solid rgba(255,255,255,0.14); color: #ffffff; font-size: var(--bt-fs-2xs); font-weight: 800; letter-spacing: 0.02em; pointer-events: none; }
     .bt-cyto-frame { max-width: 400px; margin: 0 auto; }
     /* Color swatches that swap the feature image (CytoLiner) */
-    .bt-swatches { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: var(--bt-s-5); }
-    .cytoliner-swatch { -webkit-appearance: none; appearance: none; padding: 0; width: 24px; height: 24px; border-radius: var(--bt-r-pill); cursor: pointer; position: relative; flex: none; border: 1px solid rgba(17,17,17,0.18); transition: transform 0.18s ease, box-shadow 0.18s ease; --ring: rgba(255,255,255,0); box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -3px 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2), 0 0 7px 2px var(--ring), 0 0 13px 3px var(--ring); }
-    .cytoliner-swatch:hover, .cytoliner-swatch.is-active { transform: scale(1.25); --ring: var(--glow); }
-    .cytoliner-swatch:focus-visible { outline: 2px solid var(--bt-blue); outline-offset: 3px; }
+    /* Color picker: flat chips with the wavelength under each. The selected chip gets a ring in its own color and a dark label */
+    .bt-swatches { display: flex; align-items: flex-start; justify-content: center; gap: var(--bt-s-1); flex-wrap: wrap; margin-top: var(--bt-s-5); }
+    .cytoliner-swatch { -webkit-appearance: none; appearance: none; background: none; border: 0; margin: 0; padding: 6px 6px 4px; min-width: 60px; display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-2); font: inherit; cursor: pointer; border-radius: var(--bt-r-inner); }
+    .cytoliner-dot { width: 26px; height: 26px; border-radius: var(--bt-r-round); background: linear-gradient(150deg, var(--sw-hi) 0%, var(--sw) 55%, var(--sw-lo) 100%); box-shadow: inset 0 0 0 1px rgba(17,17,17,0.12); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+    .cytoliner-swatch:hover .cytoliner-dot { transform: scale(1.08); }
+    .cytoliner-swatch.is-active .cytoliner-dot { transform: none; box-shadow: inset 0 0 0 1px rgba(17,17,17,0.12), 0 0 0 3px var(--bt-alt), 0 0 0 5px var(--sw); }
+    .cytoliner-nm { font-size: var(--bt-fs-2xs); line-height: 1; font-weight: 700; letter-spacing: 0.01em; color: var(--bt-muted); font-variant-numeric: tabular-nums; transition: color 0.18s ease; }
+    .cytoliner-swatch:hover .cytoliner-nm, .cytoliner-swatch.is-active .cytoliner-nm { color: var(--bt-ink); }
+    .cytoliner-swatch:focus-visible { outline: 2px solid var(--bt-blue); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .cytoliner-dot, .cytoliner-nm { transition: none; } .cytoliner-swatch:hover .cytoliner-dot { transform: none; } }
     .cytoliner-nudge { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-2); margin-top: 14px; transition: opacity 0.4s ease; }
     .cytoliner-nudge svg { flex: none; animation: cytolinerNudgeBob 1.4s ease-in-out infinite; }
     @keyframes cytolinerNudgeBob { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
@@ -651,11 +657,11 @@
           <span id="cytolinerPill" class="bt-img-pill">CytoLiner&trade; 410/450</span>
         </div>
         <div class="bt-swatches">
-          <button class="cytoliner-swatch is-active" data-img="cytoliner-410-450.jpg" data-label="CytoLiner&trade; 410/450" aria-label="CytoLiner&trade; 410/450" style="--glow:#22D3EEB3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, #B2F0FA 0%, #22D3EE 50%, #0E8FA6 100%);"></button>
-          <button class="cytoliner-swatch" data-img="cytoliner-495-510.jpg" data-label="CytoLiner&trade; 495/510" aria-label="CytoLiner&trade; 495/510" style="--glow:#3DDC5BB3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, #B8F5C6 0%, #3DDC5B 50%, #219B3E 100%);"></button>
-          <button class="cytoliner-swatch" data-img="cytoliner-570-590.jpg" data-label="CytoLiner&trade; 570/590" aria-label="CytoLiner&trade; 570/590" style="--glow:#FF3B30B3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, #FFB3AD 0%, #FF3B30 50%, #C22019 100%);"></button>
-          <button class="cytoliner-swatch" data-img="cytoliner-650-675.jpg" data-label="CytoLiner&trade; 650/675" aria-label="CytoLiner&trade; 650/675" style="--glow:#E91E8CB3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, #F7A8D6 0%, #E91E8C 50%, #A01262 100%);"></button>
-          <button class="cytoliner-swatch" data-img="cytoliner-680-710.jpg" data-label="CytoLiner&trade; 680/710" aria-label="CytoLiner&trade; 680/710" style="--glow:#9B5DE5B3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, #D9C4F7 0%, #9B5DE5 50%, #6B34A8 100%);"></button>
+          <button type="button" class="cytoliner-swatch is-active" aria-pressed="true" data-img="cytoliner-410-450.jpg" data-label="CytoLiner&trade; 410/450" aria-label="CytoLiner&trade; 410/450" style="--sw-hi:#B2F0FA; --sw:#22D3EE; --sw-lo:#0E8FA6;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">410/450</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-495-510.jpg" data-label="CytoLiner&trade; 495/510" aria-label="CytoLiner&trade; 495/510" style="--sw-hi:#B8F5C6; --sw:#3DDC5B; --sw-lo:#219B3E;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">495/510</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-570-590.jpg" data-label="CytoLiner&trade; 570/590" aria-label="CytoLiner&trade; 570/590" style="--sw-hi:#FFB3AD; --sw:#FF3B30; --sw-lo:#C22019;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">570/590</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-650-675.jpg" data-label="CytoLiner&trade; 650/675" aria-label="CytoLiner&trade; 650/675" style="--sw-hi:#F7A8D6; --sw:#E91E8C; --sw-lo:#A01262;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">650/675</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-680-710.jpg" data-label="CytoLiner&trade; 680/710" aria-label="CytoLiner&trade; 680/710" style="--sw-hi:#D9C4F7; --sw:#9B5DE5; --sw-lo:#6B34A8;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">680/710</span></button>
         </div>
         <div class="cytoliner-nudge" id="cytolinerNudge">
           <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07z" fill="#6b6b6b"></path></svg>
@@ -1263,8 +1269,9 @@
   if (!img || !swatches.length) return;
   var nudged = false;
   function select(btn){
-    for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); }
+    for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); swatches[i].setAttribute('aria-pressed', 'false'); }
     btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
     img.setAttribute('src', btn.getAttribute('data-img'));
     img.setAttribute('alt', btn.getAttribute('data-label'));
     label.textContent = btn.getAttribute('data-label');
