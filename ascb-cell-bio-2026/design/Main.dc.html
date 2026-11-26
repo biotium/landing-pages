@@ -245,8 +245,6 @@
     /* Sticky header elevation on scroll — subtle glass */
     html { scroll-behavior: smooth; }
     html.reduced-motion { scroll-behavior: auto; }
-    /* Hero feature card (MiniMab, CytoLiner): sits on the hero visual, above the next section */
-    .bt-hero-feature { position: relative; z-index: 2; padding-bottom: var(--bt-s-20); }
     /* Any anchor target lands just below the sticky header */
     .bt-body-scope [id] { scroll-margin-top: calc(var(--bt-header-h) + var(--bt-s-4)); }
     .bt-btn-go { transition: transform 0.2s ease; }
@@ -395,7 +393,6 @@
       .bt-section--compact { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-18); }
       .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
       .bt-section.bt-say-hi { padding-top: 120px; padding-bottom: 128px; }
-      .bt-hero-feature { padding-bottom: 112px; }
     }
     #header-inner { align-items: center !important; }
     .bt-nav { display: flex; align-items: center; gap: var(--bt-s-1); margin: 0 auto; }
@@ -512,16 +509,16 @@
     /* Hero spacing now that the header no longer overlaps it */
     .bt-hero > .bt-wrap { padding-top: var(--bt-s-12); }
     .bt-hero-zone--photo .bt-hero > .bt-wrap { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(64px, 9.4vw, 120px); }
-    /* Photo hero: plain date line, no pill */
-    .bt-hero-zone--photo .bt-hero-badge { background: none; border: 0; padding: 0; }
-    .bt-hero-zone--photo .bt-hero-pin { display: none; }
-    .bt-hero-zone--photo .bt-hero-badge-text { font-size: var(--bt-fs-base); }
+    /* Hero date line: plain text, no pill */
+    .bt-hero-badge { background: none; border: 0; padding: 0; }
+    .bt-hero-pin { display: none; }
+    .bt-hero-badge-text { font-size: var(--bt-fs-base); }
     /* Booth cutout: no frame, anchored to the hero's bottom-right edge */
     .bt-hero-overlay { position: absolute; right: max(16px, calc((100% - 1160px) / 2 - 24px)); bottom: 0; width: min(52%, 660px); z-index: 1; line-height: 0; pointer-events: none; }
     .bt-hero-overlay img { width: 100%; height: auto; display: block; }
     @media (max-width: 1100px) { .bt-hero-overlay { width: 50%; } }
     @media (max-width: 900px) { .bt-hero-overlay { position: relative; right: auto; bottom: auto; width: min(100% - 48px, 480px); margin: calc(var(--bt-s-4) * -1) auto 0 auto; } }
-    /* Feature band (photo hero pages): copy beside the image on grey, no card */
+    /* Feature band: copy beside the media on grey, no card */
     .bt-feature-band .bt-feature-copy { max-width: 560px; }
     /* Come say hi: booth button with the note under it */
     .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-4); }
@@ -565,7 +562,7 @@
     </a>
   </div>
 </div>
-<!-- Hero zone: the hero visual runs behind the hero (and, on the neuron hero, the feature card) -->
+<!-- Hero zone: the hero visual (photo or neuron field) behind the hero copy -->
 <div class="bt-hero-zone bt-hero-zone--photo">
   <img class="bt-hero-photo" src="hero-bg.jpg" alt="">
   <div class="bt-hero-shade"></div>

@@ -1,6 +1,6 @@
 {% import '_icons.html' as i %}
 {% set photo = hero.visual == 'photo' %}
-<!-- Hero zone: the hero visual runs behind the hero (and, on the neuron hero, the feature card) -->
+<!-- Hero zone: the hero visual (photo or neuron field) behind the hero copy -->
 <div class="bt-hero-zone{% if photo %} bt-hero-zone--photo{% endif %}">
 {% if photo %}
   <img class="bt-hero-photo" src="{{ hero.background }}" alt="">
@@ -46,6 +46,5 @@
 {% endif %}
 </div>
 
-{% if not photo %}{% include 'feature.html' %}{% endif %}
 </div>
 

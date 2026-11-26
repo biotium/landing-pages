@@ -1,11 +1,10 @@
 {% import '_icons.html' as i %}
-{#- Featured product. On the neuron hero it is a card on the hero visual; on the photo hero it is its own grey band under the quick nav. -#}
-{% set band = hero.visual == 'photo' %}
+{#- Featured product: its own grey band right under the quick nav -#}
 {% set f = feature %}
 <!-- Featured product -->
-<div id="{{ f.id }}" class="{% if band %}bt-section bt-section--alt bt-feature-band{% else %}bt-hero-feature{% endif %}">
+<div id="{{ f.id }}" class="bt-section bt-section--alt bt-feature-band">
   <div class="bt-wrap">
-  <div class="{% if not band %}bt-surface bt-surface--raised bt-surface--lg {% endif %}bt-feature">
+  <div class="bt-feature">
     <div class="reveal bt-feature-copy" style="transition-delay:0ms;">
       <div class="bt-head">
         <span class="bt-kicker">{{ f.kicker }}</span>
