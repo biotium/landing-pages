@@ -68,7 +68,7 @@
     .bt-h2 { margin: 0; font-size: var(--bt-fs-h2); line-height: var(--bt-lh-tight); font-weight: 800; color: var(--bt-ink); }
     .bt-h2--lg { font-size: var(--bt-fs-h2-lg); }
     .bt-h3 { margin: 0 0 var(--bt-s-2) 0; font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 800; color: var(--bt-ink); }
-    .bt-hero-sub { margin: 0 0 var(--bt-s-8) 0; font-size: var(--bt-fs-xl); line-height: var(--bt-lh-body); font-weight: 600; color: var(--bt-text-strong); max-width: 480px; }
+    .bt-hero-sub { margin: 0 0 var(--bt-s-8) 0; font-size: var(--bt-fs-xl); line-height: var(--bt-lh-body); font-weight: 400; color: var(--bt-text-strong); max-width: 480px; }
     .bt-tagline { margin: 0; font-size: var(--bt-fs-lg); line-height: var(--bt-lh-snug); font-weight: 700; color: var(--bt-text-strong); }
     .bt-lead { margin: 0; font-size: var(--bt-fs-md); line-height: var(--bt-lh-relaxed); color: var(--bt-text); }
     .bt-note { margin: 0; font-size: var(--bt-fs-xs); line-height: var(--bt-lh-body); color: var(--bt-muted); }
@@ -209,7 +209,7 @@
     /* Hero type */
     .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); }
     .bt-hero-badge { margin-bottom: var(--bt-s-6); }
-    .bt-hero-badge-text { font-size: var(--bt-fs-xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); }
+    .bt-hero-badge-text { font-size: var(--bt-fs-xs); font-weight: 600; letter-spacing: 0.01em; color: var(--bt-text); }
     /* Footer */
     .bt-footer { background: var(--bt-dark); }
     .bt-footer > .bt-wrap { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-8); }
