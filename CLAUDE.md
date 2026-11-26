@@ -91,6 +91,13 @@ The SfN design canvas (https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp) is ret
 
 The Quiet Field page is also published as a standalone artifact: https://claude.ai/artifact/9jy6gG9UWHWavorH6RLzDK. When `QuietFieldVariant.dc.html` changes, ask whether to republish it.
 
+Event page artifacts (review copies of a built page, published from the generated `.dc.html` with images inlined) are named `<event abbreviation> <year> LP`, set in the page's `<title>`:
+
+- ASCB 2026 LP: https://claude.ai/artifact/4AEUsNqgnPsrY6WbUAWufn
+- SfN 2026 LP: https://claude.ai/artifact/9FFyRbx2a4gxPwBwSMnF1P
+
+When a page's build changes, republish its LP artifact to the same link.
+
 ## Git workflow
 
 - `main` is the default branch and holds the current version of every page.
