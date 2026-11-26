@@ -12,21 +12,22 @@ event:
   city: San Diego
   dates: Dec 12&ndash;15
   booth: 1216
-  floor_plan: https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;ID=122552&amp;sortMenu=103000
+  floor_plan: https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;EventId=893&amp;MapItBoothID=1108038&amp;MapItBooth=1216&amp;MapID=1196
 
 nav:
   - {href: "#cytoliner", label: CytoLiner&trade;}
-  - {href: "#portfolio", label: Portfolio}
+  - {href: "#products", label: Products}
   - {href: "#resources", label: Resources}
   - {href: "#merch", label: Win merch}
   - {href: "#come-say-hi", label: Visit us}
+  - {href: "#recommendations", label: Ask a scientist}
 
 hero:
   visual: photo
   background: hero-bg.jpg
-  title: Biotium at ASCB<br>Cell Bio 2026
+  title: Biotium at ASCB<br>Cell Bio 2026.
   subtitle: Not sales reps. Your research partners.
-  cta: {label: Meet CytoLiner&trade;, href: "#cytoliner"}
+  cta: {label: Find us at Booth 1216, href: "https://events.jspargo.com/CellBio26/Public/EventMap.aspx?shavailable=1&amp;EventId=893&amp;MapItBoothID=1108038&amp;MapItBooth=1216&amp;MapID=1196"}
   media: {src: booth_sm.jpg, alt: The Biotium team at a trade show booth, caption: From a previous show}
 
 feature:
@@ -50,33 +51,38 @@ feature:
 
 sections:
   - type: portfolio
-    kicker: Portfolio
+    id: products
+    kicker: Products
     title: Simplify cell biology research with innovative tools
     cards:
-      - title: Nuclear Stains
-        text: Bright, wash-free nuclear counterstains with minimal spectral overlap for easy multiplexing.
-        image: nuclear_sm.jpg
-        href: https://biotium.com/technology/cellular-stains/nuclear-stains/
-      - title: Membrane Stains
-        text: Lipophilic dyes and CytoLiner&trade; conjugates that label the plasma membrane, live or fixed.
+      - title: Cellular Stains
+        text: Nuclear, membrane, and cytoskeleton stains for live and fixed cells, built for easy multiplexing.
         image: membrane_sm.jpg
-        href: https://biotium.com/technology/cellular-stains/cell-surface-stains/
-      - title: Antibodies
-        text: Validated primary and secondary conjugates, ready to use straight off the shelf.
+        href: https://biotium.com/technology/cellular-stains/
+      - title: Biotium Choice Antibodies &amp; MiniMabs
+        text: Carefully curated, in-house validated primary antibodies, plus compact single-domain MiniMabs.
         image: antibody_sm.jpg
-        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/
-      - title: Flow Cytometry
-        text: Multiplex up to 15 samples in one tube with fixable viability dyes and bright conjugates.
-        image: flow_sm.jpg
-        href: https://biotium.com/technology/flow-cytometry-reagents/
-      - title: Exosome &amp; EV Detection
-        text: Detect and quantify exosomes and EVs without ultracentrifugation or bulky isolation kits.
-        image: evs_sm.jpg
-        href: https://biotium.com/technology/exosome-ev-labeling/
-      - title: Signal Amplification
-        text: Tyramide-based amplification that boosts faint signals while keeping resolution sharp.
+        href: https://biotium.com/primary-antibodies/
+      # Stand-in image until the CF Dyes art is ready
+      - title: CF&reg; Dyes &amp; Antibody Labeling Kits
+        text: Bright, photostable CF&reg; Dyes and Mix-n-Stain&trade; kits to label your own antibodies.
         image: tsa_sm.jpg
-        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/tyramide-signal-amplification/
+        href: https://biotium.com/technology/cf-dyes/
+      # Stand-in image until the secondary antibodies art is ready
+      - title: Secondary Antibodies
+        text: CF&reg; Dye-conjugated secondaries across host species and colors, ready for your multiplex panel.
+        image: nuclear_sm.jpg
+        href: https://biotium.com/technology/primary-secondary-antibody-conjugates/secondary-antibody-product-listings/
+      # Stand-in image until the TrueBlack art is ready
+      - title: TrueBlack&reg;
+        text: Quench lipofuscin autofluorescence and cut nonspecific background for cleaner IF and western blots.
+        image: evs_sm.jpg
+        href: https://biotium.com/technology/trueblack-fluorescence-background-reducing-reagents/
+      # Stand-in image until the cell viability art is ready
+      - title: Cell Viability
+        text: Live and dead stains plus apoptosis and necrosis assays for microscopy and flow cytometry.
+        image: flow_sm.jpg
+        href: https://biotium.com/technology/cell-viability-apoptosis/
 
   - type: resources
     kicker: Take it with you
@@ -103,7 +109,15 @@ sections:
   - type: say-hi
     title: Come say hi. Bring your questions.
     lead: Walk up any time. Talk to our team, PhD scientists included, and play a quick game for a chance to win prizes, maybe even a T-shirt. We want to hear what challenges you&rsquo;re running into in your research, whether we already have a solution or need to build one.
-    note: No forms. No sales pitch. Just come find us at Booth 1216.
+    note: Real scientists. Real answers. No sales pitch.
+
+  - type: ask-form
+    kicker: Ask a scientist
+    title: Let our scientists do the searching
+    lead: Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.
+    placeholder: "Cell type or model, target, imaging method, and where you&rsquo;re stuck. Example: live-cell imaging of mitochondria in primary fibroblasts, need a brighter far-red stain."
+    button: Ask our scientists
+    # No hubspot_form yet: submissions open a pre-filled email to techsupport@biotium.com
 
 footer:
   links:
