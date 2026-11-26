@@ -87,7 +87,7 @@ The CSS classes in `shared/landing-page.css` that the components use. New compon
 
 The ASCB design canvas has been deleted; its layout lives in `shared/` and its content in `ascb-cell-bio-2026/page.yaml`. Make ASCB changes here.
 
-The SfN design canvas (https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp) is retired now that Quiet Field is the pick. Don't sync it.
+The SfN design canvas has been deleted; SfN changes go through `sfn-2026/page.yaml` and `shared/`.
 
 Event page artifacts (review copies of a built page, published from the generated `.dc.html` with images inlined) are named `<event abbreviation> <year> LP`, set in the page's `<title>`:
 
