@@ -549,15 +549,16 @@ label: Biotium – SfN 2026 Landing Page
     .bt-hero-badge { background: none; border: 0; padding: 0; }
     .bt-hero-pin { display: none; }
     .bt-hero-badge-text { font-size: var(--bt-fs-base); }
-    /* Booth cutout: anchored to the bottom-right of the hero and nudged down so its bottom always runs off the edge (the zone clips it) */
-    .bt-hero-overlay { position: absolute; bottom: 0; right: max(-140px, calc((100% - 1160px) / 2 - 240px)); width: min(58%, 860px); z-index: 1; line-height: 0; pointer-events: none; transform: translateY(24%); }
-    .bt-hero-overlay img { width: 100%; height: auto; display: block; }
+    /* Booth cutout: anchored to the bottom-right of the hero; its bottom runs off the edge (the zone clips it) */
+    .bt-hero-overlay { position: absolute; bottom: 0; right: max(-140px, calc((100% - 1160px) / 2 - 240px)); width: min(58%, 860px); z-index: 1; line-height: 0; pointer-events: none; }
+    /* The image (not its wrapper, which the hero entrance animates) is pushed down so the bottom of the booth sits below the hero edge */
+    .bt-hero-overlay img { width: 100%; height: auto; display: block; transform: translateY(15%); }
     /* Photo hero: a narrower text column so the copy clears the cutout */
     @media (min-width: 901px) { .bt-hero-zone--photo .bt-hero-copy { max-width: 460px; } .bt-hero-zone--photo .bt-hero-sub { max-width: 440px; } }
     @media (min-width: 1240px) { .bt-hero-zone--photo .bt-hero-copy { max-width: 540px; } }
     @media (max-width: 1160px) { .bt-hero-overlay { right: -120px; width: 58%; } }
     /* Phones: full width under the copy, bottom clipped */
-    @media (max-width: 900px) { .bt-hero-overlay { position: relative; top: auto; right: auto; width: auto; max-width: 560px; height: min(72vw, 400px); overflow: hidden; margin: 0 auto; transform: none; } }
+    @media (max-width: 900px) { .bt-hero-overlay { position: relative; top: auto; right: auto; width: auto; max-width: 560px; height: min(72vw, 400px); overflow: hidden; margin: 0 auto; } .bt-hero-overlay img { transform: none; } }
     /* Feature band: copy beside the media on grey, no card */
     /* Offer row: button and learn-more link side by side; the note sits centered under the button */
     .bt-feature-actions { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: var(--bt-s-6); row-gap: var(--bt-s-2); }
