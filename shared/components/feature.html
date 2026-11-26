@@ -19,7 +19,7 @@
 {% endfor %}
       </ul>
 {% if f.offer %}
-      <!-- Optional offer: an outline button beside the learn-more link, with fine print under them -->
+      <!-- Optional offer: an outline button beside the learn-more link, with fine print centered under the button -->
       <div class="bt-feature-actions">
         <a href="{{ f.offer.href }}"{{ i.target(f.offer.href) }} class="bt-btn-outline">
           {{ f.offer.label }}
@@ -29,10 +29,10 @@
           <span class="bt-ul">{{ f.link.label }}</span>
           {{ i.arrow(14) }}
         </a>
-      </div>
 {% if f.offer.note %}
-      <p class="bt-note bt-feature-note">{{ f.offer.note }}</p>
+        <p class="bt-note bt-feature-note">{{ f.offer.note }}</p>
 {% endif %}
+      </div>
 {% else %}
       <a href="{{ f.link.href }}"{{ i.target(f.link.href) }} class="bt-link-arrow">
         <span class="bt-ul">{{ f.link.label }}</span>
