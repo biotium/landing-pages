@@ -280,18 +280,18 @@
 (function(){
   var img = document.getElementById('cytolinerImg');
   var label = document.getElementById('cytolinerPill');
-  var nudge = document.getElementById('cytolinerNudge');
+  var empty = document.getElementById('cytolinerEmpty');
   var swatches = document.querySelectorAll('.cytoliner-swatch');
   if (!img || !swatches.length) return;
-  var nudged = false;
   function select(btn){
     for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); swatches[i].setAttribute('aria-pressed', 'false'); }
     btn.classList.add('is-active');
     btn.setAttribute('aria-pressed', 'true');
-    img.setAttribute('src', btn.getAttribute('data-img'));
-    img.setAttribute('alt', btn.getAttribute('data-label'));
+    /* A color without an image yet shows the placeholder panel over the last image */
+    var src = btn.getAttribute('data-img');
+    if (empty) empty.hidden = !!src;
+    if (src) { img.setAttribute('src', src); img.setAttribute('alt', btn.getAttribute('data-label')); }
     label.textContent = btn.getAttribute('data-label');
-    if (!nudged) { nudged = true; nudge.style.opacity = '0'; }
   }
   for (var j = 0; j < swatches.length; j++) {
     (function(btn){

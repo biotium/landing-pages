@@ -448,9 +448,25 @@
     .bt-cyto-frame { max-width: 400px; margin: 0 auto; }
     /* Color swatches that swap the feature image (CytoLiner) */
     /* Color picker: flat chips with the wavelength under each. The selected chip gets a ring in its own color and a dark label */
-    /* One row, chips spread evenly across the image width */
-    .bt-swatches { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: nowrap; margin-top: var(--bt-s-6); }
-    @media (max-width: 360px) { .bt-swatches .cytoliner-nm { font-size: var(--bt-fs-2xs); letter-spacing: 0.01em; } }
+    /* Prompt above the color chips */
+    .cytoliner-prompt { margin: var(--bt-s-6) 0 0 0; text-align: center; font-size: var(--bt-fs-xs); font-weight: 800; letter-spacing: 0.02em; color: var(--bt-text); }
+    /* One row, each chip centered in an equal share of the image width */
+    .bt-swatches { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); justify-items: center; margin-top: var(--bt-s-3); }
+    /* Phones: tighter chips and labels; the smallest screens stack them in rows of three */
+    @media (max-width: 480px) {
+      .bt-swatches .cytoliner-swatch { min-width: 0; padding-left: 2px; padding-right: 2px; }
+      .bt-swatches .cytoliner-nm { font-size: var(--bt-fs-2xs); letter-spacing: 0.01em; }
+    }
+    @media (max-width: 360px) { .bt-swatches { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--bt-s-3); } }
+    /* Mouse and trackpad: labels only show for the chip under the pointer (or with keyboard focus); the photo's label names the selected dye. Touch screens keep every label, since they can't hover */
+    @media (hover: hover) and (pointer: fine) {
+      .cytoliner-nm { opacity: 0; transition: opacity 0.18s ease, color 0.18s ease; }
+      .cytoliner-swatch:hover .cytoliner-nm, .cytoliner-swatch:focus-visible .cytoliner-nm { opacity: 1; }
+    }
+    /* Placeholder for a color whose image isn't in yet */
+    .bt-cyto-empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #0b0d12; }
+    .bt-cyto-empty[hidden] { display: none; }
+    .bt-cyto-empty-t { font-size: var(--bt-fs-sm); font-weight: 700; color: var(--bt-on-dark); letter-spacing: 0.02em; }
     .cytoliner-swatch { -webkit-appearance: none; appearance: none; background: none; border: 0; margin: 0; padding: 6px 4px 4px; min-width: 52px; display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-3); font: inherit; cursor: pointer; border-radius: var(--bt-r-inner); }
     .cytoliner-dot { width: 26px; height: 26px; border-radius: var(--bt-r-round); background: linear-gradient(150deg, var(--sw-hi) 0%, var(--sw) 55%, var(--sw-lo) 100%); box-shadow: inset 0 0 0 1px rgba(17,17,17,0.12); transition: transform 0.18s ease, box-shadow 0.18s ease; }
     .cytoliner-swatch:hover .cytoliner-dot { transform: scale(1.08); }
@@ -459,11 +475,6 @@
     .cytoliner-swatch:hover .cytoliner-nm, .cytoliner-swatch.is-active .cytoliner-nm { color: var(--bt-ink); }
     .cytoliner-swatch:focus-visible { outline: 2px solid var(--bt-blue); outline-offset: 2px; }
     @media (prefers-reduced-motion: reduce) { .cytoliner-dot, .cytoliner-nm { transition: none; } .cytoliner-swatch:hover .cytoliner-dot { transform: none; } }
-    .cytoliner-nudge { display: flex; align-items: center; justify-content: center; gap: var(--bt-s-2); margin-top: var(--bt-s-4); transition: opacity 0.4s ease; }
-    .cytoliner-nudge svg { flex: none; animation: cytolinerNudgeBob 1.4s ease-in-out infinite; }
-    @keyframes cytolinerNudgeBob { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
-    @media (hover: none) { .cytoliner-nudge { display: none; } }
-    @media (prefers-reduced-motion: reduce) { .cytoliner-nudge svg { animation: none; } }
     @media (max-width: 900px) {
       .bt-hero-row { flex-direction: column; align-items: stretch; gap: var(--bt-s-10); }
       .bt-hero-media { max-width: 100%; }
@@ -483,7 +494,6 @@
     #header-logo, .bt-footer-brand > a { display: block; line-height: 0; }
     #header-logo svg { height: 32px; width: auto; display: block; }
     .bt-footer-brand > a svg { height: 28px; width: auto; display: block; }
-    .cytoliner-nudge .bt-note { font-weight: 600; }
 
     /* ===== Top header, quick nav bar, photo hero and feature band ===== */
     /* Top header: logo, tagline and (phones) the booth pill. It scrolls away; the quick nav sticks */
@@ -656,18 +666,17 @@
       <div class="bt-cyto-frame">
         <div class="bt-media">
           <img id="cytolinerImg" src="cytoliner-410-450.jpg" alt="CytoLiner&trade; 410/450">
+          <div id="cytolinerEmpty" class="bt-cyto-empty" hidden><span class="bt-cyto-empty-t">Image coming soon</span></div>
           <span id="cytolinerPill" class="bt-img-pill">CytoLiner&trade; 410/450</span>
         </div>
-        <div class="bt-swatches">
-          <button type="button" class="cytoliner-swatch is-active" aria-pressed="true" data-img="cytoliner-410-450.jpg" data-label="CytoLiner&trade; 410/450" aria-label="CytoLiner&trade; 410/450" style="--sw-hi:#B0C6E1; --sw:#4F81BD; --sw-lo:#33547B;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">410/450</span></button>
-          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-495-510.jpg" data-label="CytoLiner&trade; 495/510" aria-label="CytoLiner&trade; 495/510" style="--sw-hi:#8CFFD1; --sw:#00FF99; --sw-lo:#00A663;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">495/510</span></button>
-          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-570-590.jpg" data-label="CytoLiner&trade; 570/590" aria-label="CytoLiner&trade; 570/590" style="--sw-hi:#D18CA3; --sw:#990033; --sw-lo:#630021;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">570/590</span></button>
-          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-650-675.jpg" data-label="CytoLiner&trade; 650/675" aria-label="CytoLiner&trade; 650/675" style="--sw-hi:#E88CFF; --sw:#CC00FF; --sw-lo:#8500A6;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">650/675</span></button>
-          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-680-710.jpg" data-label="CytoLiner&trade; 680/710" aria-label="CytoLiner&trade; 680/710" style="--sw-hi:#BDBEBF; --sw:#6D6E71; --sw-lo:#474849;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">680/710</span></button>
-        </div>
-        <div class="cytoliner-nudge" id="cytolinerNudge">
-          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07z" fill="#6b6b6b"></path></svg>
-          <span class="bt-note">Hover a color to preview</span>
+        <p class="cytoliner-prompt" id="cytolinerPrompt">Choose your color</p>
+        <div class="bt-swatches" role="group" aria-labelledby="cytolinerPrompt">
+          <button type="button" class="cytoliner-swatch is-active" aria-pressed="true" data-img="cytoliner-410-450.jpg" data-label="CytoLiner&trade; 410/450" aria-label="CytoLiner&trade; 410/450" style="--sw-hi:#A1F6F3; --sw:#2EEBE4; --sw-lo:#1E9994;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">410/450</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-495-510.jpg" data-label="CytoLiner&trade; 495/510" aria-label="CytoLiner&trade; 495/510" style="--sw-hi:#A7F6A7; --sw:#3BEB3C; --sw-lo:#269927;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">495/510</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-570-590.jpg" data-label="CytoLiner&trade; 570/590" aria-label="CytoLiner&trade; 570/590" style="--sw-hi:#F69B9E; --sw:#EB2127; --sw-lo:#991519;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">570/590</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-650-675.jpg" data-label="CytoLiner&trade; 650/675" aria-label="CytoLiner&trade; 650/675" style="--sw-hi:#F696F6; --sw:#EB16EA; --sw-lo:#990E98;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">650/675</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-img="cytoliner-680-710.jpg" data-label="CytoLiner&trade; 680/710" aria-label="CytoLiner&trade; 680/710" style="--sw-hi:#D093F6; --sw:#960FEB; --sw-lo:#620A99;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">680/710</span></button>
+          <button type="button" class="cytoliner-swatch" aria-pressed="false" data-label="CytoLiner&trade; 785/815" aria-label="CytoLiner&trade; 785/815" style="--sw-hi:#BDBEBF; --sw:#6D6E71; --sw-lo:#474849;"><span class="cytoliner-dot" aria-hidden="true"></span><span class="cytoliner-nm" aria-hidden="true">785/815</span></button>
         </div>
       </div>
     </div>
@@ -1266,18 +1275,18 @@
 (function(){
   var img = document.getElementById('cytolinerImg');
   var label = document.getElementById('cytolinerPill');
-  var nudge = document.getElementById('cytolinerNudge');
+  var empty = document.getElementById('cytolinerEmpty');
   var swatches = document.querySelectorAll('.cytoliner-swatch');
   if (!img || !swatches.length) return;
-  var nudged = false;
   function select(btn){
     for (var i = 0; i < swatches.length; i++) { swatches[i].classList.remove('is-active'); swatches[i].setAttribute('aria-pressed', 'false'); }
     btn.classList.add('is-active');
     btn.setAttribute('aria-pressed', 'true');
-    img.setAttribute('src', btn.getAttribute('data-img'));
-    img.setAttribute('alt', btn.getAttribute('data-label'));
+    /* A color without an image yet shows the placeholder panel over the last image */
+    var src = btn.getAttribute('data-img');
+    if (empty) empty.hidden = !!src;
+    if (src) { img.setAttribute('src', src); img.setAttribute('alt', btn.getAttribute('data-label')); }
     label.textContent = btn.getAttribute('data-label');
-    if (!nudged) { nudged = true; nudge.style.opacity = '0'; }
   }
   for (var j = 0; j < swatches.length; j++) {
     (function(btn){

@@ -48,11 +48,12 @@ def mix(hex_color, target, amount):
 
 
 def apply_spectra(content):
-    """Swatches that give an emission max (`em:`) get their colors from the spectral code:
-    a light tint, the code color itself, and a darker shade."""
+    """Swatches that give an emission max (`em:`) and no `colors:` get their colors from the
+    spectral code: a light tint, the code color itself, and a darker shade. Explicit `colors:`
+    win (marketing pages match swatches to their false-color images)."""
     media = (content.get('feature') or {}).get('media') or {}
     for sw in media.get('swatches', []):
-        if 'em' in sw:
+        if 'em' in sw and 'colors' not in sw:
             base = spectral_hex(sw['em']).upper()
             sw['colors'] = [mix(base, 255, 0.55), base, mix(base, 0, 0.35)]
 

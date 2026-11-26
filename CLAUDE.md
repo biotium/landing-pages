@@ -35,7 +35,7 @@ Events:
 - `sfn-2026/`: Neuroscience 2026 (SfN), Washington, DC, Nov 15-18, Booth 1106. Generates `QuietFieldVariant.dc.html`.
 - `ascb-cell-bio-2026/`: ASCB Cell Bio 2026, San Diego, Dec 12-15, Booth 1216. Generates `design/Main.dc.html`.
 
-Dye colors: wherever a dye or stain is shown as a color (like the CytoLiner color picker), use Biotium's spectral color code in `shared/spectra-colors.yaml` (the same code as the cf-spectra-svg skill), matched by emission max. Give each swatch `em:` (nm) in `page.yaml`; the build turns it into the swatch colors. Don't hand-pick dye colors or use the brand colors for them.
+Dye colors: wherever a dye or stain is shown as a color, use Biotium's spectral color code in `shared/spectra-colors.yaml` (the same code as the cf-spectra-svg skill), matched by emission max: give each swatch `em:` (nm) in `page.yaml` and the build turns it into the swatch colors. Don't hand-pick dye colors or use the brand colors for them. One exception: on marketing pages (these landing pages), a swatch that is the key to a false-color image matches that image instead, so set `colors:` sampled from the image (light tint, image color, dark shade), keep `em:`, and add a comment saying why. Explicit `colors:` override `em:`.
 
 Pages are self-contained HTML: inline CSS and JS, Mulish from Google Fonts, Biotium blue `#0084FF` (links `#0070d9`, the lightest step of the brand hue that passes WCAG AA as text), green `#39B54A`, red `#ED1C24`. Nothing here is served from GitHub.
 
