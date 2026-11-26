@@ -65,6 +65,7 @@
     .bt-section { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-20); background: #ffffff; }
     .bt-section--alt { background: var(--bt-alt); }
     .bt-section--blue { background: var(--bt-blue); }
+    .bt-section--tint { background: var(--bt-tint); }
     .bt-section--compact { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-14); }
     .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
     .bt-section.bt-section--flush-top { padding-top: 0; }
@@ -72,7 +73,8 @@
     .bt-head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--bt-s-3); }
     .bt-head--center { align-items: center; text-align: center; max-width: 680px; margin: 0 auto var(--bt-gap-block) auto; }
     .bt-head--center:last-child { margin-bottom: 0; }
-    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: var(--bt-tint); color: var(--bt-blue-dark); font-size: var(--bt-fs-xs); font-weight: 800; padding: 6px 14px; border-radius: var(--bt-r-pill); }
+    /* Kicker: a text eyebrow above the headline (no pill) */
+    .bt-kicker { display: block; flex: none; color: var(--bt-blue-dark); font-size: var(--bt-fs-sm); line-height: var(--bt-lh-snug); font-weight: 800; }
     /* Type roles */
     .bt-h1 { margin: 0 0 var(--bt-s-6) 0; font-size: var(--bt-fs-h1); line-height: var(--bt-lh-display); font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
     .bt-h2 { margin: 0; font-size: var(--bt-fs-h2); line-height: var(--bt-lh-tight); font-weight: 800; color: var(--bt-ink); }
@@ -89,7 +91,6 @@
     .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
     /* White on brand blue only passes at WCAG large-text sizes, so leads on blue go 20px bold */
     .bt-section--blue .bt-lead { font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 700; }
-    .bt-section--blue .bt-kicker { background: #ffffff; }
     .bt-section--blue .bt-surface--raised { box-shadow: var(--bt-shadow-on-blue); }
     /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
     .bt-surface { background: #ffffff; border: 1px solid var(--bt-line); border-radius: var(--bt-r-card); }
@@ -170,7 +171,9 @@
     .bt-res-row { display: flex; gap: var(--bt-gutter); align-items: stretch; flex-wrap: wrap; }
     .bt-cat-card { display: flex; align-items: center; gap: var(--bt-s-5); padding: var(--bt-pad-card); }
     .bt-cat-body { flex: 1 1 auto; min-width: 0; }
-    .bt-res-card { flex: 1 1 260px; padding: var(--bt-pad-card); }
+    .bt-res-card { flex: 1 1 260px; padding: var(--bt-pad-card); display: flex; flex-direction: column; }
+    /* Download buttons sit on the card floor so they line up across the row */
+    .bt-res-card .bt-btn-outline { margin-top: auto; align-self: flex-start; }
     .bt-res-card .bt-card-desc { margin-bottom: var(--bt-s-6); }
     .bt-choice-badge { position: relative; display: inline-flex; vertical-align: middle; cursor: pointer; }
     .bt-choice-tip {
@@ -216,7 +219,7 @@
 
 
     /* Hero type */
-    .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); margin-top: -59px; }
+    .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); }
     .bt-hero-badge { margin-bottom: var(--bt-s-6); }
     .bt-hero-badge-text { font-size: var(--bt-fs-xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); }
     /* Footer */
@@ -307,23 +310,12 @@
     html.reduced-motion #site-header.is-scrolled { background: #ffffff; backdrop-filter: none; -webkit-backdrop-filter: none; }
     #header-logo { transform: none; }
 
-    /* Sticky event pill: crossfades in over the tagline once scrolled (both occupy the same grid cell) */
-    .bt-header-right { position: relative; display: grid; align-items: center; justify-items: end; }
-    .bt-header-tagline { grid-area: 1 / 1; font-size: var(--bt-fs-xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
-    .bt-header-pill { grid-area: 1 / 1; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .bt-header-pill-icon { position: relative; display: inline-flex; width: 11px; height: 11px; flex: none; }
-    .bt-header-pill-icon svg { display: block; width: 100%; height: 100%; }
-    .bt-header-pill-text { font-size: var(--bt-fs-2xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); white-space: nowrap; line-height: var(--bt-lh-snug); }
-    #site-header.is-scrolled .bt-header-tagline { opacity: 0; pointer-events: none; }
-    #site-header.is-scrolled .bt-header-pill { opacity: 1; pointer-events: auto; }
-    html.reduced-motion .bt-header-tagline,
-    html.reduced-motion .bt-header-pill { transition: none !important; }
 
     /* Hero network canvas — ambient neuron field, quiet on the left, dense on the right; not interactive, so touches scroll the page normally */
     #hero-network { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
 
     /* Hero brain — decorative overlay on top of the neuron field, anchored to the hero's right and bottom edges so it rises out of the next section; on mobile it drops into flow, centered under the hero copy and still sitting on the bottom edge */
-    .bt-hero-brain-col { position: absolute; top: 59px; right: 0; bottom: 0; width: 50%; max-width: 760px; pointer-events: none; }
+    .bt-hero-brain-col { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; max-width: 760px; pointer-events: none; }
     #hero-brain { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     /* On touch screens the brain breathes slightly between taps (compositor-only, no redraw) */
     @keyframes btBrainBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
@@ -387,22 +379,12 @@
           rgba(247,247,247,0) 95%) !important;
       }
     }
-    @media (max-width: 600px) {
-      .bt-header-tagline { display: none !important; }
-    }
     @media (max-width: 560px) {
       .bt-cat-grid { grid-template-columns: minmax(0,1fr) !important; }
-      .bt-header-pill { padding: var(--bt-s-1) 10px; gap: var(--bt-s-1); }
-      .bt-header-pill-text { font-size: 9.5px; }
-      /* Scrolled pill on phones: drop the city so it stays on one line */
-      .bt-header-pill-city { display: none; }
       /* Portfolio cards: free up width for the title and sharpen title/body contrast */
       .bt-cat-grid .bt-card { gap: var(--bt-s-3) !important; }
       .bt-cat-grid .bt-icon-box { width: 64px !important; height: 64px !important; }
       .bt-cat-grid .bt-icon-box svg { width: 26px !important; height: 26px !important; }
-    }
-    @media (max-width: 340px) {
-      .bt-header-pill-text { font-size: 9px; }
     }
     /* Section nav in the sticky header, and the roomier desktop rhythm */
     .bt-body-scope { --bt-header-h: 61px; }
@@ -424,7 +406,6 @@
     .bt-nav a.is-active::after { transform: scaleX(1); }
     /* Mid widths: the tagline steps aside so the links fit */
     @media (max-width: 1180px) and (min-width: 901px) {
-      .bt-header-tagline { display: none !important; }
       .bt-nav a { padding: var(--bt-s-2) 10px; }
     }
     /* Phones and tablets: the links become a swipeable chip row under the logo */
@@ -498,6 +479,58 @@
     #header-logo svg { height: 32px; width: auto; display: block; }
     .bt-footer-brand > a svg { height: 28px; width: auto; display: block; }
     .cytoliner-nudge .bt-note { font-weight: 600; }
+
+    /* ===== Top header, quick nav bar, photo hero and feature band ===== */
+    /* Top header: logo, tagline and (phones) the booth pill. It scrolls away; the quick nav sticks */
+    #top-header { position: relative; z-index: 101; background: #ffffff; border-bottom: 1px solid var(--bt-line); }
+    #top-header #header-inner { align-items: flex-end !important; }
+    .bt-tagline-top { font-size: var(--bt-fs-2xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; }
+    .bt-booth-pill--top { display: none; align-self: center; }
+    /* Quick nav bar under the hero: section links left, booth pill right */
+    .bt-body-scope { --bt-header-h: 56px; }
+    #site-header { border-top: 1px solid var(--bt-line); border-bottom: 1px solid var(--bt-line); }
+    .bt-bar-inner { display: grid; grid-template-columns: 1fr auto; align-items: center; padding-top: 6px; padding-bottom: 6px; }
+    .bt-bar-inner .bt-booth-pill { justify-self: end; }
+    .bt-bar-inner .bt-nav { justify-content: flex-start; gap: var(--bt-s-2); margin: 0 0 0 calc(var(--bt-s-4) * -1); }
+    .bt-bar-inner .bt-nav a { padding: var(--bt-s-2) var(--bt-s-4); }
+    .bt-bar-inner .bt-nav a::after { left: var(--bt-s-4); right: var(--bt-s-4); }
+    .bt-nav a.is-active { color: var(--bt-link); }
+    @media (max-width: 1180px) and (min-width: 901px) {
+      .bt-bar-inner .bt-nav { gap: var(--bt-s-1); margin-left: calc(var(--bt-s-3) * -1); }
+      .bt-bar-inner .bt-nav a { padding: var(--bt-s-2) var(--bt-s-3); }
+      .bt-bar-inner .bt-nav a::after { left: var(--bt-s-3); right: var(--bt-s-3); }
+    }
+    /* Phones: the booth pill moves up to the top header; the bar becomes a swipeable chip row that is always visible */
+    @media (max-width: 900px) {
+      .bt-body-scope { --bt-header-h: 52px; }
+      .bt-tagline-top, .bt-booth-pill--bar { display: none; }
+      .bt-booth-pill--top { display: inline-flex; }
+      .bt-bar-inner { display: block; padding-top: 0; padding-bottom: 0; }
+      .bt-bar-inner .bt-nav { position: relative; margin: 0 -24px !important; padding: var(--bt-s-2) 24px; scroll-padding-inline: 24px; gap: var(--bt-s-2); opacity: 1; transform: none; pointer-events: auto; background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .bt-bar-inner .bt-nav a { padding: 6px 14px; }
+    }
+    /* Hero spacing now that the header no longer overlaps it */
+    .bt-hero > .bt-wrap { padding-top: var(--bt-s-12); }
+    .bt-hero-zone--photo .bt-hero > .bt-wrap { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(64px, 9.4vw, 120px); }
+    /* Photo hero: plain date line, no pill */
+    .bt-hero-zone--photo .bt-hero-badge { background: none; border: 0; padding: 0; }
+    .bt-hero-zone--photo .bt-hero-pin { display: none; }
+    .bt-hero-zone--photo .bt-hero-badge-text { font-size: var(--bt-fs-base); }
+    /* Booth cutout: no frame, anchored to the hero's bottom-right edge */
+    .bt-hero-overlay { position: absolute; right: max(16px, calc((100% - 1160px) / 2 - 24px)); bottom: 0; width: min(52%, 660px); z-index: 1; line-height: 0; pointer-events: none; }
+    .bt-hero-overlay img { width: 100%; height: auto; display: block; }
+    @media (max-width: 1100px) { .bt-hero-overlay { width: 50%; } }
+    @media (max-width: 900px) { .bt-hero-overlay { position: relative; right: auto; bottom: auto; width: min(100% - 48px, 480px); margin: calc(var(--bt-s-4) * -1) auto 0 auto; } }
+    /* Feature band (photo hero pages): copy beside the image on grey, no card */
+    .bt-feature-band .bt-feature-copy { max-width: 560px; }
+    /* Come say hi: booth button with the note under it */
+    .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-4); }
+    /* Link cards: the title turns link blue on hover; resource buttons fill in when their card is hovered */
+    .bt-card-title { transition: color 0.2s ease; }
+    .bt-card:hover .bt-card-title { color: var(--bt-link); }
+    .bt-res-card:hover .bt-btn-outline { background: #0062be; border-color: #0062be; color: #ffffff; }
+    /* On the tint band, links use the dark brand blue: #0070d9 is 4.3:1 there, under AA for small text */
+    .bt-section--tint .bt-note a, .bt-section--tint .bt-a { color: var(--bt-blue-dark); }
   </style>
 </helmet>
 <div class="bt-body-scope">
@@ -507,8 +540,8 @@
 <!-- Announcement bar -->
 <div class="bt-promo-bar"><a href="#neuro-sale"><span><strong>30% off</strong> neuroscience tools through Dec 31.</span> <span class="bt-ul">Shop the sale</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></a></div>
 
-<!-- Header: logo, section links, booth pill -->
-<div id="site-header">
+<!-- Top header: logo, tagline, and (phones only) the booth pill -->
+<div id="top-header">
   <div id="header-inner" class="bt-wrap">
     <a id="header-logo" href="https://biotium.com" aria-label="Biotium home">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 189.28">
@@ -528,22 +561,14 @@
   <path d="M498.12,118.36c-1.25-3.29-2.96-5.94-5.11-7.92s-4.66-3.44-7.5-4.36c-2.84-.9-5.8-1.36-8.86-1.36-3.98,0-7.48.71-10.49,2.14-3.01,1.42-5.99,3.72-8.95,6.9-2.16-3.29-4.6-5.62-7.33-6.98-2.73-1.37-6.53-2.05-11.42-2.05-4.21,0-7.73.8-10.57,2.39-2.84,1.6-5.57,3.87-8.19,6.83l-1.7-7.16h-22.85v80.12h25.58v-48.25c0-3.4.65-6.02,1.96-7.84,1.3-1.82,3.09-2.72,5.37-2.72.79,0,1.59.08,2.39.25.79.17,1.53.57,2.21,1.19.69.62,1.22,1.54,1.62,2.73.4,1.19.6,2.8.6,4.86v49.78h25.57v-49.26c0-3.07.62-5.42,1.87-7.08,1.26-1.65,3.01-2.47,5.29-2.47,1.71,0,3.27.51,4.69,1.53,1.42,1.03,2.13,3.52,2.13,7.51v49.78h25.57v-56.42c0-4.77-.63-8.81-1.88-12.11Z"/>
 </svg>
     </a>
-    <nav class="bt-nav" aria-label="Page sections">
-      <a href="#minimab">MiniMab&trade;</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#neuro-sale">Sale</a>
-      <a href="#resources">Resources</a>
-      <a href="#come-say-hi">Visit us</a>
-      <a href="#recommendations">Ask a scientist</a>
-    </nav>
-    <a class="bt-booth-pill" href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" aria-label="Booth 1106, open the SfN 2026 floor plan">
+    <span class="bt-tagline-top">Glowing Products for Science&trade;</span>
+    <a class="bt-booth-pill bt-booth-pill--top" href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" aria-label="Booth 1106, open the SfN 2026 floor plan">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="currentColor"/><circle cx="12" cy="9" r="2.7" fill="#ffffff"/></svg>
       <span>Booth 1106</span>
     </a>
   </div>
 </div>
-
-<!-- Hero zone: the hero visual runs behind the hero and the feature card -->
+<!-- Hero zone: the hero visual runs behind the hero (and, on the neuron hero, the feature card) -->
 <div class="bt-hero-zone">
   <canvas id="hero-network"></canvas>
 <!-- Hero -->
@@ -573,7 +598,7 @@
   </div>
 </div>
 
-<!-- Featured product: a card on the hero visual -->
+<!-- Featured product -->
 <div id="minimab" class="bt-hero-feature">
   <div class="bt-wrap">
   <div class="bt-surface bt-surface--raised bt-surface--lg bt-feature">
@@ -618,6 +643,23 @@
 </div>
 </div>
 
+<!-- Quick nav: sits under the hero and sticks to the top once you scroll past it -->
+<div id="site-header">
+  <div class="bt-wrap bt-bar-inner">
+    <nav class="bt-nav" aria-label="Page sections">
+      <a href="#minimab">MiniMab&trade;</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#neuro-sale">Sale</a>
+      <a href="#resources">Resources</a>
+      <a href="#come-say-hi">Visit us</a>
+      <a href="#recommendations">Ask a scientist</a>
+    </nav>
+    <a class="bt-booth-pill bt-booth-pill--bar" href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" aria-label="Booth 1106, open the SfN 2026 floor plan">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 5.53 10.19 6.39 10.93a.94.94 0 0 0 1.22 0C13.47 19.19 19 14.25 19 9c0-3.87-3.13-7-7-7Z" fill="currentColor"/><circle cx="12" cy="9" r="2.7" fill="#ffffff"/></svg>
+      <span>Booth 1106</span>
+    </a>
+  </div>
+</div>
 <!-- Portfolio: product category link cards -->
 <div id="portfolio" class="bt-section bt-section--join-next">
   <div class="bt-wrap">
@@ -816,37 +858,37 @@
 <!-- Come say hi: the team, the booth, the floor plan -->
 <div id="come-say-hi" class="bt-section bt-section--alt bt-say-hi">
   <div class="bt-team-float" aria-hidden="true">
-    <div class="bt-face" style="--x:-366px; --y:30%; --s:64px; --f:5.2s; --d:0ms; --bg:#E9F3FF; --fg:#8DBDF0;"><div class="bt-face-in"><img src="../shared/team/face-1.webp" alt="" width="64" height="64" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:384px; --y:28%; --s:80px; --f:6.1s; --d:90ms; --bg:#EBF7ED; --fg:#8FCF99;"><div class="bt-face-in"><img src="../shared/team/face-2.webp" alt="" width="80" height="80" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:-396px; --y:72%; --s:88px; --f:6.8s; --d:180ms; --bg:#FDECEC; --fg:#F0A2A5;"><div class="bt-face-in"><img src="../shared/team/face-3.webp" alt="" width="88" height="88" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:440px; --y:68%; --s:56px; --f:5.6s; --d:270ms; --bg:#EEF0F3; --fg:#B5BCC6;"><div class="bt-face-in"><img src="../shared/team/face-4.webp" alt="" width="56" height="56" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:-452px; --y:18%; --s:58px; --f:4.9s; --d:360ms; --bg:#E9F3FF; --fg:#8DBDF0;"><div class="bt-face-in"><img src="../shared/team/face-5.webp" alt="" width="58" height="58" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:370px; --y:80%; --s:62px; --f:6.4s; --d:450ms; --bg:#EBF7ED; --fg:#8FCF99;"><div class="bt-face-in"><img src="../shared/team/face-6.webp" alt="" width="62" height="62" loading="lazy"></div></div>
-    <div class="bt-face" style="--x:470px; --y:16%; --s:54px; --f:5.3s; --d:630ms; --bg:#EEF0F3; --fg:#B5BCC6;"><div class="bt-face-in"><img src="../shared/team/face-7.webp" alt="" width="54" height="54" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:-450px; --y:20%; --s:58px; --f:4.9s; --d:0ms; --bg:#E9F3FF; --fg:#8DBDF0;"><div class="bt-face-in"><img src="../shared/team/face-5.webp" alt="" width="58" height="58" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:460px; --y:22%; --s:54px; --f:5.3s; --d:90ms; --bg:#EEF0F3; --fg:#B5BCC6;"><div class="bt-face-in"><img src="../shared/team/face-7.webp" alt="" width="54" height="54" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:-372px; --y:48%; --s:64px; --f:5.2s; --d:180ms; --bg:#E9F3FF; --fg:#8DBDF0;"><div class="bt-face-in"><img src="../shared/team/face-1.webp" alt="" width="64" height="64" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:390px; --y:50%; --s:80px; --f:6.1s; --d:270ms; --bg:#EBF7ED; --fg:#8FCF99;"><div class="bt-face-in"><img src="../shared/team/face-2.webp" alt="" width="80" height="80" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:-420px; --y:78%; --s:88px; --f:6.8s; --d:360ms; --bg:#FDECEC; --fg:#F0A2A5;"><div class="bt-face-in"><img src="../shared/team/face-3.webp" alt="" width="88" height="88" loading="lazy"></div></div>
+    <div class="bt-face" style="--x:446px; --y:78%; --s:56px; --f:5.6s; --d:450ms; --bg:#EEF0F3; --fg:#B5BCC6;"><div class="bt-face-in"><img src="../shared/team/face-4.webp" alt="" width="56" height="56" loading="lazy"></div></div>
   </div>
   <div class="reveal bt-wrap" style="transition-delay:0ms;">
     <div class="bt-head bt-head--center">
-      <span class="bt-kicker">Booth 1106</span>
       <h2 class="bt-h2">Come say hi. Bring your questions.</h2>
       <p class="bt-lead">Walk up any time. Talk to our team, PhD scientists included, about MiniMab&trade;, CF&reg; Dyes for <em>in vivo</em> imaging, neuronal probes, and optimizing your experimental workflow.</p>
-      <p class="bt-note">Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.</p>
-      <a href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" class="bt-link-arrow">
-        <span class="bt-ul">Find Booth 1106 on the floor plan</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-      </a>
+      <div class="bt-say-hi-actions">
+        <a href="https://s19.a2zinc.net/clients/SfN/sfn26/Public/EventMap.aspx?EventId=5&amp;MapItBoothID=111687&amp;MapItBooth=1106&amp;MapID=12" target="_blank" rel="noopener" class="bt-btn-primary">
+          Find us at Booth 1106
+          <svg class="bt-btn-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </a>
+        <p class="bt-note">Real scientists. Real answers. No sales pitch. Just come find us at Booth 1106.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Ask a scientist: request form that goes to tech support through HubSpot -->
-<div id="recommendations" class="bt-section bt-section--blue">
+<div id="recommendations" class="bt-section bt-section--tint">
   <div class="reveal bt-wrap" style="transition-delay:0ms;">
     <div class="bt-head bt-head--center">
       <span class="bt-kicker">Ask a scientist</span>
       <h2 class="bt-h2">Let our scientists do the searching</h2>
       <p class="bt-lead">Our support scientists will review what you&rsquo;re working on and send you personalized product and protocol picks.</p>
     </div>
-    <div class="bt-rec-card bt-surface bt-surface--raised bt-surface--lg" id="bt-rec-card">
+    <div class="bt-rec-card" id="bt-rec-card">
       <form id="bt-rec-form" novalidate data-hs-do-not-collect="true">
         <div class="bt-rec-grid">
           <div class="bt-rec-field">

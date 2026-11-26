@@ -13,7 +13,7 @@ Every landing page is assembled from shared components; only content differs bet
 
 ```
 <event>/page.yaml          content only: copy, links, images, event details, which sections to show
-shared/components/*.html   markup, one component per piece (header, hero, feature card, portfolio, offer,
+shared/components/*.html   markup, one component per piece (header, quick nav, hero, feature, portfolio, offer,
                            resources, merch, say-hi, ask-form, footer, promo bar, icons, logos)
 shared/landing-page.css    all styling (tokens, components, buttons, hero variants)
 shared/landing-page.js     all shared behavior (progress bar, header, reveals, nav, faces, swatches, neuron field)
@@ -74,9 +74,10 @@ The CSS classes in `shared/landing-page.css` that the components use. New compon
   - Spacing: 4px grid, `--bt-s-1` 4 through `--bt-s-20` 80, plus `--bt-gap-block` 40, `--bt-gutter` 24, `--bt-pad-card` 24, `--bt-pad-card-lg` 48 (24 on phones).
   - Radius: `--bt-r-sm` 6, `--bt-r-inner` 12, `--bt-r-card` 16, `--bt-r-pill`, `--bt-r-round`.
   - Elevation: `--bt-shadow`, `--bt-shadow-hover`, `--bt-shadow-float`, `--bt-shadow-on-blue`, `--bt-focus-ring`.
-- **Header**: logo, then `.bt-nav` section links (#minimab, #portfolio, #neuro-sale, #resources, #come-say-hi, #recommendations) that highlight the section in view, then the `.bt-booth-pill` (Booth 1106, opens the floor plan). On phones the header is one slim row and the links appear as a swipeable chip row under it once the hero has scrolled away (or when a chip gets keyboard focus). `--bt-header-h` (61px, 114px on phones) sets where anchor jumps land, so update it if the header height changes.
-- **Section**: `.bt-section` (72/80 padding; 104/112 on desktop) with `--alt` (grey), `--blue`, `--compact`, `--join-next`, `--flush-top`.
-- **Head**: `.bt-head` (kicker, `.bt-h2`, optional `.bt-lead`, 12px apart); `.bt-head--center` for centered section heads. `.bt-h2--lg` only inside feature cards.
+- **Header**: two parts. `header.html` is the top header (logo, "Glowing Products for Science™" tagline; on phones the booth pill sits here instead) and scrolls away. `quick-nav.html` is the `.bt-nav` bar of section links plus the `.bt-booth-pill` (opens the floor plan); it sits right under the hero zone and sticks to the top once you scroll past it. Links highlight the section in view; on phones they are an always-visible swipeable chip row. `--bt-header-h` (56px, 52px on phones) sets where anchor jumps land, so update it if the bar height changes.
+- **Feature**: `feature.html`. On the neuron hero it is a raised card on the hero visual (inside the hero zone, above the quick nav); on the photo hero it is its own grey band (`.bt-feature-band`) right under the quick nav. The photo hero's media is an unframed cutout (`.bt-hero-overlay`) on the hero's bottom-right edge.
+- **Section**: `.bt-section` (72/80 padding; 104/112 on desktop) with `--alt` (grey), `--blue`, `--tint` (light brand blue, used by Ask a scientist; links on it use `--bt-blue-dark`), `--compact`, `--join-next`, `--flush-top`.
+- **Head**: `.bt-head` (kicker, `.bt-h2`, optional `.bt-lead`, 12px apart; the kicker is a dark-blue text eyebrow, not a pill); `.bt-head--center` for centered section heads. `.bt-h2--lg` only inside feature cards.
 - **Surface**: `.bt-surface` (white, hairline, 16px corners), `--raised` adds the shadow, `--lg` 48px padding. `.bt-panel` is the grey inset; `.bt-media` frames video or images.
 - **Feature card**: `.bt-surface--raised.bt-surface--lg.bt-feature` with `.bt-feature-copy` plus `.bt-feature-media` or a panel (MiniMab, sale).
 - **Link cards**: `.bt-card.bt-surface` plus `.bt-cat-card` (portfolio row) or `.bt-res-card` (resource), with `.bt-card-title`, `.bt-card-desc`, `.bt-icon-box--lg` / `--sm`, `.bt-card-go` arrow.

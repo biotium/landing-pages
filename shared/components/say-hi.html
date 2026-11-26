@@ -8,14 +8,15 @@
   </div>
   <div class="reveal bt-wrap" style="transition-delay:0ms;">
     <div class="bt-head bt-head--center">
-      <span class="bt-kicker">Booth {{ event.booth }}</span>
       <h2 class="bt-h2">{{ section.title }}</h2>
       <p class="bt-lead">{{ section.lead }}</p>
-      <p class="bt-note">{{ section.note }}</p>
-      <a href="{{ event.floor_plan }}" target="_blank" rel="noopener" class="bt-link-arrow">
-        <span class="bt-ul">Find Booth {{ event.booth }} on the floor plan</span>
-        {{ i.arrow(14) }}
-      </a>
+      <div class="bt-say-hi-actions">
+        <a href="{{ event.floor_plan }}" target="_blank" rel="noopener" class="bt-btn-primary">
+          Find us at Booth {{ event.booth }}
+          {{ i.arrow(16, 'bt-btn-go') }}
+        </a>
+        <p class="bt-note">{{ section.note }}</p>
+      </div>
     </div>
   </div>
 </div>

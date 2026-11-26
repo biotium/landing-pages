@@ -22,6 +22,8 @@
 {% if promo_bar %}{% include 'promo-bar.html' %}{% endif %}
 {% include 'header.html' %}
 {% include 'hero.html' %}
+{% include 'quick-nav.html' %}
+{% if hero.visual == 'photo' %}{% include 'feature.html' %}{% endif %}
 {% for section in sections %}
 {% include section.type + '.html' %}
 {% endfor %}

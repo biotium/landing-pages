@@ -1,12 +1,12 @@
 <!-- Ask a scientist: request form that goes to tech support through HubSpot -->
-<div id="{{ section.id or 'recommendations' }}" class="bt-section bt-section--blue">
+<div id="{{ section.id or 'recommendations' }}" class="bt-section bt-section--tint">
   <div class="reveal bt-wrap" style="transition-delay:0ms;">
     <div class="bt-head bt-head--center">
       <span class="bt-kicker">{{ section.kicker }}</span>
       <h2 class="bt-h2">{{ section.title }}</h2>
       <p class="bt-lead">{{ section.lead }}</p>
     </div>
-    <div class="bt-rec-card bt-surface bt-surface--raised bt-surface--lg" id="bt-rec-card">
+    <div class="bt-rec-card" id="bt-rec-card">
       <form id="bt-rec-form" novalidate data-hs-do-not-collect="true">
         <div class="bt-rec-grid">
           <div class="bt-rec-field">

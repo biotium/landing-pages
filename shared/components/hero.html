@@ -1,6 +1,6 @@
 {% import '_icons.html' as i %}
 {% set photo = hero.visual == 'photo' %}
-<!-- Hero zone: the hero visual runs behind the hero and the feature card -->
+<!-- Hero zone: the hero visual runs behind the hero (and, on the neuron hero, the feature card) -->
 <div class="bt-hero-zone{% if photo %} bt-hero-zone--photo{% endif %}">
 {% if photo %}
   <img class="bt-hero-photo" src="{{ hero.background }}" alt="">
@@ -32,17 +32,13 @@
         </a>
       </div>
     </div>
-{% if photo and hero.media %}
-    <div class="hero-in bt-hero-media" style="transition-delay:180ms;">
-      <div class="bt-media">
-        <img src="{{ hero.media.src }}" alt="{{ hero.media.alt }}">
-{% if hero.media.caption %}
-        <div class="bt-img-pill">{{ hero.media.caption }}</div>
-{% endif %}
-      </div>
-    </div>
-{% endif %}
   </div>
+{% if photo and hero.media %}
+  <!-- Booth cutout: no frame, sits on the hero's bottom-right edge -->
+  <div class="hero-in bt-hero-overlay" style="transition-delay:200ms;">
+    <img src="{{ hero.media.src }}" alt="{{ hero.media.alt }}">
+  </div>
+{% endif %}
 {% if not photo %}
   <div class="hero-in bt-hero-brain-col" style="transition-delay:180ms;" aria-hidden="true">
     <canvas id="hero-brain"></canvas>
@@ -50,62 +46,6 @@
 {% endif %}
 </div>
 
-{% set f = feature %}
-<!-- Featured product: a card on the hero visual -->
-<div id="{{ f.id }}" class="bt-hero-feature">
-  <div class="bt-wrap">
-  <div class="bt-surface bt-surface--raised bt-surface--lg bt-feature">
-    <div class="reveal bt-feature-copy" style="transition-delay:0ms;">
-      <div class="bt-head">
-        <span class="bt-kicker">{{ f.kicker }}</span>
-        <h2 class="bt-h2 bt-h2--lg">{{ f.title }}</h2>
-      </div>
-      <ul class="bt-check-list">
-{% for item in f.checks %}
-        <li>
-          {{ i.check() }}
-          <span>{{ item }}</span>
-        </li>
-{% endfor %}
-      </ul>
-      <a href="{{ f.link.href }}"{{ i.target(f.link.href) }} class="bt-link-arrow">
-        <span class="bt-ul">{{ f.link.label }}</span>
-        {{ i.arrow(14) }}
-      </a>
-    </div>
-    <div class="reveal bt-feature-media" style="transition-delay:140ms;">
-{% if f.media.type == 'wistia' %}
-      <div class="bt-media">
-        <script src="https://fast.wistia.com/player.js" async></script>
-        <script src="https://fast.wistia.com/embed/{{ f.media.id }}.js" async type="module"></script>
-        <style>wistia-player[media-id='{{ f.media.id }}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/{{ f.media.id }}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
-        <wistia-player media-id="{{ f.media.id }}" aspect="1.7777777777777777"></wistia-player>
-      </div>
-{% elif f.media.type == 'swatches' %}
-{% set first = f.media.swatches[0] %}
-      <div class="bt-cyto-frame">
-        <div class="bt-media">
-          <img id="cytolinerImg" src="{{ first.image }}" alt="{{ first.label }}">
-          <span id="cytolinerPill" class="bt-img-pill">{{ first.label }}</span>
-        </div>
-        <div class="bt-swatches">
-{% for sw in f.media.swatches %}
-          <button class="cytoliner-swatch{% if loop.first %} is-active{% endif %}" data-img="{{ sw.image }}" data-label="{{ sw.label }}" aria-label="{{ sw.label }}" style="--glow:{{ sw.colors[1] }}B3; background:radial-gradient(circle at 28% 22%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 42%), radial-gradient(circle at 68% 72%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 55%), linear-gradient(160deg, {{ sw.colors[0] }} 0%, {{ sw.colors[1] }} 50%, {{ sw.colors[2] }} 100%);"></button>
-{% endfor %}
-        </div>
-        <div class="cytoliner-nudge" id="cytolinerNudge">
-          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.07 17 2.51-7.39L21 11.07z" fill="#6b6b6b"></path></svg>
-          <span class="bt-note">Hover a color to preview</span>
-        </div>
-      </div>
-{% else %}
-      <div class="bt-media">
-        <img src="{{ f.media.src }}" alt="{{ f.media.alt }}">
-      </div>
-{% endif %}
-    </div>
-  </div>
-  </div>
-</div>
+{% if not photo %}{% include 'feature.html' %}{% endif %}
 </div>
 

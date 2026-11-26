@@ -1,0 +1,15 @@
+{% import '_icons.html' as i %}
+<!-- Quick nav: sits under the hero and sticks to the top once you scroll past it -->
+<div id="site-header">
+  <div class="bt-wrap bt-bar-inner">
+    <nav class="bt-nav" aria-label="Page sections">
+{% for link in nav %}
+      <a href="{{ link.href }}">{{ link.label }}</a>
+{% endfor %}
+    </nav>
+    <a class="bt-booth-pill bt-booth-pill--bar" href="{{ event.floor_plan }}" target="_blank" rel="noopener" aria-label="Booth {{ event.booth }}, open the {{ event.short_name }} floor plan">
+      {{ i.pin('currentColor') }}
+      <span>Booth {{ event.booth }}</span>
+    </a>
+  </div>
+</div>

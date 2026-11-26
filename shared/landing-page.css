@@ -53,6 +53,7 @@
     .bt-section { padding-top: var(--bt-s-18); padding-bottom: var(--bt-s-20); background: #ffffff; }
     .bt-section--alt { background: var(--bt-alt); }
     .bt-section--blue { background: var(--bt-blue); }
+    .bt-section--tint { background: var(--bt-tint); }
     .bt-section--compact { padding-top: var(--bt-s-14); padding-bottom: var(--bt-s-14); }
     .bt-section--join-next { padding-bottom: var(--bt-gap-block); }
     .bt-section.bt-section--flush-top { padding-top: 0; }
@@ -60,7 +61,8 @@
     .bt-head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--bt-s-3); }
     .bt-head--center { align-items: center; text-align: center; max-width: 680px; margin: 0 auto var(--bt-gap-block) auto; }
     .bt-head--center:last-child { margin-bottom: 0; }
-    .bt-kicker { display: inline-flex; align-items: center; flex: none; background: var(--bt-tint); color: var(--bt-blue-dark); font-size: var(--bt-fs-xs); font-weight: 800; padding: 6px 14px; border-radius: var(--bt-r-pill); }
+    /* Kicker: a text eyebrow above the headline (no pill) */
+    .bt-kicker { display: block; flex: none; color: var(--bt-blue-dark); font-size: var(--bt-fs-sm); line-height: var(--bt-lh-snug); font-weight: 800; }
     /* Type roles */
     .bt-h1 { margin: 0 0 var(--bt-s-6) 0; font-size: var(--bt-fs-h1); line-height: var(--bt-lh-display); font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
     .bt-h2 { margin: 0; font-size: var(--bt-fs-h2); line-height: var(--bt-lh-tight); font-weight: 800; color: var(--bt-ink); }
@@ -77,7 +79,6 @@
     .bt-section--blue .bt-h2, .bt-section--blue .bt-lead { color: #ffffff; }
     /* White on brand blue only passes at WCAG large-text sizes, so leads on blue go 20px bold */
     .bt-section--blue .bt-lead { font-size: var(--bt-fs-xl); line-height: var(--bt-lh-snug); font-weight: 700; }
-    .bt-section--blue .bt-kicker { background: #ffffff; }
     .bt-section--blue .bt-surface--raised { box-shadow: var(--bt-shadow-on-blue); }
     /* Surface: the one card language. White, hairline border, 16px corners; raised adds the soft shadow */
     .bt-surface { background: #ffffff; border: 1px solid var(--bt-line); border-radius: var(--bt-r-card); }
@@ -158,7 +159,9 @@
     .bt-res-row { display: flex; gap: var(--bt-gutter); align-items: stretch; flex-wrap: wrap; }
     .bt-cat-card { display: flex; align-items: center; gap: var(--bt-s-5); padding: var(--bt-pad-card); }
     .bt-cat-body { flex: 1 1 auto; min-width: 0; }
-    .bt-res-card { flex: 1 1 260px; padding: var(--bt-pad-card); }
+    .bt-res-card { flex: 1 1 260px; padding: var(--bt-pad-card); display: flex; flex-direction: column; }
+    /* Download buttons sit on the card floor so they line up across the row */
+    .bt-res-card .bt-btn-outline { margin-top: auto; align-self: flex-start; }
     .bt-res-card .bt-card-desc { margin-bottom: var(--bt-s-6); }
     .bt-choice-badge { position: relative; display: inline-flex; vertical-align: middle; cursor: pointer; }
     .bt-choice-tip {
@@ -204,7 +207,7 @@
 
 
     /* Hero type */
-    .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); margin-top: -59px; }
+    .bt-hero-zone { position: relative; overflow: hidden; background-color: var(--bt-alt); }
     .bt-hero-badge { margin-bottom: var(--bt-s-6); }
     .bt-hero-badge-text { font-size: var(--bt-fs-xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); }
     /* Footer */
@@ -295,23 +298,12 @@
     html.reduced-motion #site-header.is-scrolled { background: #ffffff; backdrop-filter: none; -webkit-backdrop-filter: none; }
     #header-logo { transform: none; }
 
-    /* Sticky event pill: crossfades in over the tagline once scrolled (both occupy the same grid cell) */
-    .bt-header-right { position: relative; display: grid; align-items: center; justify-items: end; }
-    .bt-header-tagline { grid-area: 1 / 1; font-size: var(--bt-fs-xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; transition: opacity 0.35s ease; text-shadow: 0 0 2px rgba(255,255,255,0.95), 0 0 8px rgba(255,255,255,0.9); }
-    .bt-header-pill { grid-area: 1 / 1; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .bt-header-pill-icon { position: relative; display: inline-flex; width: 11px; height: 11px; flex: none; }
-    .bt-header-pill-icon svg { display: block; width: 100%; height: 100%; }
-    .bt-header-pill-text { font-size: var(--bt-fs-2xs); font-weight: 800; letter-spacing: 0.01em; color: var(--bt-text); white-space: nowrap; line-height: var(--bt-lh-snug); }
-    #site-header.is-scrolled .bt-header-tagline { opacity: 0; pointer-events: none; }
-    #site-header.is-scrolled .bt-header-pill { opacity: 1; pointer-events: auto; }
-    html.reduced-motion .bt-header-tagline,
-    html.reduced-motion .bt-header-pill { transition: none !important; }
 
     /* Hero network canvas — ambient neuron field, quiet on the left, dense on the right; not interactive, so touches scroll the page normally */
     #hero-network { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
 
     /* Hero brain — decorative overlay on top of the neuron field, anchored to the hero's right and bottom edges so it rises out of the next section; on mobile it drops into flow, centered under the hero copy and still sitting on the bottom edge */
-    .bt-hero-brain-col { position: absolute; top: 59px; right: 0; bottom: 0; width: 50%; max-width: 760px; pointer-events: none; }
+    .bt-hero-brain-col { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; max-width: 760px; pointer-events: none; }
     #hero-brain { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     /* On touch screens the brain breathes slightly between taps (compositor-only, no redraw) */
     @keyframes btBrainBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
@@ -375,22 +367,12 @@
           rgba(247,247,247,0) 95%) !important;
       }
     }
-    @media (max-width: 600px) {
-      .bt-header-tagline { display: none !important; }
-    }
     @media (max-width: 560px) {
       .bt-cat-grid { grid-template-columns: minmax(0,1fr) !important; }
-      .bt-header-pill { padding: var(--bt-s-1) 10px; gap: var(--bt-s-1); }
-      .bt-header-pill-text { font-size: 9.5px; }
-      /* Scrolled pill on phones: drop the city so it stays on one line */
-      .bt-header-pill-city { display: none; }
       /* Portfolio cards: free up width for the title and sharpen title/body contrast */
       .bt-cat-grid .bt-card { gap: var(--bt-s-3) !important; }
       .bt-cat-grid .bt-icon-box { width: 64px !important; height: 64px !important; }
       .bt-cat-grid .bt-icon-box svg { width: 26px !important; height: 26px !important; }
-    }
-    @media (max-width: 340px) {
-      .bt-header-pill-text { font-size: 9px; }
     }
     /* Section nav in the sticky header, and the roomier desktop rhythm */
     .bt-body-scope { --bt-header-h: 61px; }
@@ -412,7 +394,6 @@
     .bt-nav a.is-active::after { transform: scaleX(1); }
     /* Mid widths: the tagline steps aside so the links fit */
     @media (max-width: 1180px) and (min-width: 901px) {
-      .bt-header-tagline { display: none !important; }
       .bt-nav a { padding: var(--bt-s-2) 10px; }
     }
     /* Phones and tablets: the links become a swipeable chip row under the logo */
@@ -486,3 +467,55 @@
     #header-logo svg { height: 32px; width: auto; display: block; }
     .bt-footer-brand > a svg { height: 28px; width: auto; display: block; }
     .cytoliner-nudge .bt-note { font-weight: 600; }
+
+    /* ===== Top header, quick nav bar, photo hero and feature band ===== */
+    /* Top header: logo, tagline and (phones) the booth pill. It scrolls away; the quick nav sticks */
+    #top-header { position: relative; z-index: 101; background: #ffffff; border-bottom: 1px solid var(--bt-line); }
+    #top-header #header-inner { align-items: flex-end !important; }
+    .bt-tagline-top { font-size: var(--bt-fs-2xs); font-weight: 700; color: var(--bt-muted); letter-spacing: 0.02em; white-space: nowrap; }
+    .bt-booth-pill--top { display: none; align-self: center; }
+    /* Quick nav bar under the hero: section links left, booth pill right */
+    .bt-body-scope { --bt-header-h: 56px; }
+    #site-header { border-top: 1px solid var(--bt-line); border-bottom: 1px solid var(--bt-line); }
+    .bt-bar-inner { display: grid; grid-template-columns: 1fr auto; align-items: center; padding-top: 6px; padding-bottom: 6px; }
+    .bt-bar-inner .bt-booth-pill { justify-self: end; }
+    .bt-bar-inner .bt-nav { justify-content: flex-start; gap: var(--bt-s-2); margin: 0 0 0 calc(var(--bt-s-4) * -1); }
+    .bt-bar-inner .bt-nav a { padding: var(--bt-s-2) var(--bt-s-4); }
+    .bt-bar-inner .bt-nav a::after { left: var(--bt-s-4); right: var(--bt-s-4); }
+    .bt-nav a.is-active { color: var(--bt-link); }
+    @media (max-width: 1180px) and (min-width: 901px) {
+      .bt-bar-inner .bt-nav { gap: var(--bt-s-1); margin-left: calc(var(--bt-s-3) * -1); }
+      .bt-bar-inner .bt-nav a { padding: var(--bt-s-2) var(--bt-s-3); }
+      .bt-bar-inner .bt-nav a::after { left: var(--bt-s-3); right: var(--bt-s-3); }
+    }
+    /* Phones: the booth pill moves up to the top header; the bar becomes a swipeable chip row that is always visible */
+    @media (max-width: 900px) {
+      .bt-body-scope { --bt-header-h: 52px; }
+      .bt-tagline-top, .bt-booth-pill--bar { display: none; }
+      .bt-booth-pill--top { display: inline-flex; }
+      .bt-bar-inner { display: block; padding-top: 0; padding-bottom: 0; }
+      .bt-bar-inner .bt-nav { position: relative; margin: 0 -24px !important; padding: var(--bt-s-2) 24px; scroll-padding-inline: 24px; gap: var(--bt-s-2); opacity: 1; transform: none; pointer-events: auto; background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .bt-bar-inner .bt-nav a { padding: 6px 14px; }
+    }
+    /* Hero spacing now that the header no longer overlaps it */
+    .bt-hero > .bt-wrap { padding-top: var(--bt-s-12); }
+    .bt-hero-zone--photo .bt-hero > .bt-wrap { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(64px, 9.4vw, 120px); }
+    /* Photo hero: plain date line, no pill */
+    .bt-hero-zone--photo .bt-hero-badge { background: none; border: 0; padding: 0; }
+    .bt-hero-zone--photo .bt-hero-pin { display: none; }
+    .bt-hero-zone--photo .bt-hero-badge-text { font-size: var(--bt-fs-base); }
+    /* Booth cutout: no frame, anchored to the hero's bottom-right edge */
+    .bt-hero-overlay { position: absolute; right: max(16px, calc((100% - 1160px) / 2 - 24px)); bottom: 0; width: min(52%, 660px); z-index: 1; line-height: 0; pointer-events: none; }
+    .bt-hero-overlay img { width: 100%; height: auto; display: block; }
+    @media (max-width: 1100px) { .bt-hero-overlay { width: 50%; } }
+    @media (max-width: 900px) { .bt-hero-overlay { position: relative; right: auto; bottom: auto; width: min(100% - 48px, 480px); margin: calc(var(--bt-s-4) * -1) auto 0 auto; } }
+    /* Feature band (photo hero pages): copy beside the image on grey, no card */
+    .bt-feature-band .bt-feature-copy { max-width: 560px; }
+    /* Come say hi: booth button with the note under it */
+    .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-4); }
+    /* Link cards: the title turns link blue on hover; resource buttons fill in when their card is hovered */
+    .bt-card-title { transition: color 0.2s ease; }
+    .bt-card:hover .bt-card-title { color: var(--bt-link); }
+    .bt-res-card:hover .bt-btn-outline { background: #0062be; border-color: #0062be; color: #ffffff; }
+    /* On the tint band, links use the dark brand blue: #0070d9 is 4.3:1 there, under AA for small text */
+    .bt-section--tint .bt-note a, .bt-section--tint .bt-a { color: var(--bt-blue-dark); }
