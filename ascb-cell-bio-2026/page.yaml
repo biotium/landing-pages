@@ -59,34 +59,31 @@ sections:
     id: products
     kicker: Products
     title: Simplify cell biology research with innovative tools
+    # Each card uses the hero image of the biotium.com page it links to
     cards:
       - title: Cellular Stains
         text: Nuclear, membrane, and cytoskeleton stains for live and fixed cells, built for easy multiplexing.
-        image: membrane_sm.jpg
+        image: cat-cellular-stains.jpg
         href: https://biotium.com/technology/cellular-stains/
       - title: Biotium Choice Antibodies &amp; MiniMabs
         text: Carefully curated, in-house validated primary antibodies, plus compact single-domain MiniMabs.
-        image: antibody_sm.jpg
+        image: cat-primary-antibodies.jpg
         href: https://biotium.com/primary-antibodies/
-      # Stand-in image until the CF Dyes art is ready
       - title: CF&reg; Dyes &amp; Antibody Labeling Kits
         text: Bright, photostable CF&reg; Dyes and Mix-n-Stain&trade; kits to label your own antibodies.
-        image: tsa_sm.jpg
+        image: cat-cf-dyes.jpg
         href: https://biotium.com/technology/cf-dyes/
-      # Stand-in image until the secondary antibodies art is ready
       - title: Secondary Antibodies
         text: CF&reg; Dye-conjugated secondaries across host species and colors, ready for your multiplex panel.
-        image: nuclear_sm.jpg
+        image: cat-secondary-antibodies.jpg
         href: https://biotium.com/technology/primary-secondary-antibody-conjugates/secondary-antibody-product-listings/
-      # Stand-in image until the TrueBlack art is ready
       - title: TrueBlack&reg;
         text: Quench lipofuscin autofluorescence and cut nonspecific background for cleaner IF and western blots.
-        image: evs_sm.jpg
+        image: cat-trueblack.jpg
         href: https://biotium.com/technology/trueblack-fluorescence-background-reducing-reagents/
-      # Stand-in image until the cell viability art is ready
       - title: Cell Viability
         text: Live and dead stains plus apoptosis and necrosis assays for microscopy and flow cytometry.
-        image: flow_sm.jpg
+        image: cat-cell-viability.jpg
         href: https://biotium.com/technology/cell-viability-apoptosis/
 
   - type: resources
