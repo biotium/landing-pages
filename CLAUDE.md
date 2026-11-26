@@ -85,7 +85,7 @@ The CSS classes in `shared/landing-page.css` that the components use. New compon
 
 
 
-Manny still edits the ASCB design canvas visually on claude.ai: https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g (shared with the Biotium org). It can fall behind this repo, or get ahead of it. Before syncing in either direction, check which side is newer and ask.
+The ASCB design canvas (https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g) is retired now that its layout lives in `shared/` and its content in `ascb-cell-bio-2026/page.yaml`. Don't sync it in either direction; make ASCB changes here.
 
 The SfN design canvas (https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp) is retired now that Quiet Field is the pick. Don't sync it.
 
