@@ -12,4 +12,4 @@ Biotium's booth landing page for Neuroscience 2026 (SfN), Nov 15-18, 2026, Washi
 - `hero-brain.webp` - source image for the particle brain. `tools/brain-particles.py` turns it into the data in `hero-brain.js`.
 - `portfolio-*.webp`, `resource-*.webp`, `promo-neurons.webp`, `tshirts.webp` - page images.
 
-Quiet Field artifact: https://claude.ai/artifact/9jy6gG9UWHWavorH6RLzDK
+Review copy (SfN 2026 LP): https://claude.ai/artifact/9FFyRbx2a4gxPwBwSMnF1P
