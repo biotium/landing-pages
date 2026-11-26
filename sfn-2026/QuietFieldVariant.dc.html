@@ -74,7 +74,7 @@
     .bt-head--center { align-items: center; text-align: center; max-width: 680px; margin: 0 auto var(--bt-gap-block) auto; }
     .bt-head--center:last-child { margin-bottom: 0; }
     /* Kicker: a text eyebrow above the headline (no pill) */
-    .bt-kicker { display: block; flex: none; color: var(--bt-blue-dark); font-size: var(--bt-fs-sm); line-height: var(--bt-lh-snug); font-weight: 800; }
+    .bt-kicker { display: block; flex: none; color: var(--bt-blue-dark); font-size: var(--bt-fs-sm); line-height: var(--bt-lh-snug); font-weight: 700; }
     /* Type roles */
     .bt-h1 { margin: 0 0 var(--bt-s-6) 0; font-size: var(--bt-fs-h1); line-height: var(--bt-lh-display); font-weight: 800; letter-spacing: -0.01em; color: var(--bt-ink); }
     .bt-h2 { margin: 0; font-size: var(--bt-fs-h2); line-height: var(--bt-lh-tight); font-weight: 800; color: var(--bt-ink); }
@@ -277,7 +277,7 @@
     .bt-rec-card { max-width: 720px; margin: 0 auto; }
     .bt-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bt-s-4); margin-bottom: var(--bt-s-4); }
     .bt-rec-field { display: flex; flex-direction: column; gap: var(--bt-s-2); text-align: left; }
-    .bt-rec-field label { font-size: var(--bt-fs-xs); font-weight: 800; color: var(--bt-ink); }
+    .bt-rec-field label { font-size: var(--bt-fs-xs); font-weight: 700; color: var(--bt-ink); }
     .bt-rec-field input, .bt-rec-field textarea { font: inherit; font-size: var(--bt-fs-base); color: var(--bt-ink); background: #ffffff; border: 1.5px solid var(--bt-line-input); border-radius: var(--bt-r-inner); padding: var(--bt-s-3) 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; width: 100%; box-sizing: border-box; }
     .bt-rec-field textarea { min-height: 120px; resize: vertical; line-height: var(--bt-lh-body); }
     .bt-rec-field input::placeholder, .bt-rec-field textarea::placeholder { color: var(--bt-subtle); }
@@ -437,7 +437,6 @@
     .bt-hero-shade { position: absolute; inset: 0; background-image: linear-gradient(100deg, rgba(3,8,14,0.94) 0%, rgba(3,8,14,0.84) 38%, rgba(3,8,14,0.5) 68%, rgba(3,8,14,0.2) 100%); }
     .bt-hero-zone--photo .bt-h1 { color: #ffffff; }
     .bt-hero-zone--photo .bt-hero-sub { color: #E4EAF0; }
-    .bt-hero-zone--photo .bt-hero-badge { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
     .bt-hero-zone--photo .bt-hero-badge-text { color: #D7DEE5; }
     .bt-hero-row { display: flex; align-items: center; gap: var(--bt-s-16); }
     .bt-hero-row .bt-hero-copy { flex: 1 1 0; }
@@ -533,6 +532,13 @@
       .bt-bar-inner .bt-nav { position: relative; margin: 0 -24px !important; padding: var(--bt-s-2) 24px; scroll-padding-inline: 24px; gap: var(--bt-s-2); opacity: 1; transform: none; pointer-events: auto; background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
       .bt-bar-inner .bt-nav a { padding: 6px 14px; }
     }
+    /* Desktop bar heights: top header 64px (16px around the 32px logo), quick nav 56px (matches --bt-header-h);
+       booth pill on the 4px grid */
+    @media (min-width: 901px) {
+      #top-header #header-inner { padding-top: var(--bt-s-4) !important; padding-bottom: var(--bt-s-4) !important; }
+      .bt-bar-inner { min-height: 54px; padding-top: 0; padding-bottom: 0; }
+      .bt-booth-pill { padding: var(--bt-s-2) var(--bt-s-4); }
+    }
     /* Hero spacing now that the header no longer overlaps it */
     .bt-hero > .bt-wrap { padding-top: var(--bt-s-12); }
     .bt-hero-zone--photo .bt-hero > .bt-wrap { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(64px, 9.4vw, 120px); }
@@ -548,7 +554,7 @@
     /* Feature band: copy beside the media on grey, no card */
     .bt-feature-band .bt-feature-copy { max-width: 560px; }
     /* Come say hi: booth button with the note under it */
-    .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-4); }
+    .bt-say-hi-actions { display: flex; flex-direction: column; align-items: center; gap: var(--bt-s-4); margin-top: var(--bt-s-3); }
     /* Link cards: the title turns link blue on hover; resource buttons fill in when their card is hovered */
     .bt-card-title { transition: color 0.2s ease; }
     .bt-card:hover .bt-card-title { color: var(--bt-link); }

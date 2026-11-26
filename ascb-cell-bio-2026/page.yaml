@@ -116,8 +116,8 @@ sections:
     image: tshirts.webp
     alt: Biotium spectra and TrueBlack conference T-shirts
     kicker: Win cool merch
-    title: Come play Lab DnD for a chance to win a limited release tee and other prizes
-    lead: Stop by our booth to play for a chance to win various prizes, including our limited-release T-shirts, while supplies last.
+    title: Play Lab DnD. Win a limited-release tee.
+    lead: Stop by our booth to play for a chance to win various prizes, including our limited-release T&#8209;shirts, while supplies last.
 
   - type: say-hi
     title: Come say hi. Bring your questions.
