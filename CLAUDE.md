@@ -85,7 +85,7 @@ The CSS classes in `shared/landing-page.css` that the components use. New compon
 
 
 
-The ASCB design canvas (https://claude.ai/artifact/FgTJhZHtbTBDJn3a1jJz7g) is retired now that its layout lives in `shared/` and its content in `ascb-cell-bio-2026/page.yaml`. Don't sync it in either direction; make ASCB changes here.
+The ASCB design canvas has been deleted; its layout lives in `shared/` and its content in `ascb-cell-bio-2026/page.yaml`. Make ASCB changes here.
 
 The SfN design canvas (https://claude.ai/artifact/1znzipdNYLjjscsdsNctTp) is retired now that Quiet Field is the pick. Don't sync it.
 
