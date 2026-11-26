@@ -1293,7 +1293,7 @@ label: Biotium – SfN 2026 Landing Page
     var current = -1, ticking = false;
     function update() {
       ticking = false;
-      var line = (parseFloat(getComputedStyle(document.querySelector('.bt-body-scope')).getPropertyValue('--bt-header-h')) || 58) + window.innerHeight * 0.25;
+      var line = (parseFloat(getComputedStyle(document.querySelector('.bt-body-scope') || document.body).getPropertyValue('--bt-header-h')) || 58) + window.innerHeight * 0.25;
       var idx = -1;
       for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= line) idx = i; }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = targets.length - 1;
