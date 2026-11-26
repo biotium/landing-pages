@@ -59,6 +59,7 @@ sections:
     id: products
     kicker: Products
     title: Simplify cell biology research with innovative tools
+    # Ordered by relevance to Cell Bio (cultured-cell imaging first, tissue last).
     # Each card uses the hero image of the biotium.com page it links to
     cards:
       - title: Membrane Stains
@@ -79,22 +80,22 @@ sections:
         text: Carefully curated, in-house validated primary antibodies, plus compact single-domain MiniMabs.
         image: cat-primary-antibodies.jpg
         href: https://biotium.com/primary-antibodies/
-      - title: CF&reg; Dyes &amp; Antibody Labeling Kits
-        text: Bright, photostable CF&reg; Dyes and Mix-n-Stain&trade; kits to label your own antibodies.
-        image: cat-cf-dyes.jpg
-        href: https://biotium.com/technology/cf-dyes/
       - title: Secondary Antibodies
         text: CF&reg; Dye-conjugated secondaries across host species and colors, ready for your multiplex panel.
         image: cat-secondary-antibodies.jpg
         href: https://biotium.com/technology/primary-secondary-antibody-conjugates/secondary-antibody-product-listings/
-      - title: TrueBlack&reg;
-        text: Quench lipofuscin autofluorescence and cut nonspecific background for cleaner IF and western blots.
-        image: cat-trueblack.jpg
-        href: https://biotium.com/technology/trueblack-fluorescence-background-reducing-reagents/
+      - title: CF&reg; Dyes &amp; Antibody Labeling Kits
+        text: Bright, photostable CF&reg; Dyes and Mix-n-Stain&trade; kits to label your own antibodies.
+        image: cat-cf-dyes.jpg
+        href: https://biotium.com/technology/cf-dyes/
       - title: Cell Viability
         text: Live and dead stains plus apoptosis and necrosis assays for microscopy and flow cytometry.
         image: cat-cell-viability.jpg
         href: https://biotium.com/technology/cell-viability-apoptosis/
+      - title: TrueBlack&reg;
+        text: Quench lipofuscin autofluorescence and cut nonspecific background for cleaner IF and western blots.
+        image: cat-trueblack.jpg
+        href: https://biotium.com/technology/trueblack-fluorescence-background-reducing-reagents/
 
   - type: resources
     kicker: Take it with you
